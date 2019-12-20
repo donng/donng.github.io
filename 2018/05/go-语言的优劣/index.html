@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+        Go 语言的优劣 - Donne blog
+      </title>
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  
+  <meta name="theme-color" content="#000000" />
+  
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <meta name="description" content="文章在 Golang 中文网的地址 点击这里，英语原文地址 点击这里。 这是「Go 是一门设计糟糕的编程语言」系列追加的一篇文章。Go 确实有一些不错的特性，因此这" />
+  <meta name="generator" content="Hugo 0.61.0 with theme pure" />
+  <title>Go 语言的优劣 - Donne blog</title>
+  
+
+  <link rel="stylesheet" href="https://donng.github.io/css/style.css">
+  <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+  <meta property="og:title" content="Go 语言的优劣" />
+<meta property="og:description" content="文章在 Golang 中文网的地址 点击这里，英语原文地址 点击这里。 这是「Go 是一门设计糟糕的编程语言」系列追加的一篇文章。Go 确实有一些不错的特性，因此这" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://donng.github.io/2018/05/go-%E8%AF%AD%E8%A8%80%E7%9A%84%E4%BC%98%E5%8A%A3/" />
+<meta property="article:published_time" content="2018-05-06T11:25:19+08:00" />
+<meta property="article:modified_time" content="2018-05-06T11:25:19+08:00" />
+<meta itemprop="name" content="Go 语言的优劣">
+<meta itemprop="description" content="文章在 Golang 中文网的地址 点击这里，英语原文地址 点击这里。 这是「Go 是一门设计糟糕的编程语言」系列追加的一篇文章。Go 确实有一些不错的特性，因此这">
+<meta itemprop="datePublished" content="2018-05-06T11:25:19&#43;08:00" />
+<meta itemprop="dateModified" content="2018-05-06T11:25:19&#43;08:00" />
+<meta itemprop="wordCount" content="12956">
+
+
+
+<meta itemprop="keywords" content="Go," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go 语言的优劣"/>
+<meta name="twitter:description" content="文章在 Golang 中文网的地址 点击这里，英语原文地址 点击这里。 这是「Go 是一门设计糟糕的编程语言」系列追加的一篇文章。Go 确实有一些不错的特性，因此这"/>
+
+  <!--[if lte IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+    <![endif]-->
+
+  <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+  </head>
+  
+
+  <body class="main-center" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          <a id="avatar" href="https://github.com/donng" target="_blank">
+            <img class="img-circle img-rotate" src="https://donng.github.io/avatar.png" width="200" height="200">
+          </a>
+          <h2 id="name" class="hidden-xs hidden-sm">Donne</h2>
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer</h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Beijing, China</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+                    <i class="icon icon-home-fill"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-archives">
+                <a href="/posts">
+                    <i class="icon icon-archives-fill"></i>
+                  <span class="menu-title">Archives</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-categories">
+                <a href="/categories">
+                    <i class="icon icon-folder"></i>
+                  <span class="menu-title">Categories</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-tags">
+                <a href="/tags">
+                    <i class="icon icon-tags"></i>
+                  <span class="menu-title">Tags</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about">
+                    <i class="icon icon-cup-fill"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content"><p>enjoy~</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+      <div class="widget">
+    <h3 class="widget-title"> Categories</h3>
+    <div class="widget-body">
+        <ul class="category-list">
+        </ul>
+    </div>
+</div>
+      <div class="widget">
+    <h3 class="widget-title"> Tags</h3>
+    <div class="widget-body">
+        <ul class="tag-list">
+            
+            
+            <li class="tag-list-item"><a href="https://donng.github.io/tags/go/" class="tag-list-link">go</a><span
+                    class="tag-list-count">1</span></li>
+            
+        </ul>
+
+    </div>
+</div>
+      
+<div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+        <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://donng.github.io/2018/05/go-%E8%AF%AD%E8%A8%80%E7%9A%84%E4%BC%98%E5%8A%A3/" class="title">Go 语言的优劣</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2018-05-06 11:25:19 &#43;0800 CST" itemprop="datePublished">2018-05-06</time>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+  </div>
+</aside>
+
+    
+    
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <h4 class="toc-title">Catalogue</h4>
+    <nav id="toc" class="js-toc toc">
+
+    </nav>
+  </div>
+</aside>
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/2018/05/go-%E8%AF%AD%E8%A8%80%E7%9A%84%E4%BC%98%E5%8A%A3/"
+    >Go 语言的优劣</a
+  >
+</h1>
+
+      <div class="article-meta">
+        <span class="article-date">
+  <i class="icon icon-calendar-check"></i>
+<a href="https://donng.github.io/2018/05/go-%E8%AF%AD%E8%A8%80%E7%9A%84%E4%BC%98%E5%8A%A3/" class="article-date">
+  <time datetime="2018-05-06 11:25:19 &#43;0800 CST" itemprop="datePublished">2018-05-06</time>
+</a>
+</span>  
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+    <a class="article-tag-link" href="/tags/go/"> Go </a>
+  </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2018/05/go-%E8%AF%AD%E8%A8%80%E7%9A%84%E4%BC%98%E5%8A%A3/#comments"
+            class="article-comment-link">Comments</a></span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count:12956words</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count:26minutes </span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <p>文章在 Golang 中文网的地址 <a href="https://studygolang.com/articles/12907">点击这里</a>，英语原文地址 <a href="https://bluxte.net/musings/2018/04/10/go-good-bad-ugly/">点击这里</a>。</p>
+<p>这是「<a href="https://github.com/ksimka/go-is-not-good">Go 是一门设计糟糕的编程语言</a>」系列追加的一篇文章。Go 确实有一些不错的特性，因此这篇文章也展示了它的优点。但是总的来说，当超过 API 或者网络服务器（这也是它的设计所在）的范畴，用 Go 处理商业领域的逻辑时，我感觉它用起来既麻烦又痛苦。就算在网络编程方面，Go 的设计和实现也存在诸多问题，这使它看上去简单实际则暗藏危险。</p>
+<p>写这篇文章的动机是因为我最近重新开始用 Go 写一个业余项目。在以前的工作中我广泛的使用了 Go 为 SaaS 服务编写网络代理（包括 http 和原始的 tcp）。Go 在网络编程方面体验很不错（我也正在探索这门语言），但随之而来的会计和账单部分则苦不堪言。因为我的业余项目只是一个简单的 API，我认为 Go 非常适合快速的完成这个任务。但是我们都知道，很多项目的需求增长会超过了预期，所以我不得不写一些数据处理程序来计算统计数据，Go 的痛苦之处也随着而来。下面就是我对 Go 的困扰。</p>
+<p>一些背景情况：我喜欢静态类型的语言。我第一个标志性的项目是用 <a href="https://zh.wikipedia.org/wiki/Pascal_(%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80)">Pascal</a> 写的。当 90 年代初我开始工作之后，开始使用 <a href="https://zh.wikipedia.org/wiki/Ada">Ada</a> 和 C/C++。后来我转移到 Java 阵地，最后是 Scala（中间夹杂着 Go），最近开始学习 <a href="https://www.rust-lang.org/zh-CN/">Rust</a>。我也写了大量的 JavaScript，因为直到现在它依旧是浏览器端唯一可用的语言。我感觉动态类型的语言并不安全，并尽力将它们的使用限制在脚本级别。我习惯了命令式，函数式和面向对象的方法。</p>
+<p>这是一篇很长的文章，所以我整理了菜单来引起你的兴趣：</p>
+<ul>
+<li><a href="#good">优点</a>
+<ul>
+<li><a href="#go-easy-learn">Go 很容易学习</a></li>
+<li><a href="#easy-concurrent">基于 goroutines 和 channels 的简单并发编程</a></li>
+<li><a href="#greate-standard-library">丰富的标准库</a></li>
+<li><a href="#go-performant">Go 性能优越</a></li>
+<li><a href="#defined-code-format">语言层面定义源代码的格式化</a></li>
+<li><a href="#test-framework">标准化的测试框架</a></li>
+<li><a href="#great-operations">Go 程序方便操作</a></li>
+<li><a href="#defer">Defer 声明，避免忘记清理</a></li>
+<li><a href="#new-type">新类型</a></li>
+</ul>
+</li>
+<li><a href="#bad">缺点</a>
+<ul>
+<li><a href="#ignore-advances">Go 忽略了现代语言设计的进步</a></li>
+<li><a href="#interfaces-types">接口是结构类型</a></li>
+<li><a href="#no-enum">没有枚举</a></li>
+<li><a href="#dilemma">:= 和 var 两难选择</a></li>
+<li><a href="#zero-panic">零值会导致 panic</a></li>
+<li><a href="#exceptions">Go 没有异常，等等&hellip; 它是有的</a>！</li>
+</ul>
+</li>
+<li><a href="#ugly">丑陋设计</a>
+<ul>
+<li><a href="#dependency-nightmare">依赖管理的噩梦</a></li>
+<li><a href="#mutability-hardcode">易变性被语言硬编码</a></li>
+<li><a href="#slice-gotchas">切片（slice）陷阱</a></li>
+<li><a href="#race-conditions">易变性和 channels：竞争条件更容易发生</a></li>
+<li><a href="#error-management">杂乱的错误管理</a></li>
+<li><a href="#nil-interface-values">Nil 接口值</a></li>
+<li><a href="#dsl">Struct 字段标记：DSL 在字符串中的运行时间</a></li>
+<li><a href="#generic">没有泛型&hellip;至少没给你</a></li>
+<li><a href="#no-structures">Go 在 slice 和 map 之外几乎没有别的数据结构</a></li>
+<li><a href="#generate">go generate，还说得过去，但是&hellip;</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">结论</a></li>
+<li><a href="#hacker-news">几天后：Hacker News 第三名!</a></li>
+</ul>
+<h2 id="span-idgoodspan"><!-- raw HTML omitted -->优点<!-- raw HTML omitted --></h2>
+<h3 id="span-idgo-easy-learngo-span"><!-- raw HTML omitted -->Go 很容易学习<!-- raw HTML omitted --></h3>
+<p>这是事实：如果你了解任何一种编程语言，那么通过在 <a href="http://go-tour-zh.appspot.com/welcome/1">Go 语言之旅</a> 学习几个小时就能够掌握 Go 的大部分语法，并在几天后写出你的第一个真正的程序。阅读并理解 <a href="http://docscn.studygolang.com/doc/effective_go.html">实效 Go 编程</a>，浏览一下 <a href="http://docscn.studygolang.com/pkg/">包文档</a>，玩一玩 <a href="http://www.gorillatoolkit.org/">Gorilla</a> 或者 <a href="https://gokit.io/">Go Kit</a> 这样的网络工具包，然后你就会成为一个相当不错的 Go 开发者。</p>
+<p>这是因为 Go 的首要目标是简单。当我开始学习 Go，它让我想起我第一次 <a href="https://zh.wikipedia.org/wiki/Java%E7%89%88%E6%9C%AC%E6%AD%B7%E5%8F%B2">发现 Java</a> 的感觉：一个简单的语言和一个丰富但不臃肿的标准库。对比当前 Java 沉重的环境，学习 Go 是一个耳目一新的体验。因为 Go 的简易性，Go 程序可读性非常高，虽然错误处理增加了一些麻烦（更多的内容在下面）。</p>
+<p>Go 语言的简单性可能是错误的。引用 Rob Pike 的话，<a href="https://talks.golang.org/2015/simplicity-is-complicated.slide#1">简单既是复杂</a>，我们会看到简单背后有很多的陷阱等着我们去踩，极简主义会让我们违背 DRY(Don't Repeat Yourself) 原则。</p>
+<h3 id="span-ideasy-concurrent-goroutines--channels-span"><!-- raw HTML omitted -->基于 goroutines 和 channels 的简单并发编程<!-- raw HTML omitted --></h3>
+<p>Goroutines 可能是 Go 的最佳特性了。它们是轻量级的计算线程，与操作系统线程截然不同。</p>
+<p>当 Go 程序执行看似阻塞 I/O 的操作时，实际上 Go 运行时挂起了 goroutine ，当一个事件指示某个结果可用时恢复它。与此同时，其他 goroutines 已被安排执行。因此在同步编程模型下，我们具有了异步编程的可伸缩性优势。</p>
+<p>Goroutines 也是轻量级的：它们的堆栈 <a href="https://dave.cheney.net/2013/06/02/why-is-a-goroutines-stack-infinite">随需求增长和收缩</a>，这意味着有 100 个甚至 1000 个 goroutines 都不是问题。</p>
+<p>我以前的应用程序中有一个 goroutine 漏洞：这些 goroutines 结束之前正在等待一个 channel 关闭，而这个 channel 永远不会关闭（一个常见的死锁问题）。这个进程毫无任何理由吃掉了 90 % 的 CPU ，而检查 <a href="http://docscn.studygolang.com/pkg/expvar/">expvars</a> 显示有 600 k 空闲的 goroutines！我猜测 goroutine 调度程序占用了 CPU。</p>
+<p>当然，像 Akka 这样的 Actor 系统可以轻松 <a href="https://doc.akka.io/docs/akka/2.5/general/actor-systems.html#what-you-should-not-concern-yourself-with">处理数百万的 Actors</a>，部分原因是 actors 没有堆栈，但是他们远没有像 goroutines 那样简单地编写大量并发的请求/响应应用程序（即 http APIs）。</p>
+<p>channel 是 goroutines 的通信方式：它们提供了一个便利的编程模型，可以在 goroutines 之间发送和接收数据，而不必依赖脆弱的低级别同步基本体。channels 有它们自己的一套 <a href="https://blog.golang.org/pipelines">用法</a> 和  <a href="https://blog.golang.org/go-concurrency-patterns-timing-out-and">模式</a>。</p>
+<p>但是，使用 channels 必须仔细考虑，因为错误大小的 channels （默认情况下没有缓冲） <a href="https://www.danmrichards.com/blog/2018/03/26/goroutines-channels-and-waitgroups/">会导致死锁</a>。下面我们还将看到，使用通道并不能阻止竞争情况，因为它缺乏不可变性。</p>
+<h3 id="span-idgreate-standard-libraryspan"><!-- raw HTML omitted -->丰富的标准库<!-- raw HTML omitted --></h3>
+<p>Go 的 <a href="http://docscn.studygolang.com/pkg/">标准库</a> 非常丰富，特别是对于所有与网络协议或 API 开发相关的： http 客户端和服务器，加密，档案格式，压缩，发送电子邮件等等。甚至还有一个 html 解析器和相当强大的模板引擎去生成 text &amp; html，它会自动过滤 XSS 攻击（例如在 <a href="https://gohugo.io/templates/introduction/">Hugo</a> 中的使用）。</p>
+<p>各种 APIs 一般都简单易懂。它们有时看起来过于简单：这个某种程度上是因为 goroutine 编程模型意味着我们只需要关心「看似同步」的操作。这也是因为一些通用的函数也可以替换许多专门的函数，就像 <a href="https://bluxte.net/musings/2018/03/22/local-date-time-calculations-in-go/">我最近发现的关于时间计算的问题</a>。</p>
+<h3 id="span-idgo-performantgo-span"><!-- raw HTML omitted -->Go 性能优越<!-- raw HTML omitted --></h3>
+<p>Go 编译为本地可执行文件。许多 Go 的用户来自 Python、Ruby 或 Node.js。对他们来说，这是一种令人兴奋的体验，因为他们看到服务器可以处理的并发请求数量大幅增加。当您使用非并发（Node.js）或全局解释器锁定的解释型语言时，这实际上是相当正常的。结合语言的简易性，这解释了 Go 令人兴奋的原因。</p>
+<p>然而与 Java 相比，在 <a href="https://www.techempower.com/benchmarks/">原始性能基准测试</a> 中，情况并不是那么清晰。Go 打败 Java 地方是内存使用和垃圾回收。</p>
+<p>Go 的垃圾回收器的设计目的是 <a href="https://blog.golang.org/go15gc">优先考虑延迟</a>，并避免停机，这在服务器中尤其重要。这可能会带来更高的 CPU 成本，但是在水平可伸缩的体系结构中，这很容易通过添加更多的机器来解决。请记住，Go 是由谷歌设计的，他们从不会在资源上面短缺。</p>
+<p>与 Java 相比，Go 的垃圾回收器（GC）需要做的更少，切片是一个连续的数组结构，而不是像 Java 那样的指针数组。类似地，Go maps 也使用 <a href="https://golang.org/src/runtime/hashmap.go">小数组作为 buckets</a>，以实现相同的目的。这意味着垃圾回收器的工作量减少，并且 CPU 缓存本地化也更好。</p>
+<p>Go 同样在命令行实用程序中优于 Java，作为本地可执行文件，Go 程序没有启动消耗，反之 Java 首先需要加载和编译的字节码。</p>
+<h3 id="span-iddefined-code-formatspan"><!-- raw HTML omitted -->语言层面定义源代码的格式化<!-- raw HTML omitted --></h3>
+<p>我职业生涯中一些最激烈的辩论发生在团队代码格式的定义上。 Go 通过为代码定义规范格式来解决这个问题。 <code>gofmt</code> 工具会重新格式化您的代码，并且没有选项。</p>
+<p>不管你喜欢与否，<code>gofmt</code> 定义了如何对代码进行格式化，一次性解决了这个问题。</p>
+<h3 id="span-idtest-frameworkspan"><!-- raw HTML omitted -->标准化的测试框架<!-- raw HTML omitted --></h3>
+<p>Go 在其标准库中提供了一个很好的 <a href="http://docscn.studygolang.com/pkg/testing/">测试框架</a>。它支持并行测试、基准测试，并包含许多实用程序，可以轻松测试网络客户端和服务器。</p>
+<h3 id="span-idgreat-operationsgo-span"><!-- raw HTML omitted -->Go 程序方便操作<!-- raw HTML omitted --></h3>
+<p>与 Python，Ruby 或 Node.js 相比，必须安装单个可执行文件对于运维工程师来说是一个梦想。 随着越来越多的 Docker 的使用，这个问题越来越少，但独立的可执行文件也意味着小型的 Docker 镜像。</p>
+<p>Go 还具有一些内置的观察性功能，可以使用 <a href="http://docscn.studygolang.com/pkg/expvar/"><code>expvar</code></a> 包发布内部状态和指标，并易于添加新内容。但要小心，因为它们在默认的 http 请求处理程序中 <a href="http://docscn.studygolang.com/pkg/expvar/#pkg-overview">自动公开</a>，不受保护。Java 有类似的 JMX ，但它要复杂得多。</p>
+<h3 id="span-iddeferdefer-span"><!-- raw HTML omitted -->Defer 声明，防止忘记清理<!-- raw HTML omitted --></h3>
+<p>defer 语句的目的类似于 Java 的 <code>finally</code>：在当前函数的末尾执行一些清理代码，而不管此函数如何退出。<code>defer</code> 的有趣之处在于它跟代码块没有联系，可以随时出现。这使得清理代码尽可能接近需要清理的代码：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">file</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Open</span>(<span style="color:#a6e22e">fileName</span>)
+<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+    <span style="color:#66d9ef">return</span>
+}
+<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">file</span>.<span style="color:#a6e22e">Close</span>()
+
+<span style="color:#75715e">// 用文件资源的时候，我们再也不需要考虑何时关闭它
+</span></code></pre></div><p>当然，Java的 <a href="https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html">试用资源</a> 没那么冗长，而且 Rust 在其所有者被删除时会 <a href="https://doc.rust-lang.org/rust-by-example/trait/drop.html">自动声明资源</a>，但是由于 Go 要求您清楚地了解资源清理情况，因此让它接近资源分配很不错。</p>
+<h3 id="span-idnew-typespan"><!-- raw HTML omitted -->新类型<!-- raw HTML omitted --></h3>
+<p>我喜欢类型，因为有些事情让我感到恼火和害怕，举个例子，我们到处把持久对象标识符当做 <code>string</code> 或 <code>long</code> 类型传递使用。 我们通常会在参数名称中对 id 的类型进行编码，但是当函数具有多个标识符作为参数并且某些调用不匹配参数顺序时，会造成细微的错误。</p>
+<p>Go 对新类型有一等支持，即类型为现有类型并赋予其独立身份，与原有类型不同。与包装相反，新类型没有运行时间开销。这允许编译器捕捉这种错误：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">UserId</span> <span style="color:#66d9ef">string</span> <span style="color:#75715e">// &lt;-- new type
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">ProductId</span> <span style="color:#66d9ef">string</span>
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">AddProduct</span>(<span style="color:#a6e22e">userId</span> <span style="color:#a6e22e">UserId</span>, <span style="color:#a6e22e">productId</span> <span style="color:#a6e22e">ProductId</span>) {}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">userId</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">UserId</span>(<span style="color:#e6db74">&#34;some-user-id&#34;</span>)
+    <span style="color:#a6e22e">productId</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ProductId</span>(<span style="color:#e6db74">&#34;some-product-id&#34;</span>)
+
+    <span style="color:#75715e">// 正确的顺序： 没有问题
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">AddProduct</span>(<span style="color:#a6e22e">userId</span>, <span style="color:#a6e22e">productId</span>)
+
+    <span style="color:#75715e">// 错误的顺序：将会编译错误
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">AddProduct</span>(<span style="color:#a6e22e">productId</span>, <span style="color:#a6e22e">userId</span>)
+    <span style="color:#75715e">// 编译错误：
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// AddProduct 不能用 productId(type ProductId) 作为 type UserId的参数
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// Addproduct 不能用 userId(type UserId) 作为type ProfuctId 的参数
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>不幸的是，缺乏泛型使得使用新类型变得麻烦，因为为它们编写可重用代码需要从原始类型转换值。</p>
+<h2 id="span-idbadspan"><!-- raw HTML omitted -->缺点<!-- raw HTML omitted --></h2>
+<h3 id="span-idignore-advancesgo-span"><!-- raw HTML omitted -->Go 忽略了现代语言设计的进步<!-- raw HTML omitted --></h3>
+<p>在<a href="https://commandcenter.blogspot.tw/2012/06/less-is-exponentially-more.html">少既是多</a>中，Rob Pike 解释说 Go 是为了在谷歌取代 C 和 C++，它的前身是 <a href="https://swtch.com/~rsc/thread/newsqueak.pdf">Newsqueak</a> ，这是他在80年代写的一种语言。Go 也有很多关于 <a href="https://en.wikipedia.org/wiki/Plan_9_from_Bell_Labs">Plan9</a> 的参考，Plan9 是一个分布式操作系统，在贝尔实验室的80年代开发的。</p>
+<p>甚至有一个直接从 Plan9 获得灵感的 <a href="https://golang.org/doc/asm">Go 汇编</a>。为什么不使用 <a href="https://llvm.org/">LLVM</a> 来提供目标范围广泛且开箱即用的体系结构？我此处可能也遗漏了某些东西，但是为什么需要汇编？如果你需要编写汇编以充分利用 CPU ，那么不应该直接使用目标 CPU 汇编语言吗？</p>
+<p>Go 的创造者应该得到尊重，但是看起来 Go 的设计发生在平行宇宙（或者他们的 Plan9 lab？）中发生的，这些编译器和编程语言的设计在 90 年代和 2000 年中从未发生过。也可能 Go 是由一个会写编译器的系统程序员设计的。</p>
+<p>函数式编程吗？不要提它。泛型？你不需要，看看他们用 C++ 编写的烂摊子！尽管 slice、map 和 channel 都是泛型类型，我们将在下面看到。</p>
+<p>Go 的目标是替换 C 和 C++，很明显它的创建者也没有关注其他地方。但他们没有达到目标，因为在谷歌的 C 和 C++ 开发人员没有采用它。我的猜测是主要原因是垃圾回收器。低级别 C 开发人员强烈拒绝托管内存，因为他们无法控制什么时间发生什么情况。他们喜欢这种控制，即使它带来了额外的复杂性，并且打开了内存泄漏和缓冲溢出的大门。有趣的是，Rust 在没有 GC 的情况下采用了完全不同的自动内存管理方法。</p>
+<p>Go 反而在操作工具的领域吸引了 Python 和 Ruby 等脚本语言的用户。他们在 Go 中找到了一种方法，可以提高性能，减少 内存/cpu/磁盘 占用。还有更多的静态类型，这对他们来说是全新的。Go 的杀手级应用是 Docker ，它在 devops 世界中引起了广泛的应用。Kubernetes 的崛起加强了这一趋势。</p>
+<h3 id="span-idinterfaces-typesspan"><!-- raw HTML omitted -->接口是结构类型<!-- raw HTML omitted --></h3>
+<p>Go 接口就像 Java 接口或 Scala 和 Rust 特性（traits），它们定义了后来由类型实现的行为（我不称之为“类”）。</p>
+<p>与 Java 接口和 Scala 和 Rust 特性不同，类型不需要显式地指定接口实现：它只需要实现接口中定义的所有函数。所以 Go 的接口实际上是结构化的。</p>
+<p>我们可能认为，这是为了允许其他包中的接口实现，而不是它们适用的类型，比如 Scala 或 Kotlin 中的类扩展，或 Rust 特性，但事实并非如此：所有与类型相关的方法都必须在类型的包中定义。</p>
+<p>Go 并不是唯一使用结构化类型的语言，但我发现它有几个缺点：</p>
+<ul>
+<li>找到实现给定接口的类型很难，因为它依赖于函数定义匹配。我通过搜索实现接口的类，经常发现 Java 或 Scala 中有趣的实现。</li>
+<li>当向接口添加方法时，只有当它们用作此接口类型的值时，才会发现哪些类型需要更新。 相当一段时间这可能被忽视。 Go 建议使用非常少的方法构建小型的接口，这是防止这种情况的一种方式。</li>
+<li>类型可能在不知不觉中实现了一个接口，因为它作为相应的方法。但是偶然的，实现的语义可能与接口契约所期望的不同。</li>
+</ul>
+<p><em>更新</em>：对于接口的一些丑陋问题，请参阅下面的 <a href="#nil-interface-values">无接口值（nil interface values）</a>。</p>
+<h3 id="span-idno-enumspan"><!-- raw HTML omitted -->没有枚举<!-- raw HTML omitted --></h3>
+<p>Go 没有枚举，在我看来，这是一个错失的机会。</p>
+<p><code>iota</code> 可以快速生成自动递增的值，但它看起来更像一个技巧而不是一个特性。实际上，由于在一系列的 iota 生成的常量中插入一行会改变下列值的值，这是很危险的。由于生成的值是在整个代码中使用的值，因此这会导致有趣的（而不是！）意外。</p>
+<p>这也意味着没有办法让编译器彻底检查 <code>switch</code> 语句，也无法描述类型中允许的值。</p>
+<h3 id="span-idenum--var-span"><!-- raw HTML omitted --><code>:=</code> 和 <code>var</code> 的两难选择<!-- raw HTML omitted --></h3>
+<p>Go 提供两种方法来声明一个变量，并为其赋值： <code>var x = &quot;foo&quot;</code> 和 <code>x:= &quot;foo&quot;</code>。这是为什么呢？</p>
+<p>主要的区别是 var 允许未初始化的声明（然后您必须声明类型），比如在 <code>var x string</code> 中，而 <code>:=</code> 需要赋值，并且允许混合使用现有变量和新变量。我的猜测是 <code>:=</code> 被发明来使错误处理减少一点麻烦：</p>
+<p>使用 <code>var</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">err1</span> = <span style="color:#a6e22e">SomeFunction</span>()
+<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">err1</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span>) {
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
+}
+
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">y</span>, <span style="color:#a6e22e">err2</span> = <span style="color:#a6e22e">SomeOtherFunction</span>()
+<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">err2</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span>) {
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
+}
+</code></pre></div><p>使用 <code>:=</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">SomeFunction</span>()
+<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span>) {
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
+}
+
+<span style="color:#a6e22e">y</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">SomeOtherFunction</span>()
+<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span>) {
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
+}
+</code></pre></div><p><code>:=</code> 的语法也很容易意外的影响一个变量。我已经不止一次吃这个亏了，因为 <code>:=</code> （声明和赋值）太接近了 <code>=</code> （赋值），如下图所示：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">foo</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#34;bar&#34;</span>
+<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">someCondition</span> {
+  <span style="color:#a6e22e">foo</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#34;baz&#34;</span>
+  <span style="color:#a6e22e">doSomething</span>(<span style="color:#a6e22e">foo</span>)
+}
+<span style="color:#75715e">// foo == &#34;bar&#34; 即使 &#34;someCondition&#34; 为真
+</span></code></pre></div><h3 id="span-idzero-panic-panicspan"><!-- raw HTML omitted -->零值 panic<!-- raw HTML omitted --></h3>
+<p>Go 没有构造函数。正因为如此，它坚持认为「零值」应该是易于使用的。这是一个有趣的方法，但在我看来，它所带来的简化主要是针对语言实现者的。</p>
+<p>在实践中，许多类型在没有正确初始化的情况下不能做有用的事情。让我们看一下 <code>io.File</code> 对象，从 <a href="http://docscn.studygolang.com/doc/effective_go.html#%E5%A4%8D%E5%90%88%E5%AD%97%E9%9D%A2">实效 Go 编程</a> 取出的一个例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">File</span> <span style="color:#66d9ef">struct</span> {
+    <span style="color:#f92672">*</span><span style="color:#a6e22e">file</span> <span style="color:#75715e">// os specific
+</span><span style="color:#75715e"></span>}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">f</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">File</span>) <span style="color:#a6e22e">Name</span>() <span style="color:#66d9ef">string</span> {
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">f</span>.<span style="color:#a6e22e">name</span>
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">f</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">File</span>) <span style="color:#a6e22e">Read</span>(<span style="color:#a6e22e">b</span> []<span style="color:#66d9ef">byte</span>) (<span style="color:#a6e22e">n</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>) {
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">f</span>.<span style="color:#a6e22e">checkValid</span>(<span style="color:#e6db74">&#34;read&#34;</span>); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">err</span>
+    }
+    <span style="color:#a6e22e">n</span>, <span style="color:#a6e22e">e</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">f</span>.<span style="color:#a6e22e">read</span>(<span style="color:#a6e22e">b</span>)
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">n</span>, <span style="color:#a6e22e">f</span>.<span style="color:#a6e22e">wrapErr</span>(<span style="color:#e6db74">&#34;read&#34;</span>, <span style="color:#a6e22e">e</span>)
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">f</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">File</span>) <span style="color:#a6e22e">checkValid</span>(<span style="color:#a6e22e">op</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">error</span> {
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">f</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
+        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">ErrInvalid</span>
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
+}
+</code></pre></div><p>我们能发现什么？</p>
+<ul>
+<li>在一个零值 <code>File</code> 调动 <code>Name()</code> 将会导致 panic ，因为它的 <code>file</code> 字段是 nil</li>
+<li><code>Read</code> 函数和 <a href="https://github.com/golang/go/blob/release-branch.go1.10/src/os/file.go">几乎所有其他</a> <code>File</code> 方法，首先检查文件是否被初始化。</li>
+</ul>
+<p>因此，零值 <code>File</code> 不仅无用，还会导致 <code>panics</code>。你<em>必须</em>使用一个构造函数，比如 <code>Open</code> 或 <code>Create</code>。检查正确的初始化是每个函数调用中需要花费的开销。</p>
+<p>在标准库中有无数这样的类型，有些甚至不尝试用它们的零值来做一些有用的事情。在零值 <code>html.Template</code> 上调用任何方法都会导致 <code>panic</code>。</p>
+<p>还有一个很严重的问题：<code>map</code> 的零值:你可以查询它，但是在它里面存储东西会导致 <code>panic</code>：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">m1</span> = <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">string</span>{} <span style="color:#75715e">// 空值 map
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">m0</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">string</span>     <span style="color:#75715e">// 零值 map (nil)
+</span><span style="color:#75715e"></span>
+println(len(<span style="color:#a6e22e">m1</span>))   <span style="color:#75715e">// 输出 &#39;0&#39;
+</span><span style="color:#75715e"></span>println(len(<span style="color:#a6e22e">m0</span>))   <span style="color:#75715e">// 输出 &#39;0&#39;
+</span><span style="color:#75715e"></span>println(<span style="color:#a6e22e">m1</span>[<span style="color:#e6db74">&#34;foo&#34;</span>]) <span style="color:#75715e">// 输出 &#39;&#39;
+</span><span style="color:#75715e"></span>println(<span style="color:#a6e22e">m0</span>[<span style="color:#e6db74">&#34;foo&#34;</span>]) <span style="color:#75715e">// 输出 &#39;&#39;
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">m1</span>[<span style="color:#e6db74">&#34;foo&#34;</span>] = <span style="color:#e6db74">&#34;bar&#34;</span>  <span style="color:#75715e">// 没问题
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">m0</span>[<span style="color:#e6db74">&#34;foo&#34;</span>] = <span style="color:#e6db74">&#34;bar&#34;</span>  <span style="color:#75715e">// panics!
+</span></code></pre></div><p>这需要在结构具有 <code>map</code> 字段时小心，因为在添加条目之前必须对其进行初始化。</p>
+<p>因此，作为一个开发人员，您必须经常检查您想要使用的结构是否需要调用构造函数，或者零值是否可用。这是语言简化对编程带来的沉重负担。</p>
+<h3 id="span-idexceptionsgo-span"><!-- raw HTML omitted -->Go 没有异常。哦，等一下……它有!<!-- raw HTML omitted --></h3>
+<p>这篇博客文章「<a href="https://dave.cheney.net/2012/01/18/why-go-gets-exceptions-right">为什么 Go 获得异常的方式是对的</a>」详细解释了为什么异常是糟糕的，为什么Go方法要求返回 <code>错误</code> 是更好的。我可以同意这一点，确实在使用异步编程或像 Java 流这样的函数风格时，异常是很难处理的（前者可以放到一边，由于 goroutines 的原因它在 Go 中是没有必要的，而后者几乎是不可能）。这篇博文提到 <code>panic</code> 「总是对你的程序抛出致命错误，游戏结束」，这很不错。</p>
+<p>现在，「<a href="https://blog.golang.org/defer-panic-and-recover">Defer, panic and recover</a>」在它之前，解释了如何从 <code>panic</code> 中恢复（通过实际捕获它们），并说「在真实的 panic 和 recover 的例子中，从 Go 标准库中看到 json 包」。</p>
+<p>事实上，json 解码器有一个 <a href="https://github.com/golang/go/blob/release-branch.go1.10/src/encoding/json/decode.go#L299">共同的错误处理函数</a> 去 panics，panic 在顶层 <code>unmarshal</code>函数中恢复（recover），<a href="https://github.com/golang/go/blob/release-branch.go1.10/src/encoding/json/decode.go#L173">检查panic类型</a> 并返回一个错误如果它是一个“本地 panic ”或其它错误再次触发的 panic（ 失去最初的 panic 的追溯）。</p>
+<p>对于任何 Java 开发人员来说，这明显看上去是一个<code>try</code> / <code>catch (DecodingException ex)</code>。所以 Go 确实有异常处理，它在内部使用了却告诉你不要用。</p>
+<p>有趣的事实：几个星期前，一个非谷歌的人<a href="https://github.com/golang/go/commit/74a92b8e8d0eae6bf9918ef16794b0363886713d">修复了 json 解码器</a>，以使用常规的错误冒泡处理。</p>
+<h2 id="span-iduglyspan"><!-- raw HTML omitted -->令人厌恶的点<!-- raw HTML omitted --></h2>
+<h3 id="span-iddependency-nightmarespan"><!-- raw HTML omitted -->依赖管理噩梦<!-- raw HTML omitted --></h3>
+<p>首先引用一个在谷歌著名的 Go 语言使用者 Jaana Dogan (aka JBD) 的话，最近在推特上发泄她的不满:</p>
+<blockquote>
+<p>如果依赖管理再过一年还没有解决，我将会考虑退出 Go 并且永远不会回来。 依赖性管理问题经常颠覆我从语言中获得的所有乐趣。</p>
+<p>— JBD (@rakyll) <a href="https://twitter.com/rakyll/status/976563654731579392?ref_src=twsrc%5Etfw">March 21, 2018</a></p>
+</blockquote>
+<p>简单点说，Go 中没有依赖管理。当前所有的解决方案都只是一些技巧和变通方法。</p>
+<p>这要追溯到它的起源 &ndash; 谷歌，以使用了一个 <a href="https://research.google.com/pubs/pub45424.html">巨大的单片存储库</a> 管理所有源代码而闻名。不需要模块的版本控制，也不需要第三方模块的仓库，你可以从当前分支构建任何项目。不幸的是，这在开放的互联网上是行不通。</p>
+<p>在 Go 中添加依赖意味着将依赖的源代码仓库克隆到你的 GOPATH 下。版本是什么？克隆当前的主分支就行了，管它写的是什么。但是如果不同的项目需要不同的版本依赖呢？他们做不到。因为「版本」的概念根本不存在。</p>
+<p>另外，您自己的项目必须在 <code>GOPATH</code> 下，否则编译器无法找到它。想让你的项目在单独的目录里清晰地组织起来？那你必须配置每一个项目的 <code>GOPATH</code> ，或者使用符号链接。</p>
+<p>社区已经开发了 <a href="https://github.com/golang/go/wiki/PackageManagementTools">大量的工具</a> 解决此问题。包管理工具引入了 <code>vendoring</code> 和锁文件来保存您克隆的任何仓库的Git sha1，以提供可复现的构建。</p>
+<p>最后，在Go 1.6中，<code>vendor</code> 目录得到了<a href="https://golang.org/cmd/go/#hdr-Vendor_Directories">官方支持</a>。但它是关于你克隆的 <code>vendoring</code>，仍然不是正确的版本管理。没有对从传递依赖中导入发生冲突的解决方案，这通常是通过 <a href="https://semver.org/">语义化版本</a> 来解决的。</p>
+<p>不过，情况正在好转：<code>dep</code>，<a href="https://golang.github.io/dep/">官方的依赖管理工具</a> 最近被引入以支持文件控制（vendoring）。它支持版本（git tags），并有一个遵循语义版本控制约定的版本解决程序。它还不稳定，但方向是正确的。然而，它仍然需要你的项目存放在 <code>GOPATH</code> 里。</p>
+<p>但是 <code>dep</code> 可能不会像 <a href="https://github.com/golang/vgo"><code>vgo</code></a>长久，<code>vgo</code> 是谷歌发起的，想要从语言本身带来版本控制，并且最近已经引起了一些波动。</p>
+<p>所以 Go 的依赖管理是噩梦。设置起来很痛苦，当你在开发的时候你不会考虑到它，直到你添加一个新的导入（import）或者只是简单地想拉取你团队成员的一个分支到你的 <code>GOPATH</code> 里的时候，程序崩溃了&hellip;</p>
+<p>现在让我们再次回到代码的问题上。</p>
+<h3 id="span-idmutability-hardcodespan"><!-- raw HTML omitted -->易变性是用语言硬编码的。<!-- raw HTML omitted --></h3>
+<p>在 Go 中没有定义不可变结构的方法: struct 字段是可变的，<code>const</code> 关键字不适用于它们。Go 通过简单的赋值就可以轻松地复制整个<code>struct</code>，因此，我们可能认为，通过值传递参数来保证不变性，只需要复制的代价。</p>
+<p>然而，不出所料的，它不复制指针引用的值。而且由于内置的集合（map、slice 和 array）是引用和可变的，复制包含其中任意一项的 <code>struct</code> 只是复制了指向底层内层的指针。</p>
+<p>下面的例子说明了这个问题：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">S</span> <span style="color:#66d9ef">struct</span> {
+    <span style="color:#a6e22e">A</span> <span style="color:#66d9ef">string</span>
+    <span style="color:#a6e22e">B</span> []<span style="color:#66d9ef">string</span>
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">x</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">S</span>{<span style="color:#e6db74">&#34;x-A&#34;</span>, []<span style="color:#66d9ef">string</span>{<span style="color:#e6db74">&#34;x-B&#34;</span>}}
+    <span style="color:#a6e22e">y</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">x</span> <span style="color:#75715e">// 复制 struct
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">y</span>.<span style="color:#a6e22e">A</span> = <span style="color:#e6db74">&#34;y-A&#34;</span>
+    <span style="color:#a6e22e">y</span>.<span style="color:#a6e22e">B</span>[<span style="color:#ae81ff">0</span>] = <span style="color:#e6db74">&#34;y-B&#34;</span>
+
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">y</span>)
+    <span style="color:#75715e">// 输出 &#34;{x-A [y-B]} {y-A [y-B]}&#34; -- x 被修改!
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>所以你必须非常小心，如果你通过值传递参数，不要认定它就是不变的。</p>
+<p>有一些 <a href="https://github.com/jinzhu/copier">深度复制库</a> 试图使用(慢)反射来解决这个问题，但是它们有不足之处，因为私有字段不能通过反射访问。因此，为了避免竞争条件而进行防御性复制将会很困难，需要大量的重复代码。Go甚至没有一个可以标准化这个的克隆接口。</p>
+<h3 id="span-idslice-gotchasslicespan"><!-- raw HTML omitted -->切片（slice）陷阱<!-- raw HTML omitted --></h3>
+<p>切片带来了很多问题。正如「<a href="https://blog.golang.org/go-slices-usage-and-internals">Go slice: usage and internals</a>」中所解释的那样，考虑到性能原因，再次切片一个切片不会复制底层的数组。这是一个值得赞赏的目标，但也意味着切片的子切片只是遵循原始切片变化的视图。因此，如果您想要将它与初始的切片分开请不要忘记 <code>copy()</code>。</p>
+<p>对于 <code>append</code> 函数，忘记 <code>copy()</code> 会变得更加危险：如果<em>它没有足够的容量</em>来保存新值，底层数组将会重新分配内存和大小。这意味着 <code>append</code> 的结果能不能指向原始数组取决于它的初始容量。这会导致难以发现的不确定 bugs。</p>
+<p>在下面的代码中，我们看到为子切片追加值的影响取决于原始切片的容量：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">doStuff</span>(<span style="color:#a6e22e">value</span> []<span style="color:#66d9ef">string</span>) {
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;value=%v\n&#34;</span>, <span style="color:#a6e22e">value</span>)
+
+    <span style="color:#a6e22e">value2</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">value</span>[:]
+    <span style="color:#a6e22e">value2</span> = append(<span style="color:#a6e22e">value2</span>, <span style="color:#e6db74">&#34;b&#34;</span>)
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;value=%v, value2=%v\n&#34;</span>, <span style="color:#a6e22e">value</span>, <span style="color:#a6e22e">value2</span>)
+
+    <span style="color:#a6e22e">value2</span>[<span style="color:#ae81ff">0</span>] = <span style="color:#e6db74">&#34;z&#34;</span>
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;value=%v, value2=%v\n&#34;</span>, <span style="color:#a6e22e">value</span>, <span style="color:#a6e22e">value2</span>)
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">slice1</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">string</span>{<span style="color:#e6db74">&#34;a&#34;</span>} <span style="color:#75715e">// 长度 1, 容量 1
+</span><span style="color:#75715e"></span>
+    <span style="color:#a6e22e">doStuff</span>(<span style="color:#a6e22e">slice1</span>)
+    <span style="color:#75715e">// Output:
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// value=[a] -- ok
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// value=[a], value2=[a b] -- ok: value 未改变, value2 被更新
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// value=[a], value2=[z b] -- ok: value 未改变, value2 被更新
+</span><span style="color:#75715e"></span>
+    <span style="color:#a6e22e">slice10</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">string</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">10</span>) <span style="color:#75715e">// 长度 1, 容量 10
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">slice10</span>[<span style="color:#ae81ff">0</span>] = <span style="color:#e6db74">&#34;a&#34;</span>
+
+    <span style="color:#a6e22e">doStuff</span>(<span style="color:#a6e22e">slice10</span>)
+    <span style="color:#75715e">// Output:
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// value=[a] -- ok
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// value=[a], value2=[a b] -- ok: value 未改变, value2 被更新
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// value=[z], value2=[z b] -- WTF！？ value 改变了？？？
+</span><span style="color:#75715e"></span>}
+</code></pre></div><h3 id="span-idrace-conditions-channels-span"><!-- raw HTML omitted -->易变性和 channels: 竞争条件更容易发生。<!-- raw HTML omitted --></h3>
+<p>Go 并发性是 <a href="https://golang.org/doc/faq#csp">通过 channels 建立在CSP</a> 上的，它使用 channel 使得协调 goroutines 比在共享数据上同步更简单和安全。老话说的是「<a href="https://blog.golang.org/share-memory-by-communicating">不要通过共享内存来通信;而应该通过通信来共享内存</a>」。这是一厢情愿的想法，在实践中是不能安全实现的。</p>
+<p>正如我们在上面看到的那样，Go 没办法获得不可变的数据结构。这意味着一旦我们在 channel 上发送一个指针，游戏就结束了：我们在并发进程之间共享了可变的数据。当然，一个 channel 的结构是赋值 channel 传送的值(而不是指针)，但是正如我们在上面看到的，这些没有深度复制引用，包括 slices 和 maps 本质上都是可变的。与接口类型的 struct 字段相同：它们是指针，接口定义的任何可变方法都是对竞争条件的开放。</p>
+<p>因此，尽管 channels 表面上使并发编程变得容易，但它们并不能阻止共享数据上的竞争条件。而 slices 和 maps 本身的可变性使这种情况更有可能发生。</p>
+<p>谈到竞争条件时，Go 包含一个 <a href="https://blog.golang.org/race-detector">竞争条件检测模式</a>，该模式检测代码以找到不同步的共享访问。它只能在事件发生的时候检测到竞争问题，所以大多数情况下是在集成或负载测试期间，希望这些能够运行比赛条件。由于它的高运行时成本(除了临时的调试会话)，它不能实际应用于生产环境。</p>
+<h3 id="span-iderror-managementspan"><!-- raw HTML omitted -->嘈杂的错误管理<!-- raw HTML omitted --></h3>
+<p>你可以很快学会 Go 的错误处理模式，重复到令人作呕:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">someData</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">SomeFunction</span>()
+<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>;
+}
+</code></pre></div><p>因为 Go 声称不支持异常（<a href="#exceptions">虽然它已经支持</a>），每个能够以错误结尾的函数都必须把错误作为其最后一个结果。这特别适用于执行某些 I/O 的每个函数，因此这种啰嗦的模式在网络应用程序中非常普遍，这是 Go 的主要领域。</p>
+<p>您很快就会忽视这种模式，并将其识别为「好，错误处理了」，但是仍然很杂乱，有时很难在错误处理中找到实际的代码。</p>
+<p>这里有几个问题，因为一个错误的结果可能有名无实，例如当从无所不在的 io.Reader读取时：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">len</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">reader</span>.<span style="color:#a6e22e">Read</span>(<span style="color:#a6e22e">bytes</span>)
+<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">EOF</span> {
+        <span style="color:#75715e">// 一切正常，文件结尾
+</span><span style="color:#75715e"></span>    } <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
+    }
+}
+</code></pre></div><p>在“Error has values”中，Rob Pike 提出了一些减少错误处理冗余的策略。我发现它们实际上是危险的创可贴：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">errWriter</span> <span style="color:#66d9ef">struct</span> {
+    <span style="color:#a6e22e">w</span>   <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">Writer</span>
+    <span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">ew</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">errWriter</span>) <span style="color:#a6e22e">write</span>(<span style="color:#a6e22e">buf</span> []<span style="color:#66d9ef">byte</span>) {
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">ew</span>.<span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+        <span style="color:#66d9ef">return</span> <span style="color:#75715e">// 当已经出错时，什么都不写入
+</span><span style="color:#75715e"></span>    }
+    <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">ew</span>.<span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">ew</span>.<span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">Write</span>(<span style="color:#a6e22e">buf</span>)
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">doIt</span>(<span style="color:#a6e22e">fd</span> <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">Writer</span>) {
+    <span style="color:#a6e22e">ew</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">errWriter</span>{<span style="color:#a6e22e">w</span>: <span style="color:#a6e22e">fd</span>}
+    <span style="color:#a6e22e">ew</span>.<span style="color:#a6e22e">write</span>(<span style="color:#a6e22e">p0</span>[<span style="color:#a6e22e">a</span>:<span style="color:#a6e22e">b</span>])
+    <span style="color:#a6e22e">ew</span>.<span style="color:#a6e22e">write</span>(<span style="color:#a6e22e">p1</span>[<span style="color:#a6e22e">c</span>:<span style="color:#a6e22e">d</span>])
+    <span style="color:#a6e22e">ew</span>.<span style="color:#a6e22e">write</span>(<span style="color:#a6e22e">p2</span>[<span style="color:#a6e22e">e</span>:<span style="color:#a6e22e">f</span>])
+    <span style="color:#75715e">// 等等
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">ew</span>.<span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">ew</span>.<span style="color:#a6e22e">err</span>
+    }
+}
+</code></pre></div><p>基本来说，一直检查错误是很痛苦的，所以这里提供了直到结束之前都会忽略错误的方法。任何写入操作一旦出错它还是会执行，即使我们知道不该再执行了。如果这样做资源消耗更高呢？我们刚刚浪费了资源，因为 Go 的错误处理是一种痛苦。</p>
+<p>Rust 有类似的问题：没有异常(真的没有，跟 Go 相反)，方法失败返回 <code>Result&lt;T, Error&gt;</code>，并且需要对结果模式匹配。所以，Rust1.0 添加了 <code>try!</code> 宏并且认识到这一模式的普遍性，使它成为 <a href="https://doc.rust-lang.org/rust-by-example/error/result/enter_question_mark.html">一流的语言特征</a>。因此，在保持正确的错误处理的同时，也有上述代码的简洁性。</p>
+<p>由于 Go 没有泛型和宏，所以很不幸地，更换为 Rust 的方法是不可能的。</p>
+<h3 id="span-idnil-interface-valuesnil-span"><!-- raw HTML omitted -->Nil 接口值<!-- raw HTML omitted --></h3>
+<p>这是在看到 <a href="https://www.reddit.com/r/programming/comments/8bj4yc/go_the_good_the_bad_and_the_ugly/dx82cgz/">redditor jmickeyd</a> 展示了 nil 和接口的怪异表现后的更新，这绝对称得上是丑陋的。我稍微扩展了一下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Explodes</span> <span style="color:#66d9ef">interface</span> {
+    <span style="color:#a6e22e">Bang</span>()
+    <span style="color:#a6e22e">Boom</span>()
+}
+
+<span style="color:#75715e">// Type Bomb implements Explodes
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Bomb</span> <span style="color:#66d9ef">struct</span> {}
+<span style="color:#66d9ef">func</span> (<span style="color:#f92672">*</span><span style="color:#a6e22e">Bomb</span>) <span style="color:#a6e22e">Bang</span>() {}
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">Bomb</span>) <span style="color:#a6e22e">Boom</span>() {}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">bomb</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Bomb</span> = <span style="color:#66d9ef">nil</span>
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">explodes</span> <span style="color:#a6e22e">Explodes</span> = <span style="color:#a6e22e">bomb</span>
+    println(<span style="color:#a6e22e">bomb</span>, <span style="color:#a6e22e">explodes</span>) <span style="color:#75715e">// &#39;0x0 (0x10a7060,0x0)&#39;
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">explodes</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+        println(<span style="color:#e6db74">&#34;Not nil!&#34;</span>) <span style="color:#75715e">// &#39;Not nil!&#39; 我们为什么会走到这里！？
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">explodes</span>.<span style="color:#a6e22e">Bang</span>()     <span style="color:#75715e">// 运行正常
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">explodes</span>.<span style="color:#a6e22e">Boom</span>()     <span style="color:#75715e">// panic: value method main.Bomb.Boom called using nil *Bomb pointer
+</span><span style="color:#75715e"></span>    } <span style="color:#66d9ef">else</span> {
+        println(<span style="color:#e6db74">&#34;nil!&#34;</span>)     <span style="color:#75715e">// 为什么没有在这里结束？
+</span><span style="color:#75715e"></span>    }
+}
+</code></pre></div><p>上面的代码验证了 <code>explodes</code> 不是nil，但是代码在 <code>Boom</code> 中 panics，在 <code>Bang</code> 中没有。这是为什么呢？解释在 <code>println</code> 这一行：<code>bomb</code> 指针是 <code>0x0</code>，它实际上是 <code>nil</code>，但是 <code>explodes</code> 是非nil <code>(0x10a7060,0x0)</code>。</p>
+<p>这两个元素的第一个元素是通过 <code>Explodes</code> 类型来实现 <code>Bomb</code> 接口的方法分派表的指针，第二个元素是实际 <code>Explodes</code> 对象的地址，它是 <code>nil</code>。</p>
+<p>对 <code>Bang</code> 的调用成功是因为它需要传递的是 <code>Bomb</code> 指针：没有必要取消指针来调用方法。<code>Boom</code> 方法作用于一个<em>值</em>，因此调用会导致指针取消引用，这会造成 panic。</p>
+<p>注意，如果我们写了 <code>var explodes Explodes = nil</code>，然后 <code>!= nil</code> 本不该通过。</p>
+<p>那么，我们应该如何安全地编写测试呢？我们必须检查接口值，如果是非 nil，检查接口对象指向的值…使用反射!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">if</span> <span style="color:#a6e22e">explodes</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> <span style="color:#f92672">&amp;&amp;</span> !<span style="color:#a6e22e">reflect</span>.<span style="color:#a6e22e">ValueOf</span>(<span style="color:#a6e22e">explodes</span>).<span style="color:#a6e22e">IsNil</span>() {
+    println(<span style="color:#e6db74">&#34;Not nil!&#34;</span>) <span style="color:#75715e">// we no more end up here
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">explodes</span>.<span style="color:#a6e22e">Bang</span>()
+    <span style="color:#a6e22e">explodes</span>.<span style="color:#a6e22e">Boom</span>()
+} <span style="color:#66d9ef">else</span> {
+    println(<span style="color:#e6db74">&#34;nil!&#34;</span>)     <span style="color:#75715e">// &#39;nil&#39; -- all good!
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>这是漏洞还是特性？<code>Go语言之旅</code>  有一个 <a href="https://tour.golang.org/methods/12">专门的页面</a> 来解释这种行为，并清楚地表示 <em>「注意，一个具有nil值的接口值本身就是非空值」</em>。</p>
+<p>尽管如此，这仍然是丑陋的，并且会导致非常细微的错误。在我看来，这是语言设计中的一个很大的缺陷，只是为了使它的实现更加容易。</p>
+<h3 id="span-iddslstruct-dslspan"><!-- raw HTML omitted -->Struct 字段标记：字符串中的运行时DSL。<!-- raw HTML omitted --></h3>
+<p>如果您在 Go 中使用了 JSON，您肯定遇到过类似的情况：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">User</span> <span style="color:#66d9ef">struct</span> {
+    <span style="color:#a6e22e">Id</span> <span style="color:#66d9ef">string</span>    <span style="color:#e6db74">`</span><span style="color:#e6db74">json:&#34;id&#34;</span><span style="color:#e6db74">`</span>
+    <span style="color:#a6e22e">Email</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">json:&#34;email&#34;</span><span style="color:#e6db74">`</span>
+    <span style="color:#a6e22e">Name</span> <span style="color:#66d9ef">string</span>  <span style="color:#e6db74">`</span><span style="color:#e6db74">json:&#34;name,omitempty&#34;</span><span style="color:#e6db74">`</span>
+}
+</code></pre></div><p>这些是 <a href="https://golang.org/ref/spec#Struct_types">结构标记(struct tags)</a>，语言规范说这是一个字符串「通过反射接口可见，并参与结构的类型标识，但是却被忽略了」。所以，基本上，把你想要的东西放到这个字符串中，并在运行时使用反射来解析它。如果语法不对，运行时就会出现 panic。</p>
+<p>这个字符串实际上是字段元数据，在许多语言中已经存在了几十年，称为「<a href="https://en.wikipedia.org/wiki/Java_annotation">注释</a>」或「属性」。通过语言支持，它们的语法在编译时被正式定义和检查，同时仍然是可扩展的。</p>
+<p>为什么要决定使用一个原始字符串，任何库都可以决定使用它想要的任何 DSL ，在运行时解析？</p>
+<p>当您使用多个库时，情况会变得很糟糕：这里有一个从协议缓冲区的 <a href="https://godoc.org/github.com/golang/protobuf/proto">Go文档</a> 中取出的示例:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Test</span> <span style="color:#66d9ef">struct</span> {
+    <span style="color:#a6e22e">Label</span>         <span style="color:#f92672">*</span><span style="color:#66d9ef">string</span>             <span style="color:#e6db74">`</span><span style="color:#e6db74">protobuf:&#34;bytes,1,req,name=label&#34; json:&#34;label,omitempty&#34;</span><span style="color:#e6db74">`</span>
+    <span style="color:#a6e22e">Type</span>          <span style="color:#f92672">*</span><span style="color:#66d9ef">int32</span>              <span style="color:#e6db74">`</span><span style="color:#e6db74">protobuf:&#34;varint,2,opt,name=type,def=77&#34; json:&#34;type,omitempty&#34;</span><span style="color:#e6db74">`</span>
+    <span style="color:#a6e22e">Reps</span>          []<span style="color:#66d9ef">int64</span>             <span style="color:#e6db74">`</span><span style="color:#e6db74">protobuf:&#34;varint,3,rep,name=reps&#34; json:&#34;reps,omitempty&#34;</span><span style="color:#e6db74">`</span>
+    <span style="color:#a6e22e">Optionalgroup</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Test_OptionalGroup</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">protobuf:&#34;group,4,opt,name=OptionalGroup&#34; json:&#34;optionalgroup,omitempty&#34;</span><span style="color:#e6db74">`</span>
+}
+</code></pre></div><p>附注：为什么这些标签在使用 JSON 时如此常见？因为在 Go 公共字段中，必须使用大写字母，或者至少以大写字母开头，而在 JSON 中命名字段的常见约定是小写的 camelcase 或 snake_case。因此需要进行冗长的标记。</p>
+<p>标准的 JSON 编码器 / 解码器不允许提供自动转换的命名策略，就像 <a href="https://github.com/FasterXML/jackson-databind/blob/master/src/main/java/com/fasterxml/jackson/databind/PropertyNamingStrategy.java">Jackson在Java中所做的</a>。这可能解释了为什么 Docker APIs 中的所有字段都是大写的:这避免了它的开发人员为他们的大型 API 编写这些笨拙的标签。</p>
+<h3 id="span-idgenericspan"><!-- raw HTML omitted -->没有泛型…至少没给你。<!-- raw HTML omitted --></h3>
+<p>很难想象一种没有泛型的现代静态类型化语言，但这就是你在 Go 中看到的：它没有泛型&hellip;或者更精确地说，几乎没有泛型，我们会看到它比没有泛型更糟糕。</p>
+<p>内置的 slice、map、array和 channel 都是泛型。声明一个 <code>map[string]MyStruct</code> 清楚地显示了具有两个参数的泛型类型的使用。这很好，因为它允许类型安全编程捕获各种错误。</p>
+<p>然而，没有用户可定义的泛型数据结构。这意味着您不能定义可重用的抽象，它可以以类型安全的方式使用任何类型。您必须使用非类型 <code>interface{}</code>，并将值转换为适当的类型。任何错误只会在运行时被抓住，会导致 panic。对于 Java 开发人员来说，这就像回到 <a href="https://en.wikipedia.org/wiki/Java_version_history#J2SE_5.0">回退 Java 5 个版本到 2004 年</a>。</p>
+<p>在「<a href="https://commandcenter.blogspot.fr/2012/06/less-is-exponentially-more.html">少即是多</a>」中，Rob Pike 意外地将泛型和继承放在同一个「类型编程」包中，并说他喜欢组合而不是继承。不喜欢继承很好（实际上我写了很多没有继承的Scala），但是泛型回答了另一个问题：可重用性，同时保护类型安全。</p>
+<p>正如下面我们将看到的，在用泛型做内部构建和用户无法定义泛型之间的区别会对开发人员「舒适」和编译时类型安全产生更多的影响：它会影响整个 Go 生态系统。</p>
+<h3 id="span-idno-structuresgo--slice--map-span"><!-- raw HTML omitted -->Go 在 slice 和 map 之外几乎没有什么数据结构。<!-- raw HTML omitted --></h3>
+<p>Go 生态系统没有很多数据结构，它们可以从内置的 slices 和 maps 中提供额外或不同的功能。Go 最新版本添加了提供其中几个容器包。它们都有相同的警告：它们处理 <code>interface{}</code> 值，这意味着您将失去所有类型的安全性。</p>
+<p>让我们来看一个 <a href="https://medium.com/@deckarep/the-new-kid-in-town-gos-sync-map-de24a6bf7c2c">snc.Map</a> 的例子，它是一个具有较低线程争用的并发映射，而不是使用互斥锁来保护常规映射：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">MetricValue</span> <span style="color:#66d9ef">struct</span> {
+    <span style="color:#a6e22e">Value</span> <span style="color:#66d9ef">float64</span>
+    <span style="color:#a6e22e">Time</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Time</span>
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">metric</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">MetricValue</span>{
+        <span style="color:#a6e22e">Value</span>: <span style="color:#ae81ff">1.0</span>,
+        <span style="color:#a6e22e">Time</span>: <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>(),
+    }
+
+    <span style="color:#75715e">// Store a value
+</span><span style="color:#75715e"></span>
+    <span style="color:#a6e22e">m0</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#a6e22e">MetricValue</span>{}
+    <span style="color:#a6e22e">m0</span>[<span style="color:#e6db74">&#34;foo&#34;</span>] = <span style="color:#a6e22e">metric</span>
+
+    <span style="color:#a6e22e">m1</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">sync</span>.<span style="color:#a6e22e">Map</span>{}
+    <span style="color:#a6e22e">m1</span>.<span style="color:#a6e22e">Store</span>(<span style="color:#e6db74">&#34;foo&#34;</span>, <span style="color:#a6e22e">metric</span>) <span style="color:#75715e">// not type-checked
+</span><span style="color:#75715e"></span>
+    <span style="color:#75715e">// Load a value and print its square
+</span><span style="color:#75715e"></span>
+    <span style="color:#a6e22e">foo0</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">m0</span>[<span style="color:#e6db74">&#34;foo&#34;</span>].<span style="color:#a6e22e">Value</span> <span style="color:#75715e">// rely on zero-value hack if not present
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Foo square = %f\n&#34;</span>, <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">Pow</span>(<span style="color:#a6e22e">foo0</span>, <span style="color:#ae81ff">2</span>))
+
+    <span style="color:#a6e22e">foo1</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0.0</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">ok</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">m1</span>.<span style="color:#a6e22e">Load</span>(<span style="color:#e6db74">&#34;foo&#34;</span>); <span style="color:#a6e22e">ok</span> { <span style="color:#75715e">// have to make sure it&#39;s present (not bad, actually)
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">foo1</span> = <span style="color:#a6e22e">x</span>.(<span style="color:#a6e22e">MetricValue</span>).<span style="color:#a6e22e">Value</span> <span style="color:#75715e">// cast interface{} value
+</span><span style="color:#75715e"></span>    }
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Foo square = %f\n&#34;</span>, <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">Pow</span>(<span style="color:#a6e22e">foo1</span>, <span style="color:#ae81ff">2</span>))
+
+    <span style="color:#75715e">// Sum all elements
+</span><span style="color:#75715e"></span>
+    <span style="color:#a6e22e">sum0</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0.0</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">v</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">m0</span> { <span style="color:#75715e">// built-in range iteration on map
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">sum0</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">Value</span>
+    }
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Sum = %f\n&#34;</span>, <span style="color:#a6e22e">sum0</span>)
+
+    <span style="color:#a6e22e">sum1</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0.0</span>
+    <span style="color:#a6e22e">m1</span>.<span style="color:#a6e22e">Range</span>(<span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">value</span> <span style="color:#66d9ef">interface</span>{}) <span style="color:#66d9ef">bool</span> { <span style="color:#75715e">// no &#39;range&#39; for you! Provide a function
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">sum1</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">value</span>.(<span style="color:#a6e22e">MetricValue</span>).<span style="color:#a6e22e">Value</span>        <span style="color:#75715e">// with untyped interface{} parameters
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span> <span style="color:#75715e">// continue iteration
+</span><span style="color:#75715e"></span>    })
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Sum = %f\n&#34;</span>, <span style="color:#a6e22e">sum1</span>)
+}
+</code></pre></div><p>这就是为什么在 Go 生态系统中没有很多数据结构的一个很好的例子：与内置的切片和映射相比，它们是一种痛苦。原因很简单，数据结构分为两类：</p>
+<ul>
+<li>上层，内置的 slice，map，array 和 channel：类型安全和泛型，方便使用 <code>range</code>，</li>
+<li>Go 代码编写的其他地方：不能提供类型安全，因为需要强制转换而难以使用。</li>
+</ul>
+<p>因此，库定义的数据结构真的需要为我们的开发人员提供切实的利益，才愿意为松散类型的安全性和额外的代码冗长付出代价。</p>
+<p>当我们想要编写可重用的算法时，内置结构和 Go 代码之间的二元性在细节方面是痛苦的。这是标准库的 <a href="https://golang.org/pkg/sort/">排序扩展包</a> 中的一个例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;sort&#34;</span>
+
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Person</span> <span style="color:#66d9ef">struct</span> {
+    <span style="color:#a6e22e">Name</span> <span style="color:#66d9ef">string</span>
+    <span style="color:#a6e22e">Age</span>  <span style="color:#66d9ef">int</span>
+}
+
+<span style="color:#75715e">// ByAge implements sort.Interface for []Person based on the Age field.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">ByAge</span> []<span style="color:#a6e22e">Person</span>
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">a</span> <span style="color:#a6e22e">ByAge</span>) <span style="color:#a6e22e">Len</span>() <span style="color:#66d9ef">int</span>           { <span style="color:#66d9ef">return</span> len(<span style="color:#a6e22e">a</span>) }
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">a</span> <span style="color:#a6e22e">ByAge</span>) <span style="color:#a6e22e">Swap</span>(<span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">j</span> <span style="color:#66d9ef">int</span>)      { <span style="color:#a6e22e">a</span>[<span style="color:#a6e22e">i</span>], <span style="color:#a6e22e">a</span>[<span style="color:#a6e22e">j</span>] = <span style="color:#a6e22e">a</span>[<span style="color:#a6e22e">j</span>], <span style="color:#a6e22e">a</span>[<span style="color:#a6e22e">i</span>] }
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">a</span> <span style="color:#a6e22e">ByAge</span>) <span style="color:#a6e22e">Less</span>(<span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">j</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">bool</span> { <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">Age</span> &lt; <span style="color:#a6e22e">a</span>[<span style="color:#a6e22e">j</span>].<span style="color:#a6e22e">Age</span> }
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">SortPeople</span>(<span style="color:#a6e22e">people</span> []<span style="color:#a6e22e">Person</span>) {
+    <span style="color:#a6e22e">sort</span>.<span style="color:#a6e22e">Sort</span>(<span style="color:#a6e22e">ByAge</span>(<span style="color:#a6e22e">people</span>))
+}
+</code></pre></div><p>等等&hellip; 这是认真的吗？我们必须定义一个新的类型 <code>ByAge</code>，它必须实现 3 种方法来实现通用的（严格讲是「可重用」）排序算法和类型切片。</p>
+<p>对我们开发人员来说唯一重要的是，用较少的函数比较两个对象，并且是域依赖的。其他的东西都是噪音和重复，简单的事实是，Go 没有泛型。我们需要对<em>每一种我们想排序的类型</em>重复它，每个比较器也是。</p>
+<p><em>更新：<a href="https://twitter.com/zekjur/status/983965201774071808">Michael Stapelberg</a> 指出我忘记了 <a href="https://golang.org/pkg/sort/#Slice">sort.Slice</a>。看起来好多了，尽管它在 hood (eek!) 下使用反射，并要求比较器函数在切片上做一个闭包去排序，这仍然很难看。</em></p>
+<p>每个解释 Go 不需要泛型的文章，把这个当做「Go 的方式」，它允许使用可重用的算法，同时避免向下转换到 <code>interface{}</code>&hellip;</p>
+<p>好了。为了缓解疼痛，如果 Go 有可以生成这个无意义的样板的宏就好了，对吗？</p>
+<h3 id="span-idgeneratego-generatespan"><!-- raw HTML omitted -->go generate，还说得过去，但是&hellip;<!-- raw HTML omitted --></h3>
+<p>Go 1.4 介绍了 <a href="https://blog.golang.org/generate"><code>go generate</code> 命令</a>，从源代码的注释中触发代码的生成。嗯，这里的「注释」实际上指的是 <code>//go:generate</code> 的注释，需要符合严格的规则：「注释必须从行开始处开始，在 <code>//</code> 和 <code>go:generate</code> 之间没有空格」。如果写错了，加了一个空格，没有工具会警告你出错了。</p>
+<p>这实际上涵盖了两种应用场景：</p>
+<ul>
+<li>从其他来源生成 Go 代码：ProtoBuf / Thrift / Swagger 模式，语言语法，等等。</li>
+<li>生成的 Go 代码补充了现有的代码，例如作为示例的 <a href="https://godoc.org/golang.org/x/tools/cmd/stringer">stringer</a> ，它为一系列类型常量生成 <code>String()</code> 方法。</li>
+</ul>
+<p>第一个用例是可以的，附加价值是你不需要摆弄 <code>makefiles</code>，而生成的说明可以接近生成的代码的用法。</p>
+<p>对于第二个用例，许多语言，比如 Scala 和 Rust，有宏（在 <a href="https://docs.google.com/document/d/1V03LUfjSADDooDMhe-_K59EgpTEm3V8uvQRuNMAEnjg/edit">设计文档</a> 中提到的）在编译过程中都可以访问源代码的 AST。Stringer 实际上 <a href="https://github.com/golang/tools/blob/master/cmd/stringer/stringer.go#L69">导入了Go编译器的解析器</a> 来遍历 AST。Java 没有宏，但注释处理器扮演同样的角色。</p>
+<p>许多语言也不支持宏，所以在这里没有什么根本的错误，除了这个脆弱的由逗号驱动的语法，它看起来像一个快速的技巧，以某种方式完成工作，而不是作为清晰的语言设计被慎重考虑。</p>
+<p>哦，你知道 Go 编译器实际上有 <a href="https://dave.cheney.net/2018/01/08/gos-hidden-pragmas">很多注释/程序</a> 和 <a href="https://dave.cheney.net/2013/10/12/how-to-use-conditional-compilation-with-the-go-build-tool">条件编译</a> 使用这个脆弱的注释语法吗？</p>
+<h2 id="span-idconclusionspan"><!-- raw HTML omitted -->结论<!-- raw HTML omitted --></h2>
+<p>就像你猜到的，我对 Go 爱恨交加。Go 有点像这样的朋友，你喜欢和他一起出去玩，因为他很有趣和他喝啤酒聊天很棒，但是当你想进行更深入的交流时，你会觉得无聊和痛苦，然后你不想和他一起去度假。</p>
+<p>我喜欢 Go 在写高效的 APIs 或网络方面时的简单，goroutines 使这些 很容易解释。当我必须实现业务逻辑时，我讨厌它有限的表现力和所有的等着打击你的语言怪癖和陷阱。</p>
+<p>直到最近，在 Go 占据的领域中并没有出现真正的替代选择，它高效地开发本地可执行文件，而不会导致 C 或 C++ 的痛苦。<a href="https://www.rust-lang.org/zh-CN/">Rust</a> 在飞速进步，我用得越多，越能发现它的有趣之处和优秀设计。我有一种感觉，Rust 是那些需要时间相处的朋友，你最终会想要和他们建立长期的关系。</p>
+<p>回归技术层面，你会发现一些文章说 Rust 和 Go 不是一个领域的，Rust 是一种系统语言，因为它没有内存回收机制 等等。我认为这越来越不真实了。在 <a href="http://www.arewewebyet.org/">伟大的web框架</a> 和优秀的 <a href="http://diesel.rs/">ORM</a>s 中 Rust 正在爬得更高。它也给你一种温暖的感觉，“如果它编译，错误将来自我写的逻辑，而不是我忘记注意的语言怪癖”。</p>
+<p>我们还在容器/服务网格区域看到一些有趣的行动， Buoyant（<a href="https://linkerd.io/">Linkerd</a>的开发商）正在开发它们的新 Kubernetes 服务网格 <a href="https://buoyant.io/2017/12/05/introducing-conduit/">Conduit</a> 作为一个组合，来自控制层面（我猜可能是因为可用的 <a href="https://bluxte.net/musings/2018/04/10/go-good-bad-ugly/#the-var-dilemma">Kubernetes库</a>）的 Go 和数据层面拥有良好效率和鲁棒性的 Rust ，以及 <a href="https://www.sozu.io/">Sozu代理</a>。</p>
+<p>Swift 也是这个家庭的一份子，或者是 C 和 C++ 的最新替代品。它的生态系统仍然过于以苹果为中心，即使它现在可以在 Linux 上使用，并且已经有了新的 <a href="https://swift.org/server-apis/">服务器端 APIs</a> 和 <a href="https://github.com/apple/swift-nio">Netty 框架</a>。</p>
+<p>这里当然没有万能药和通用之法。但是知道你所用工具的问题至关重要。我希望这篇博文教会了你关于 Go 你以前没有意识到的问题，这样你就可以避开陷阱!</p>
+<h2 id="span-idhacker-newshacker-news-span"><!-- raw HTML omitted -->几天后：Hacker News 第三名！<!-- raw HTML omitted --></h2>
+<p><em>更新，发布3天后</em>：这篇文章反响惊人。它已经成为了 <a href="https://news.ycombinator.com/item?id=16830153">Hacker News</a> 的头版(我看到的最好排名是#3)和<a href="https://www.reddit.com/r/programming/comments/8bj4yc/go_the_good_the_bad_and_the_ugly/">/r/programming</a>(我看到的最好排名是#5)，并且在 <a href="https://twitter.com/search?l=&amp;q=https%3A%2F%2Fbluxte.net%2Fmusings%2F2018%2F04%2F10%2Fgo-good-bad-ugly%2F">Twitter 上得到了一些关注</a>。</p>
+<p>这些评论通常都是正面的(甚至是在<a href="https://www.reddit.com/r/golang/comments/8bj4tx/go_the_good_the_bad_and_the_ugly/">/r/golang/</a>)，或者至少承认这篇文章是公平的，并且力求公正。<a href="https://www.reddit.com/r/rust/comments/8bjio2/xpost_from_rprogramming_go_the_good_the_bad_and/">/r/rust</a>的人们当然喜欢我对 Rust 的兴趣。我从未听说过的人甚至给我发邮件说：“<em>我只是想让你知道，我认为你写的文章是最好的。感谢您为此付出的所有努力</em>”。</p>
+<p>这是写作时最困难的部分：尽量做到客观公正。这当然不是完全可能的，因为每个人都有自己的偏好，为什么我关注意外的惊喜和语言工程学：语言对你有多大帮助，而不是妨碍你，或者至少是<em>我的方式</em>。</p>
+<p>我还在标准库或 <a href="https://golang.org/">golang.org</a> 上搜索了代码样本，并引用了Go团队的人员，以我对权威材料的分析为基础，避免了“<em>meh，你引用了一个错误的人</em>”的反应。</p>
+<p>写这篇文章用了我两个星期的晚上时间，但是这真的很有趣。当你做严肃而诚实的工作时，你会得到这样的结果：来自技术网络的许多好的共鸣(如果你忽略掉少数捣乱的和一直脾气暴躁的人)。极大调用了我写更多的深度内容的积极性！</p>
+
+    </div>
+    <div class="article-footer">
+<blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    <li class="post-copyright-link hidden-xs">
+      <strong>Permalink: </strong>
+      <a href="https://donng.github.io/2018/05/go-%E8%AF%AD%E8%A8%80%E7%9A%84%E4%BC%98%E5%8A%A3/" title="Go 语言的优劣" target="_blank" rel="external">https://donng.github.io/2018/05/go-%E8%AF%AD%E8%A8%80%E7%9A%84%E4%BC%98%E5%8A%A3/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>License：</strong><a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
+    </li>
+  </ul>
+</blockquote>
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/donng" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="https://donng.github.io/avatar.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/donng" target="_blank"><span class="text-dark">Donne</span><small class="ml-1x">Web Developer</small></a></h3>
+        <div>Good Good Study, Day Day Up~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+    </div>
+  </article>
+<section id="comments">
+</section>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <div class="bar-right">
+            <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter"
+                data-mobile-sites="weibo,qq,qzone"></div>
+        </div>
+    </div>
+</nav>
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/donng" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://donng.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  <div class="copyright">
+    &copy;2017  -
+    2019
+    <div class="publishby">
+        Theme by <a href="https://github.com/xiaoheiAh" target="_blank"> xiaoheiAh </a>base on<a href="https://github.com/xiaoheiAh/hugo-theme-pure" target="_blank"> pure</a>.
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/rust.min.js"></script>
+<script type="text/javascript"
+    src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script type="text/javascript" src="https://donng.github.io/js/application.js"></script>
+<script type="text/javascript" src="https://donng.github.io/js/plugin.js"></script>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/donng.github.io\/',
+            CONTENT_URL: 'https:\/\/donng.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://donng.github.io/js/insight.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+  </body>
+</html>
