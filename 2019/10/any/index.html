@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+        Go语言实现动态数组 - Donne blog
+      </title>
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  
+  <meta name="theme-color" content="#000000" />
+  
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <meta name="description" content="数组设计之初是在形式上依赖内存分配而成的，所以必须在使用前预先请求空间。这使得数组有以下特性： 请求空间以后大小固定，不能再改变（数据溢出问题" />
+  <meta name="generator" content="Hugo 0.61.0 with theme pure" />
+  <title>Go语言实现动态数组 - Donne blog</title>
+  
+
+  <link rel="stylesheet" href="https://donng.github.io/css/style.css">
+  <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+  <meta property="og:title" content="Go语言实现动态数组" />
+<meta property="og:description" content="数组设计之初是在形式上依赖内存分配而成的，所以必须在使用前预先请求空间。这使得数组有以下特性： 请求空间以后大小固定，不能再改变（数据溢出问题" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://donng.github.io/2019/10/any/" />
+<meta property="article:published_time" content="2019-10-03T17:10:27+08:00" />
+<meta property="article:modified_time" content="2019-10-03T17:10:27+08:00" />
+<meta itemprop="name" content="Go语言实现动态数组">
+<meta itemprop="description" content="数组设计之初是在形式上依赖内存分配而成的，所以必须在使用前预先请求空间。这使得数组有以下特性： 请求空间以后大小固定，不能再改变（数据溢出问题">
+<meta itemprop="datePublished" content="2019-10-03T17:10:27&#43;08:00" />
+<meta itemprop="dateModified" content="2019-10-03T17:10:27&#43;08:00" />
+<meta itemprop="wordCount" content="2094">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go语言实现动态数组"/>
+<meta name="twitter:description" content="数组设计之初是在形式上依赖内存分配而成的，所以必须在使用前预先请求空间。这使得数组有以下特性： 请求空间以后大小固定，不能再改变（数据溢出问题"/>
+
+  <!--[if lte IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+    <![endif]-->
+
+  <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+  </head>
+  
+
+  <body class="main-center" itemscope itemtype="http://schema.org/WebPage"><header class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <div class="slimContent">
+      <div class="navbar-header">
+        <div class="profile-block text-center">
+          <a id="avatar" href="https://github.com/donng" target="_blank">
+            <img class="img-circle img-rotate" src="https://donng.github.io/avatar.png" width="200" height="200">
+          </a>
+          <h2 id="name" class="hidden-xs hidden-sm">Donne</h2>
+          <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer</h3>
+          <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i>Beijing, China</small>
+        </div><div class="search" id="search-form-wrap">
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i
+                        class="icon icon-search"></i></button>
+            </span>
+        </div>
+        <div class="ins-search">
+            <div class="ins-search-mask"></div>
+            <div class="ins-search-container">
+                <div class="ins-input-wrapper">
+                    <input type="text" class="ins-search-input" placeholder="Type something..."
+                        x-webkit-speech />
+                    <button type="button" class="close ins-close ins-selectable" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="ins-section-wrapper">
+                    <div class="ins-section-container"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+        <ul class="nav navbar-nav main-nav">
+            <li class="menu-item menu-item-home">
+                <a href="/">
+                    <i class="icon icon-home-fill"></i>
+                  <span class="menu-title">Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-archives">
+                <a href="/posts">
+                    <i class="icon icon-archives-fill"></i>
+                  <span class="menu-title">Archives</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-categories">
+                <a href="/categories">
+                    <i class="icon icon-folder"></i>
+                  <span class="menu-title">Categories</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-tags">
+                <a href="/tags">
+                    <i class="icon icon-tags"></i>
+                  <span class="menu-title">Tags</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-about">
+                <a href="/about">
+                    <i class="icon icon-cup-fill"></i>
+                  <span class="menu-title">About</span>
+                </a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content"><p>enjoy~</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+      <div class="widget">
+    <h3 class="widget-title"> Categories</h3>
+    <div class="widget-body">
+        <ul class="category-list">
+        </ul>
+    </div>
+</div>
+      <div class="widget">
+    <h3 class="widget-title"> Tags</h3>
+    <div class="widget-body">
+        <ul class="tag-list">
+            
+            
+            <li class="tag-list-item"><a href="https://donng.github.io/tags/go/" class="tag-list-link">go</a><span
+                    class="tag-list-count">1</span></li>
+            
+        </ul>
+
+    </div>
+</div>
+      
+<div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+        <ul class="recent-post-list list-unstyled no-thumbnail">
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://donng.github.io/2019/10/any/" class="title">Go语言实现动态数组</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2019-10-03 17:10:27 &#43;0800 CST" itemprop="datePublished">2019-10-03</time>
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="item-inner">
+                    <p class="item-title">
+                        <a href="https://donng.github.io/2018/05/go-%E8%AF%AD%E8%A8%80%E7%9A%84%E4%BC%98%E5%8A%A3/" class="title">Go 语言的优劣</a>
+                    </p>
+                    <p class="item-date">
+                        <time datetime="2018-05-06 11:25:19 &#43;0800 CST" itemprop="datePublished">2018-05-06</time>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+  </div>
+</aside>
+
+    
+    
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <h4 class="toc-title">Catalogue</h4>
+    <nav id="toc" class="js-toc toc">
+
+    </nav>
+  </div>
+</aside>
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/2019/10/any/"
+    >Go语言实现动态数组</a
+  >
+</h1>
+
+      <div class="article-meta">
+        <span class="article-date">
+  <i class="icon icon-calendar-check"></i>
+<a href="https://donng.github.io/2019/10/any/" class="article-date">
+  <time datetime="2019-10-03 17:10:27 &#43;0800 CST" itemprop="datePublished">2019-10-03</time>
+</a>
+</span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/10/any/#comments"
+            class="article-comment-link">Comments</a></span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count:2094words</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count:5minutes </span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <blockquote>
+<p>数组设计之初是在形式上依赖内存分配而成的，所以必须在使用前预先请求空间。这使得数组有以下特性：</p>
+<ol>
+<li>请求空间以后<strong>大小固定</strong>，不能再改变（数据溢出问题）；</li>
+<li>在内存中有<strong>空间连续性</strong>的表现，中间不会存在其他程序需要调用的数据，为此数组的专用内存空间；</li>
+<li>在旧式编程语言中（如有中阶语言之称的C），程序不会对数组的操作做下界判断，也就有潜在的越界操作的风险（比如会把数据写在运行中程序需要调用的核心部分的内存上）。</li>
+</ol>
+</blockquote>
+<p>以上引用自<a href="https://zh.wikipedia.org/wiki/%E6%95%B0%E7%BB%84">维基百科</a>。</p>
+<p>传统数组的局限性导致了动态数组的诞生。然而动态数组也不是使用动态的内存，依旧是一块连续的内存。那它是如何实现数组大小不固定的呢？原因是当超过数组容量时，程序将自动执行扩容操作：</p>
+<ol>
+<li>重新开辟一块大小为当前数组容量两倍的内存</li>
+<li>把原数组的数据拷贝到此内存空间</li>
+<li>释放原数组的内存</li>
+</ol>
+<p>本文将从概念上实现动态数组的扩容和缩容特性，并实现数组增删查改操作的方法。</p>
+<p><a href="https://github.com/Donng/Play-with-Data-Structures/blob/master/02-Arrays/07-Dynamic-Array/src/Array/Array.go">查看 Github 代码</a></p>
+<h2 id="heading">数组结构</h2>
+<p>我们自定义的数组结构 Array 基于 Go 的 <code>slice</code> 实现，维护 <code>size</code> 字段可以让我们方便的获取数组元素的个数，当我们需要获取元素总数时，就不需要循环 <code>data</code> 去计算。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Array</span> <span style="color:#66d9ef">struct</span> {
+    <span style="color:#a6e22e">data</span> []<span style="color:#66d9ef">interface</span>{}  <span style="color:#75715e">// 泛型数组
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">size</span> <span style="color:#66d9ef">int</span>            <span style="color:#75715e">// 元素数量
+</span><span style="color:#75715e"></span>}
+</code></pre></div><h2 id="heading-1">数组接口</h2>
+<p>使用接口声明我们需要实现的方法，Go 语言没有继承的关键字，实现接口定义的所有方法就会自动继承该接口。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">ArrayInterface</span> <span style="color:#66d9ef">interface</span> {
+    <span style="color:#75715e">// 添加
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">Add</span>(<span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">interface</span>{})    <span style="color:#75715e">// 插入元素
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">AddLast</span>(<span style="color:#66d9ef">interface</span>{})
+    <span style="color:#a6e22e">AddFirst</span>(<span style="color:#66d9ef">interface</span>{})
+    <span style="color:#75715e">// 删除
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">Remove</span>(<span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">interface</span>{}
+    <span style="color:#a6e22e">RemoveFirst</span>() <span style="color:#66d9ef">interface</span>{}
+    <span style="color:#a6e22e">RemoveLast</span>() <span style="color:#66d9ef">interface</span>{}
+    <span style="color:#75715e">// 查找
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">Find</span>(<span style="color:#66d9ef">interface</span>{}) <span style="color:#66d9ef">int</span> <span style="color:#75715e">// 查找元素返回第一个索引
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">FindAll</span>(<span style="color:#66d9ef">interface</span>{}) []<span style="color:#66d9ef">int</span> <span style="color:#75715e">// 查找元素返回所有索引
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">Contains</span>(<span style="color:#66d9ef">interface</span>{}) <span style="color:#66d9ef">bool</span> <span style="color:#75715e">// 查找是否存在元素
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">Get</span>(<span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">interface</span>{}
+    <span style="color:#75715e">// 修改
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">Set</span>(<span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">interface</span>{})
+    <span style="color:#75715e">// 基本方法
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">GetCapacity</span>() <span style="color:#66d9ef">int</span> <span style="color:#75715e">// 获得数组容量
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">GetSize</span>() <span style="color:#66d9ef">int</span>  <span style="color:#75715e">// 获得元素个数
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">IsEmpty</span>() <span style="color:#66d9ef">bool</span> <span style="color:#75715e">// 查看数组是否为空
+</span><span style="color:#75715e"></span>}
+</code></pre></div><h2 id="heading-2">数组实现</h2>
+<h3 id="heading-3">扩/缩容规则</h3>
+<p>数组 <code>resize</code> 指当数组元素超过数组容量，或者元素小于数组容量时，需要完成的扩容和缩容规则：</p>
+<ul>
+<li>超过数组容量，按照当前容量的 2 倍扩容。</li>
+<li>数组元素个数为当前容量 1/4 时，缩容为当前容量的一半。</li>
+</ul>
+<p><em>为什么缩容不是 1/2？</em></p>
+<p>如果在 1/2 时缩容，会导致在扩容的临界点添加、删除一个元素都是 O(n) 复杂度的情况（临界点添加一个元素，导致扩容为 2 倍，此时删除刚添加的元素，又会缩容为 1/2）。</p>
+<h3 id="heading-4">数组的方法实现</h3>
+<h4 id="heading-5">构造函数</h4>
+<p>Go 没有提供构造函数，我们可以声明一个公共的函数代替</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// 获得自定义数组，参数为数组的初始长度
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">GetArray</span>(<span style="color:#a6e22e">capacity</span> <span style="color:#66d9ef">int</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">Array</span> {
+	<span style="color:#a6e22e">arr</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Array</span>{}
+	<span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">data</span> = make([]<span style="color:#66d9ef">interface</span>{}, <span style="color:#a6e22e">capacity</span>)
+	<span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">size</span> = <span style="color:#ae81ff">0</span>
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">arr</span>
+}
+</code></pre></div><h4 id="heading-6">基本方法</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// 获得数组容量
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Array</span>) <span style="color:#a6e22e">GetCapacity</span>() <span style="color:#66d9ef">int</span> {
+	<span style="color:#66d9ef">return</span> len(<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">data</span>)
+}
+<span style="color:#75715e">// 获得数组元素个数
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Array</span>) <span style="color:#a6e22e">GetSize</span>() <span style="color:#66d9ef">int</span> {
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">size</span>
+}
+<span style="color:#75715e">// 判断数组是否为空
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Array</span>) <span style="color:#a6e22e">IsEmpty</span>() <span style="color:#66d9ef">bool</span> {
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">size</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>
+}
+</code></pre></div><h4 id="heading-7">数组容量调整</h4>
+<p>容量调整的逻辑为，声明一个新的数组，将原数组的元素赋值给新数组。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// newCapacity 新数组容量
+</span><span style="color:#75715e"></span><span style="color:#75715e">// 逻辑：声明新的数组，将原数组的值 copy 到新数组中
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Array</span>) <span style="color:#a6e22e">resize</span>(<span style="color:#a6e22e">newCapacity</span> <span style="color:#66d9ef">int</span>) {
+	<span style="color:#a6e22e">newArr</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">interface</span>{}, <span style="color:#a6e22e">newCapacity</span>)
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">size</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+		<span style="color:#a6e22e">newArr</span>[<span style="color:#a6e22e">i</span>] = <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">i</span>]
+	}
+	<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">data</span> = <span style="color:#a6e22e">newArr</span>
+}
+</code></pre></div><h4 id="heading-8">查找元素</h4>
+<p>查找元素指输入元素返回元素的索引</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// 获得元素的首个索引，不存在则返回 -1
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Array</span>) <span style="color:#a6e22e">Find</span>(<span style="color:#a6e22e">element</span> <span style="color:#66d9ef">interface</span>{}) <span style="color:#66d9ef">int</span> {
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span><span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">size</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">element</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">i</span>] {
+			<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">i</span>
+		}
+	}
+	<span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+}
+<span style="color:#75715e">// 获得元素的所有索引，返回索引组成的切片
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Array</span>) <span style="color:#a6e22e">FindAll</span>(<span style="color:#a6e22e">element</span> <span style="color:#66d9ef">interface</span>{}) (<span style="color:#a6e22e">indexes</span> []<span style="color:#66d9ef">int</span>) {
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">size</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">element</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">i</span>] {
+			<span style="color:#a6e22e">indexes</span> = append(<span style="color:#a6e22e">indexes</span>, <span style="color:#a6e22e">i</span>)
+		}
+	}
+	<span style="color:#66d9ef">return</span>
+}
+<span style="color:#75715e">// 查看数组是否存在元素，返回 bool
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Array</span>) <span style="color:#a6e22e">Contains</span>(<span style="color:#a6e22e">element</span> <span style="color:#66d9ef">interface</span>{}) <span style="color:#66d9ef">bool</span> {
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">Find</span>(<span style="color:#a6e22e">element</span>) <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> {
+		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>
+	}
+	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>
+}
+<span style="color:#75715e">// 获得索引对应元素，需要判断索引有效范围
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Array</span>) <span style="color:#a6e22e">Get</span>(<span style="color:#a6e22e">index</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">interface</span>{} {
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">index</span> &lt; <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">index</span> &gt; <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">size</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> {
+		panic(<span style="color:#e6db74">&#34;Get failed, index is illegal.&#34;</span>)
+	}
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">index</span>]
+}
+</code></pre></div><h4 id="heading-9">修改元素</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">修改索引对应元素值</span>
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Array</span>) <span style="color:#a6e22e">Set</span>(<span style="color:#a6e22e">index</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">element</span> <span style="color:#66d9ef">interface</span>{}) {
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">index</span> &lt; <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">index</span> &gt; <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">size</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> {
+		panic(<span style="color:#e6db74">&#34;Set failed, index is illegal.&#34;</span>)
+	}
+	<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">index</span>] = <span style="color:#a6e22e">element</span>
+}
+</code></pre></div><h4 id="heading-10">添加元素</h4>
+<p>添加元素需要考虑扩容问题，同时 <code>AddLast</code> 和 <code>AddFirst</code> 都是基于 <code>Add</code> 实现的，这非常的方便。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Array</span>) <span style="color:#a6e22e">Add</span>(<span style="color:#a6e22e">index</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">element</span> <span style="color:#66d9ef">interface</span>{}) {
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">index</span> &lt; <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">index</span> &gt; <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">GetCapacity</span>() {
+		panic(<span style="color:#e6db74">&#34;Add failed, require index &gt;= 0 and index &lt;= capacity&#34;</span>)
+	}
+	<span style="color:#75715e">// 数组已满则扩容
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">size</span> <span style="color:#f92672">==</span> len(<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">data</span>) {
+		<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">resize</span>(<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">size</span>)
+	}
+	<span style="color:#75715e">// 将插入的索引位置之后的元素后移，腾出插入位置
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">size</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&gt;=</span> <span style="color:#a6e22e">index</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">--</span> {
+		<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">i</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>] = <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">i</span>]
+	}
+	<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">index</span>] = <span style="color:#a6e22e">element</span>
+	<span style="color:#75715e">// 维护数组元素的数量
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">size</span><span style="color:#f92672">++</span>
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Array</span>) <span style="color:#a6e22e">AddLast</span>(<span style="color:#a6e22e">element</span> <span style="color:#66d9ef">interface</span>{}) {
+	<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">Add</span>(<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">size</span>, <span style="color:#a6e22e">element</span>)
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Array</span>) <span style="color:#a6e22e">AddFirst</span>(<span style="color:#a6e22e">element</span> <span style="color:#66d9ef">interface</span>{}) {
+	<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">Add</span>(<span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">element</span>)
+}
+</code></pre></div><h4 id="heading-11">删除元素</h4>
+<p>删除元素需要考虑缩容问题</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Array</span>) <span style="color:#a6e22e">Remove</span>(<span style="color:#a6e22e">index</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">interface</span>{} {
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">index</span> &lt; <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">index</span> <span style="color:#f92672">&gt;=</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">size</span> {
+		panic(<span style="color:#e6db74">&#34;Remove failed, index is illegal.&#34;</span>)
+	}
+
+	<span style="color:#a6e22e">removeEle</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">index</span>]
+	<span style="color:#75715e">// 从 index 之后的元素，都向前移动一个位置
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">index</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">size</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+		<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] = <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">i</span>]
+	}
+	<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">size</span><span style="color:#f92672">--</span>
+	<span style="color:#75715e">// 清理最后一个元素
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">size</span>] = <span style="color:#66d9ef">nil</span>
+
+	<span style="color:#75715e">// 考虑边界情况，不能 resize 为0
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">size</span> <span style="color:#f92672">==</span> len(<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">data</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">4</span> <span style="color:#f92672">&amp;&amp;</span> len(<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">data</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> {
+		<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">resize</span>(len(<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">data</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>)
+	}
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">removeEle</span>
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Array</span>) <span style="color:#a6e22e">RemoveFirst</span>() <span style="color:#66d9ef">interface</span>{} {
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">Remove</span>(<span style="color:#ae81ff">0</span>)
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Array</span>) <span style="color:#a6e22e">RemoveLast</span>() <span style="color:#66d9ef">interface</span>{} {
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">Remove</span>(<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">size</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+}
+</code></pre></div><h4 id="-string-">重写 String 方法</h4>
+<p>重写数组打印时的展示形式，只需要重写 <code>String</code> 方法</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Array</span>) <span style="color:#a6e22e">String</span>() <span style="color:#66d9ef">string</span> {
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">buffer</span> <span style="color:#a6e22e">bytes</span>.<span style="color:#a6e22e">Buffer</span>
+	<span style="color:#a6e22e">buffer</span>.<span style="color:#a6e22e">WriteString</span>(<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprintf</span>(<span style="color:#e6db74">&#34;Array: size = %d, capacity = %d\n&#34;</span>, <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">size</span>, <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">GetCapacity</span>()))
+	<span style="color:#a6e22e">buffer</span>.<span style="color:#a6e22e">WriteString</span>(<span style="color:#e6db74">&#34;[&#34;</span>)
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">size</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+		<span style="color:#a6e22e">buffer</span>.<span style="color:#a6e22e">WriteString</span>(<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprint</span>(<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">i</span>]))
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">!=</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">size</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> {
+			<span style="color:#a6e22e">buffer</span>.<span style="color:#a6e22e">WriteString</span>(<span style="color:#e6db74">&#34;,&#34;</span>)
+		}
+	}
+	<span style="color:#a6e22e">buffer</span>.<span style="color:#a6e22e">WriteString</span>(<span style="color:#e6db74">&#34;]&#34;</span>)
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">buffer</span>.<span style="color:#a6e22e">String</span>()
+}
+</code></pre></div><h3 id="heading-12">最终测试</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">arr</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">GetArray</span>(<span style="color:#ae81ff">10</span>)
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#ae81ff">10</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+		<span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">AddLast</span>(<span style="color:#a6e22e">i</span>)
+	}
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">arr</span>)
+
+	<span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">Add</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">100</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">arr</span>)
+
+	<span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">AddFirst</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">arr</span>)
+}
+</code></pre></div><p>输出结果：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Array: size = 10, capacity = 10
+[0,1,2,3,4,5,6,7,8,9]
+Array: size = 11, capacity = 20
+[0,100,2,2,3,4,5,6,7,8,9]
+Array: size = 12, capacity = 20
+[-1,100,100,2,2,3,4,5,6,7,8,9]
+</code></pre></div><h2 id="heading-13">时间复杂度分析</h2>
+<h3 id="heading-14">添加操作</h3>
+<ul>
+<li>Add(int, interface{})   O(n)</li>
+<li>AddLast(interface{})    O(1)</li>
+<li>AddFirst(interface{})   O(n)</li>
+</ul>
+<p><code>AddLast</code> 涉及到扩容的操作，容量为 n 的数组添加 n + 1 个元素，会操作 2n + 1 次，因为第 n + 1 次操作导致扩容，原数组需要copy n 次，其平均操作次数为 2 次，所以均摊复杂度是O(1)。</p>
+<h3 id="heading-15">删除操作</h3>
+<ul>
+<li>Remove(int) interface{}    O(n)</li>
+<li>RemoveFirst() interface{}  O(n)</li>
+<li>RemoveLast() interface{}   O(1)</li>
+</ul>
+<p><code>RemoveFirst</code> 会将第一个元素之后的所有元素前移一个位置，<code>Remove</code> 也可能是移除第一个元素，它们都是 n 的复杂度，而 <code>RemoveLast</code> 只需要移除最后一个元素。</p>
+<h3 id="heading-16">查找操作</h3>
+<ul>
+<li>Find(interface{}) int      O(n)</li>
+<li>FindAll(interface{}) []int O(n)</li>
+<li>Contains(interface{}) bool O(n)</li>
+<li>Get(int) interface{}       O(1)</li>
+</ul>
+<p><code>Find</code> 类的操作都需要遍历数组，为 n 的复杂度。<code>Get</code> 可以直接通过键获得值，这也是数组的优势所在。</p>
+<h3 id="heading-17">修改操作</h3>
+<ul>
+<li>Set(int, interface{}) O(1)</li>
+</ul>
+<h2 id="heading-18">总结</h2>
+<p>可以发现，数组对已知索引和数组尾部的操作都是 O(1) 的复杂度，我们可以将这些理解为数组的优势，当我们用数组实现一些功能就可以充分利用这些优势。</p>
+<p>例如，我们用数组模拟一个栈的操作，如果用数组尾部模拟栈顶，入栈、出栈都是都是 O(1) 时间复杂度，这是非常高效的。但是将出入栈放到数组头部，时间复杂度就变成 O(n) 了，差距是显而易见。</p>
+
+    </div>
+    <div class="article-footer">
+<blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    <li class="post-copyright-link hidden-xs">
+      <strong>Permalink: </strong>
+      <a href="https://donng.github.io/2019/10/any/" title="Go语言实现动态数组" target="_blank" rel="external">https://donng.github.io/2019/10/any/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>License：</strong><a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
+    </li>
+  </ul>
+</blockquote>
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/donng" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="https://donng.github.io/avatar.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/donng" target="_blank"><span class="text-dark">Donne</span><small class="ml-1x">Web Developer</small></a></h3>
+        <div>Good Good Study, Day Day Up~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+    </div>
+  </article>
+<section id="comments">
+</section>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-left">
+            <li class="prev">
+                <a href="https://donng.github.io/2018/05/go-%E8%AF%AD%E8%A8%80%E7%9A%84%E4%BC%98%E5%8A%A3/" title="Go 语言的优劣"><i
+                        class="icon icon-angle-left"
+                        aria-hidden="true"></i><span>&nbsp;&nbsp;Older</span></a>
+            </li>
+            
+            <li class="toggle-toc">
+                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
+                    title="Catalogue" role="button">
+                    <span>[&nbsp;</span><span>Catalogue</span>
+                    <i class="text-collapsed icon icon-anchor"></i>
+                    <i class="text-in icon icon-close"></i>
+                    <span>]</span>
+                </a>
+            </li>
+        </ul>
+        <div class="bar-right">
+            <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter"
+                data-mobile-sites="weibo,qq,qzone"></div>
+        </div>
+    </div>
+</nav>
+
+</main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+<ul class="social-links">
+    <li><a href="https://github.com/donng" target="_blank" title="github" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-github"></i></a></li>
+    <li><a href="https://donng.github.io/index.xml" target="_blank" title="rss" data-toggle=tooltip data-placement=top >
+            <i class="icon icon-rss"></i></a></li>
+</ul>
+  <div class="copyright">
+    &copy;2017  -
+    2019
+    <div class="publishby">
+        Theme by <a href="https://github.com/xiaoheiAh" target="_blank"> xiaoheiAh </a>base on<a href="https://github.com/xiaoheiAh/hugo-theme-pure" target="_blank"> pure</a>.
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/rust.min.js"></script>
+<script type="text/javascript"
+    src="https://cdn.staticfile.org/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script>
+    hljs.configure({
+        tabReplace: '    ', 
+        classPrefix: ''     
+        
+    })
+    hljs.initHighlightingOnLoad();
+</script>
+<script type="text/javascript" src="https://donng.github.io/js/application.js"></script>
+<script type="text/javascript" src="https://donng.github.io/js/plugin.js"></script>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            ROOT_URL: 'https:\/\/donng.github.io\/',
+            CONTENT_URL: 'https:\/\/donng.github.io\/\/searchindex.json ',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script type="text/javascript" src="https://donng.github.io/js/insight.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<script>
+    tocbot.init({
+        
+        tocSelector: '.js-toc',
+        
+        contentSelector: '.js-toc-content',
+        
+        headingSelector: 'h1, h2, h3',
+        
+        hasInnerContainers: true,
+    });
+</script>
+
+  </body>
+</html>
