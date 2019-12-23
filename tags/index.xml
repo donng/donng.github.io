@@ -5,17 +5,17 @@
     <link>https://donng.github.io/tags/</link>
     <description>Recent content in Tags on Donne blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 06 May 2018 11:25:19 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 03 Oct 2019 17:10:27 +0800</lastBuildDate>
     
         <atom:link href="https://donng.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Go语言实现动态数组</title>
-      <link>https://donng.github.io/2019/10/any/</link>
+      <link>https://donng.github.io/2019/10/go%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84/</link>
       <pubDate>Thu, 03 Oct 2019 17:10:27 +0800</pubDate>
       
-      <guid>https://donng.github.io/2019/10/any/</guid>
+      <guid>https://donng.github.io/2019/10/go%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84/</guid>
       <description>数组设计之初是在形式上依赖内存分配而成的，所以必须在使用前预先请求空间。这使得数组有以下特性： 请求空间以后大小固定，不能再改变（数据溢出问题</description>
     </item>
     
