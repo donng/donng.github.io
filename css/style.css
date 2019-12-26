@@ -483,10 +483,6 @@ h6,
   font-size: 12px;
 }
 
-p {
-  margin: 0 0 10.5px;
-}
-
 .lead {
   margin-bottom: 21px;
   font-size: 16px;
@@ -3262,7 +3258,7 @@ body {
     "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
   font-size: 14px;
   line-height: 1.57143;
-  color: #333333;
+  color: #444444;
   background-color: #fff;
 }
 
@@ -5620,8 +5616,8 @@ code {
   text-shadow: 0 1px #fff;
   padding: 0.2em 0.4em;
   margin: 0 0.3em;
-  color: #555;
-  background: #eee;
+  color: #c7254e;
+  background: #f9f2f4;
   border-radius: 3px;
   font-size: 100%;
 }
