@@ -5,10 +5,19 @@
     <link>https://donng.github.io/</link>
     <description>Recent content on Donne blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 03 Oct 2019 17:10:27 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 26 Dec 2019 18:51:46 +0800</lastBuildDate>
     
         <atom:link href="https://donng.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Go语言笔记：变量</title>
+      <link>https://donng.github.io/2019/12/go%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0%E5%8F%98%E9%87%8F/</link>
+      <pubDate>Thu, 26 Dec 2019 18:51:46 +0800</pubDate>
+      
+      <guid>https://donng.github.io/2019/12/go%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0%E5%8F%98%E9%87%8F/</guid>
+      <description>变量指向一个内存地址，其中存储了某种类型的值。在静态语言中，此内存存储的变量类型不可变。 Go 中的变量如何声明？ Go 变量声明可以指定哪些类型？ Go 中</description>
+    </item>
     
     <item>
       <title>Go语言实现动态数组</title>
