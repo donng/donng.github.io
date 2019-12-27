@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Go on Donne blog</title>
-    <link>https://donng.github.io/tags/go/</link>
-    <description>Recent content in Go on Donne blog</description>
+    <title>Nginx on Donne blog</title>
+    <link>https://donng.github.io/tags/nginx/</link>
+    <description>Recent content in Nginx on Donne blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 26 Dec 2019 18:51:46 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 30 May 2019 17:25:20 +0800</lastBuildDate>
     
-        <atom:link href="https://donng.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://donng.github.io/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>

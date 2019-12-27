@@ -28,6 +28,15 @@
     </item>
     
     <item>
+      <title>模拟 Nginx 热部署</title>
+      <link>https://donng.github.io/2019/05/%E6%A8%A1%E6%8B%9F-nginx-%E7%83%AD%E9%83%A8%E7%BD%B2/</link>
+      <pubDate>Thu, 30 May 2019 17:25:20 +0800</pubDate>
+      
+      <guid>https://donng.github.io/2019/05/%E6%A8%A1%E6%8B%9F-nginx-%E7%83%AD%E9%83%A8%E7%BD%B2/</guid>
+      <description>热部署，就是在应用正在运行的时候升级软件，却不需要重新启动应用。 首先在本地模拟一个线上需要升级 Nginx 的环境，假设旧版本为 nginx-1.0.15</description>
+    </item>
+    
+    <item>
       <title>Go 语言的优劣</title>
       <link>https://donng.github.io/2018/05/go-%E8%AF%AD%E8%A8%80%E7%9A%84%E4%BC%98%E5%8A%A3/</link>
       <pubDate>Sun, 06 May 2018 11:25:19 +0800</pubDate>
