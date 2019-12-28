@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        Donne blog</title>
+        源码安装 PHP 7.3 - Donne blog
+      </title>
     <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -22,24 +23,31 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  
+  <meta name="description" content="本文以当前最新版本 PHP 7.3.1 演示整个源码安装的流程。 下载 PHP 源码包 访问 PHP 官网的源码包下载地址 http://php.net/downloads.php" />
   <meta name="generator" content="Hugo 0.61.0 with theme pure" />
-  <title>Donne blog</title>
+  <title>源码安装 PHP 7.3 - Donne blog</title>
   
 
-  <link rel="alternate" type="application/rss+xml" href="https://donng.github.io/posts/index.xml" title="Donne blog" />
   <link rel="stylesheet" href="https://donng.github.io/css/style.css">
   <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
-  <meta property="og:title" content="Posts" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://donng.github.io/posts/" />
-<meta property="og:updated_time" content="2019-12-28T16:41:21+08:00" />
-<meta itemprop="name" content="Posts">
-<meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posts"/>
-<meta name="twitter:description" content=""/>
+  <meta property="og:title" content="源码安装 PHP 7.3" />
+<meta property="og:description" content="本文以当前最新版本 PHP 7.3.1 演示整个源码安装的流程。 下载 PHP 源码包 访问 PHP 官网的源码包下载地址 http://php.net/downloads.php" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://donng.github.io/2019/12/%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85-php-7.3/" />
+<meta property="article:published_time" content="2019-12-28T16:41:21+08:00" />
+<meta property="article:modified_time" content="2019-12-28T16:41:21+08:00" />
+<meta itemprop="name" content="源码安装 PHP 7.3">
+<meta itemprop="description" content="本文以当前最新版本 PHP 7.3.1 演示整个源码安装的流程。 下载 PHP 源码包 访问 PHP 官网的源码包下载地址 http://php.net/downloads.php">
+<meta itemprop="datePublished" content="2019-12-28T16:41:21&#43;08:00" />
+<meta itemprop="dateModified" content="2019-12-28T16:41:21&#43;08:00" />
+<meta itemprop="wordCount" content="1003">
+
+
+
+<meta itemprop="keywords" content="PHP," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="源码安装 PHP 7.3"/>
+<meta name="twitter:description" content="本文以当前最新版本 PHP 7.3.1 演示整个源码安装的流程。 下载 PHP 源码包 访问 PHP 官网的源码包下载地址 http://php.net/downloads.php"/>
 
   <!--[if lte IE 9]>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -236,69 +244,198 @@
 
     
     
-<main class="main" role="main">
-    <article class="content article article-archives article-type-list" itemscope="">
-        <header class="article-header">
-            <h1 itemprop="title">Posts</h1>
-            <p class="text-muted">Total 5 articles</p>
-        </header>
-        <div class="article-body">
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <h4 class="toc-title">Catalogue</h4>
+    <nav id="toc" class="js-toc toc">
+
+    </nav>
+  </div>
+</aside>
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/2019/12/%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85-php-7.3/"
+    >源码安装 PHP 7.3</a
+  >
+</h1>
+
+      <div class="article-meta">
+        <span class="article-date">
+  <i class="icon icon-calendar-check"></i>
+<a href="https://donng.github.io/2019/12/%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85-php-7.3/" class="article-date">
+  <time datetime="2019-12-28 16:41:21 &#43;0800 CST" itemprop="datePublished">2019-12-28</time>
+</a>
+</span>  
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+    <a class="article-tag-link" href="/tags/php/"> PHP </a>
+  </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/12/%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85-php-7.3/#comments"
+            class="article-comment-link">Comments</a></span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count:1003words</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count:3minutes </span>
+      </div>
+    </div>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <p>本文以当前最新版本 <code>PHP 7.3.1</code> 演示整个源码安装的流程。</p>
+<h2 id="-php-">下载 PHP 源码包</h2>
+<p>访问 PHP 官网的源码包下载地址 <a href="http://php.net/downloads.php">http://php.net/downloads.php</a>。</p>
+<p><img src="http://note.youdao.com/yws/res/13933/24D89DD472A545978DD288390BF261C4" alt="image"></p>
+<p>如图所示，PHP 源码提供了三种压缩格式，通常压缩后的文件越小，意味着解压缩需要的时间和 CPU 消耗就会更多，这里要根据安装 PHP 的服务器硬件情况和带宽选择合适的压缩格式，我选择下载 <code>php-7.3.1.tar.gz</code>。</p>
+<p>下载源码有两种方式：</p>
+<ol>
+<li>服务器端使用 <a href="https://baike.baidu.com/item/wget">wget</a> 命令直接下载 。</li>
+<li>首先下载到本地，然后通过 <code>FTP</code> 传到服务器。</li>
+</ol>
+<p>以第一种方法为例，在服务器端执行：</p>
+<pre><code>wget -c http://cn2.php.net/distributions/php-7.3.1.tar.gz
+</code></pre><p>点开其中一个压缩包，右击 China 的 <code>cn2.php.net</code> 复制链接地址，可以获得另一个下载地址，获取方式如下图所示：</p>
+<pre><code>http://cn2.php.net/get/php-7.3.1.tar.gz/from/this/mirror
+
+# 此地址的下载命令，使用 -O 重命名源码包，否则下载后的文件名会是 mirror
+wget -O php-7.3.1.tar.gz http://cn2.php.net/get/php-7.3.1.tar.gz/from/this/mirror
+</code></pre><p>如果需要下载其他版本，只需要修改下载地址中的版本号，例如 <code>php-7.2.14.tar.gz</code>。</p>
+<h2 id="-php">安装 PHP</h2>
+<p>使用 <a href="https://baike.baidu.com/item/Tar/13886925">tar</a> 命令解压 <code>tar.gz</code> 压缩包：</p>
+<pre><code>tar -xzvf php-7.3.1.tar.gz
+</code></pre><p>安装 PHP 需要的扩展库</p>
+<pre><code>yum install -y libxml2 *openssl* libcurl* libjpeg* libpng* freetype* libzip* libmcrypt*
+</code></pre><p>进入解压后的 <code>php-7.2.4</code> 文件夹，运行 configure 可执行文件：</p>
+<pre><code>./configure --prefix=/mnt/php7 --with-mysqli --with-iconv-dir --with-freetype-dir --with-jpeg-dir --with-png-dir --with-zlib --with-libxml-dir --enable-simplexml --enable-xml --disable-rpath --enable-bcmath --enable-soap --enable-zip --with-curl --enable-fpm --with-fpm-user=www --with-fpm-group=www --enable-mbstring --enable-sockets --with-gd --with-openssl --with-mhash --enable-opcache --disable-fileinfo
+</code></pre><p><img src="http://note.youdao.com/yws/res/13803/50849A72146849AA96E76D84EAF7F2CB" alt="image"></p>
+<p>如果最后显示以上界面，说明已经成功安装。</p>
+<hr>
+<p>由于我测试的是一个新的服务器，所以依次遇到了以下错误，没有出现问题可以跳过这部分：</p>
+<p><strong>错误1：</strong></p>
+<pre><code>configure: error: in `/root/php-7.3.1':
+configure: error: no acceptable C compiler found in $PATH
+</code></pre><pre><code># 缺少 c 编译器，安装 GCC
+yum install gcc
+</code></pre><p><strong>错误2：</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">checking <span style="color:#66d9ef">for</span> libzip... configure: error: system libzip must be upgraded to version &gt;<span style="color:#f92672">=</span> 0.11
+</code></pre></div><pre><code># 查看 yum 安装的 libzip 版本
+yum list installed | grep libzip
+
+# 发现 yum 安装的 libzip 版本过低，卸载低版本
+yum remove libzip*
+</code></pre><p>源码安装 libzip</p>
+<pre><code># 源码编译安装 libzip 最新版
+# libzip 官网地址：https://libzip.org
+wget https://nih.at/libzip/libzip-1.5.1.tar.gz
+tar -zxvf libzip-1.5.1.tar.gz
+cd libzip-1.5.1
+## 查看 INSTALL.md 其中有安装提示
+mkdir build
+cd build
+cmake ..
+make
+make test
+make install
+</code></pre><p>上述命令在执行 <code>cmake ..</code> 时报错，使用 yum 安装了 <code>gcc-c++</code></p>
+<pre><code>yum -y install gcc-c++
+</code></pre><p>又重新源码编译安装了了 <code>Cmake</code>，参考<a href="https://www.jianshu.com/p/3703b1e0925e">这篇文章</a> 。</p>
+<p><strong>错误3：</strong></p>
+<pre><code>error: off_t undefined; check your library configuration
+</code></pre><pre><code># 添加搜索路径到配置文件
+echo '/usr/local/lib64
+/usr/local/lib
+/usr/lib
+/usr/lib64'&gt;&gt;/etc/ld.so.conf
+# 更新配置
+ldconfig -v
+</code></pre><p>此错误详细解释参考 <a href="https://segmentfault.com/q/1010000007346459">https://segmentfault.com/q/1010000007346459</a> 中 @代码狗 的回答。</p>
+<hr>
+<p>编译和安装</p>
+<pre><code>make &amp;&amp; make install
+</code></pre><h2 id="heading">配置</h2>
+<p>进入 <code>/mnt/php7/sbin</code>，启动 php-fpm</p>
+<pre><code>[root@localhost sbin]# ./php-fpm
+[15-Jan-2019 03:32:21] ERROR: failed to open configuration file '/mnt/php7/etc/php-fpm.conf': No such file or directory (2)
+[15-Jan-2019 03:32:21] ERROR: failed to load configuration file '/mnt/php7/etc/php-fpm.conf'
+[15-Jan-2019 03:32:21] ERROR: FPM initialization failed
+</code></pre><p>解决办法：</p>
+<pre><code># 进入 /mnt/php7/etc，复制 php-fpm 的配置文件
+[root@localhost etc]# cp php-fpm.conf.default php-fpm.conf
+
+# 进入 /mnt/php7/etc/php-fpm.d，复制 php-fpm 的子配置文件：
+[root@localhost php-fpm.d]# cp www.conf.default www.conf
+</code></pre><p>在运行 php-fpm 前，还需要修改其子配置文件中的用户和用户组，以 nginx 为例，编辑 <code>/mnt/php7/etc/php-fpm.d</code> 文件：</p>
+<pre><code>user = nginx
+group = nginx
+</code></pre><p>至此就可以启动 php-fpm 了。</p>
+<p>在命令行下运行 php，需要将可执行文件复制到环境变量下：</p>
+<pre><code>cp /mnt/php7/bin/php /usr/local/bin/php
+
+# 命令行下查看 php 版本
+php -v
+</code></pre>
+    </div>
+    <div class="article-footer">
+<blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    <li class="post-copyright-link hidden-xs">
+      <strong>Permalink: </strong>
+      <a href="https://donng.github.io/2019/12/%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85-php-7.3/" title="源码安装 PHP 7.3" target="_blank" rel="external">https://donng.github.io/2019/12/%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85-php-7.3/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>License：</strong><a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
+    </li>
+  </ul>
+</blockquote>
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/donng" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="https://donng.github.io/avatar.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/donng" target="_blank"><span class="text-dark">Donne</span><small class="ml-1x">Web Developer</small></a></h3>
+        <div>Good Good Study, Day Day Up~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+    </div>
+  </article>
+<section id="comments">
+</section>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-left">
+            <li class="prev">
+                <a href="https://donng.github.io/2019/12/go%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0%E5%8F%98%E9%87%8F/" title="Go语言笔记：变量"><i
+                        class="icon icon-angle-left"
+                        aria-hidden="true"></i><span>&nbsp;&nbsp;Older</span></a>
+            </li>
             
-            
-                <section class="panel panel-default b-no">
-                    <div class="panel-heading" role="tab">
-                        <h3 class="panel-title">
-                            <a data-toggle="collapse" href="#collapse2019" aria-expanded="true">
-                                <i class="icon icon-calendar-plus text-active"></i><i class="icon icon-calendar-minus text"></i>
-                                &nbsp;2019
-                            </a>
-                        </h3>
-                    </div>
-                    <div id="collapse2019" class="panel-collapse collapse in" role="tabpanel"
-                        aria-labelledby="heading2019">
-                        <div class="panel-body">
-                            <div class="collection"><a href="https://donng.github.io/2019/12/%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85-php-7.3/" class="collection-item" itemprop="url"  target="_blank" >
-    <time datetime="2019-12-28 16:41:21 &#43;0800 CST"
-        itemprop="datePublished">2019-12-28</time>
-    <span>&nbsp;&nbsp;&nbsp;</span>源码安装 PHP 7.3
-</a>
-            <a href="https://donng.github.io/2019/12/go%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0%E5%8F%98%E9%87%8F/" class="collection-item" itemprop="url"  target="_blank" >
-    <time datetime="2019-12-26 18:51:46 &#43;0800 CST"
-        itemprop="datePublished">2019-12-26</time>
-    <span>&nbsp;&nbsp;&nbsp;</span>Go语言笔记：变量
-</a>
-            <a href="https://donng.github.io/2019/10/go%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84/" class="collection-item" itemprop="url"  target="_blank" >
-    <time datetime="2019-10-03 17:10:27 &#43;0800 CST"
-        itemprop="datePublished">2019-10-03</time>
-    <span>&nbsp;&nbsp;&nbsp;</span>Go语言实现动态数组
-</a>
-            <a href="https://donng.github.io/2019/05/%E6%A8%A1%E6%8B%9F-nginx-%E7%83%AD%E9%83%A8%E7%BD%B2/" class="collection-item" itemprop="url"  target="_blank" >
-    <time datetime="2019-05-30 17:25:20 &#43;0800 CST"
-        itemprop="datePublished">2019-05-30</time>
-    <span>&nbsp;&nbsp;&nbsp;</span>模拟 Nginx 热部署
-</a>
-            
-                <section class="panel panel-default b-no">
-                    <div class="panel-heading" role="tab">
-                        <h3 class="panel-title">
-                            <a data-toggle="collapse" href="#collapse2018" aria-expanded="true">
-                                <i class="icon icon-calendar-plus text-active"></i><i class="icon icon-calendar-minus text"></i>
-                                &nbsp;2018
-                            </a>
-                        </h3>
-                    </div>
-                    <div id="collapse2018" class="panel-collapse collapse in" role="tabpanel"
-                        aria-labelledby="heading2018">
-                        <div class="panel-body">
-                            <div class="collection"> 
-                </div></div></div></section><a href="https://donng.github.io/2018/05/go-%E8%AF%AD%E8%A8%80%E7%9A%84%E4%BC%98%E5%8A%A3/" class="collection-item" itemprop="url"  target="_blank" >
-    <time datetime="2018-05-06 11:25:19 &#43;0800 CST"
-        itemprop="datePublished">2018-05-06</time>
-    <span>&nbsp;&nbsp;&nbsp;</span>Go 语言的优劣
-</a>
+            <li class="toggle-toc">
+                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
+                    title="Catalogue" role="button">
+                    <span>[&nbsp;</span><span>Catalogue</span>
+                    <i class="text-collapsed icon icon-anchor"></i>
+                    <i class="text-in icon icon-close"></i>
+                    <span>]</span>
+                </a>
+            </li>
+        </ul>
+        <div class="bar-right">
+            <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter"
+                data-mobile-sites="weibo,qq,qzone"></div>
         </div>
-        </div></div></div></section>
-    </article>
+    </div>
+</nav>
+
 </main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
 <ul class="social-links">
     <li><a href="https://github.com/donng" target="_blank" title="github" data-toggle=tooltip data-placement=top >
