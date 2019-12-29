@@ -4,27 +4,41 @@
   
   <url>
     <loc>https://donng.github.io/</loc>
-    <lastmod>2019-12-28T16:41:21+08:00</lastmod>
+    <lastmod>2019-12-29T23:35:44+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://donng.github.io/tags/php/</loc>
-    <lastmod>2019-12-28T16:41:21+08:00</lastmod>
+    <loc>https://donng.github.io/tags/github/</loc>
+    <lastmod>2019-12-29T23:35:44+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://donng.github.io/2019/12/github-actions-%E5%92%8C-badge-%E8%AE%BE%E7%BD%AE%E7%9A%84%E8%B5%84%E6%BA%90/</loc>
+    <lastmod>2019-12-29T23:35:44+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://donng.github.io/posts/</loc>
-    <lastmod>2019-12-28T16:41:21+08:00</lastmod>
+    <lastmod>2019-12-29T23:35:44+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://donng.github.io/tags/</loc>
+    <lastmod>2019-12-29T23:35:44+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://donng.github.io/tags/php/</loc>
     <lastmod>2019-12-28T16:41:21+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

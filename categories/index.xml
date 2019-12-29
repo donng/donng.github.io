@@ -10,6 +10,15 @@
     
     
     <item>
+      <title>Github Actions 和 Badge 设置的资源</title>
+      <link>https://donng.github.io/2019/12/github-actions-%E5%92%8C-badge-%E8%AE%BE%E7%BD%AE%E7%9A%84%E8%B5%84%E6%BA%90/</link>
+      <pubDate>Sun, 29 Dec 2019 23:35:44 +0800</pubDate>
+      
+      <guid>https://donng.github.io/2019/12/github-actions-%E5%92%8C-badge-%E8%AE%BE%E7%BD%AE%E7%9A%84%E8%B5%84%E6%BA%90/</guid>
+      <description>Github Actions 阅读阮一峰的入门教程： http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html actions 英文介绍：https://help.github.com/en/actions/automating-your</description>
+    </item>
+    
+    <item>
       <title>源码安装 PHP 7.3</title>
       <link>https://donng.github.io/2019/12/%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85-php-7.3/</link>
       <pubDate>Sat, 28 Dec 2019 16:41:21 +0800</pubDate>
