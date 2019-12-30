@@ -11,6 +11,15 @@
     
     
     <item>
+      <title>Any</title>
+      <link>https://donng.github.io/2019/12/faker%E8%99%9A%E6%8B%9F%E6%95%B0%E6%8D%AE%E5%A1%AB%E5%85%85%E5%92%8C%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Mon, 30 Dec 2019 10:40:41 +0800</pubDate>
+      
+      <guid>https://donng.github.io/2019/12/faker%E8%99%9A%E6%8B%9F%E6%95%B0%E6%8D%AE%E5%A1%AB%E5%85%85%E5%92%8C%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/</guid>
+      <description>Faker 是一个虚拟数据的生成器，可以用它填充数据库进行压力测试或者创建优雅的 XML 文档。 安装 如果项目支持 composer ,使用以下命令安装。不支持请到 Faker 的 Github 仓库下载</description>
+    </item>
+    
+    <item>
       <title>Github Actions 和 Badge 设置的资源</title>
       <link>https://donng.github.io/2019/12/github-actions-%E5%92%8C-badge-%E8%AE%BE%E7%BD%AE%E7%9A%84%E8%B5%84%E6%BA%90/</link>
       <pubDate>Sun, 29 Dec 2019 23:35:44 +0800</pubDate>
