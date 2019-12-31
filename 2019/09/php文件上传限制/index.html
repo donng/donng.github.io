@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        Donne blog</title>
+        PHP 文件上传限制 - Donne blog
+      </title>
     <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -22,24 +23,31 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  
+  <meta name="description" content="PHP 大文件上传占用大量资源，因此需要对上传的大小进行限制，以下为相关的三个参数： nginx 的 client_max_body_size php.ini 的 upload_max_filesize php.ini 的 post_max_size 与以上相对应的三个报错信息： 状态码 413 Request Entiry Too Large." />
   <meta name="generator" content="Hugo 0.61.0 with theme pure" />
-  <title>Donne blog</title>
+  <title>PHP 文件上传限制 - Donne blog</title>
   
 
-  <link rel="alternate" type="application/rss+xml" href="https://donng.github.io/tags/github/index.xml" title="Donne blog" />
   <link rel="stylesheet" href="https://donng.github.io/css/style.css">
   <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
-  <meta property="og:title" content="Github" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://donng.github.io/tags/github/" />
-<meta property="og:updated_time" content="2019-12-29T23:35:44+08:00" />
-<meta itemprop="name" content="Github">
-<meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Github"/>
-<meta name="twitter:description" content=""/>
+  <meta property="og:title" content="PHP 文件上传限制" />
+<meta property="og:description" content="PHP 大文件上传占用大量资源，因此需要对上传的大小进行限制，以下为相关的三个参数： nginx 的 client_max_body_size php.ini 的 upload_max_filesize php.ini 的 post_max_size 与以上相对应的三个报错信息： 状态码 413 Request Entiry Too Large." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://donng.github.io/2019/09/php%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%99%90%E5%88%B6/" />
+<meta property="article:published_time" content="2019-09-01T11:17:50+08:00" />
+<meta property="article:modified_time" content="2019-09-01T11:17:50+08:00" />
+<meta itemprop="name" content="PHP 文件上传限制">
+<meta itemprop="description" content="PHP 大文件上传占用大量资源，因此需要对上传的大小进行限制，以下为相关的三个参数： nginx 的 client_max_body_size php.ini 的 upload_max_filesize php.ini 的 post_max_size 与以上相对应的三个报错信息： 状态码 413 Request Entiry Too Large.">
+<meta itemprop="datePublished" content="2019-09-01T11:17:50&#43;08:00" />
+<meta itemprop="dateModified" content="2019-09-01T11:17:50&#43;08:00" />
+<meta itemprop="wordCount" content="423">
+
+
+
+<meta itemprop="keywords" content="PHP," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PHP 文件上传限制"/>
+<meta name="twitter:description" content="PHP 大文件上传占用大量资源，因此需要对上传的大小进行限制，以下为相关的三个参数： nginx 的 client_max_body_size php.ini 的 upload_max_filesize php.ini 的 post_max_size 与以上相对应的三个报错信息： 状态码 413 Request Entiry Too Large."/>
 
   <!--[if lte IE 9]>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -240,40 +248,137 @@
 
     
     
-<main class="main" role="main">
-    <article class="content article article-tags post-type-list" itemscope="">
-        <header class="article-header">
-            <h1 itemprop="name" class="hidden-xs">Github</h1>
-            <p class="text-muted hidden-xs">Total 4 tags</p>
-            <nav role="navigation" id="nav-main" class="okayNav">
-                <ul>
-                    <li><a href="https://donng.github.io/tags">All</a></li>
-                    <li><a href="https://donng.github.io/tags/github/">Github</a></li>
-                    <li><a href="https://donng.github.io/tags/go/">Go</a></li>
-                    <li><a href="https://donng.github.io/tags/nginx/">Nginx</a></li>
-                    <li><a href="https://donng.github.io/tags/php/">PHP</a></li>
-                </ul>
-            </nav>
-        </header>
-        
-        <div class="article-body">
-            <div class="col-md-6"><article class="panel panel-default hover-shadow hover-grow" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="panel-body">
-        <div class="article-meta">
-            <time datetime="2019-12-29 23:35:44 &#43;0800 CST"
-                itemprop="datePublished">2019-12-29</time>
-        </div>
-        <h3 class="article-title" itemprop="name">
-            <a class="article-link" href="https://donng.github.io/2019/12/github-actions-%E5%92%8C-badge-%E8%AE%BE%E7%BD%AE%E7%9A%84%E8%B5%84%E6%BA%90/">Github Actions 和 Badge 设置的资源</a>
-        </h3>
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <h4 class="toc-title">Catalogue</h4>
+    <nav id="toc" class="js-toc toc">
+
+    </nav>
+  </div>
+</aside>
+<main class="main" role="main"><div class="content">
+  <article id="-" class="article article-type-" itemscope
+    itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      <h1 itemprop="name">
+  <a
+    class="article-title"
+    href="/2019/09/php%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%99%90%E5%88%B6/"
+    >PHP 文件上传限制</a
+  >
+</h1>
+
+      <div class="article-meta">
+        <span class="article-date">
+  <i class="icon icon-calendar-check"></i>
+<a href="https://donng.github.io/2019/09/php%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%99%90%E5%88%B6/" class="article-date">
+  <time datetime="2019-09-01 11:17:50 &#43;0800 CST" itemprop="datePublished">2019-09-01</time>
+</a>
+</span>  
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+    <a class="article-tag-link" href="/tags/php/"> PHP </a>
+  </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/09/php%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%99%90%E5%88%B6/#comments"
+            class="article-comment-link">Comments</a></span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count:423words</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count:1minutes </span>
+      </div>
     </div>
-    <div class="panel-footer">
-        <a href="https://donng.github.io/tags/github" class="label label-default mb">Github</a>
+    <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
+      <p>PHP 大文件上传占用大量资源，因此需要对上传的大小进行限制，以下为相关的三个参数：</p>
+<ol>
+<li>nginx 的 <code>client_max_body_size</code></li>
+<li>php.ini 的 <code>upload_max_filesize</code></li>
+<li>php.ini 的 <code>post_max_size</code></li>
+</ol>
+<p>与以上相对应的三个报错信息：</p>
+<ol>
+<li>状态码 413 Request Entiry Too Large.</li>
+<li><code>Warning: POST Content-Length of 9663102 bytes exceeds the limit of 8388608 bytes in Unknown on line 0</code></li>
+<li><code>$_FILES['file']['error']==1</code></li>
+</ol>
+<h3 id="nginx413-request-entiry-too-large">nginx错误：413 Request Entiry Too Large</h3>
+<p><code>client_max_body_size</code> 用于设置客户端 Request body（请求体）的大小上限，要上传的文件就在 body 体 中，所以此参数可以间接的看做是对文件上传大小的限制。</p>
+<p>nginx 服务器通过请求头的 <code>Content-Length</code> 确定 body 体的大小。超过设置的上限会返回错误码 413 Request Entity Too Large，将此参数设置为 0 可以取消对长度的限制。</p>
+<pre><code>Syntax:	client_max_body_size size;
+Default:	
+client_max_body_size 1m;
+Context:	http, server, location
+</code></pre><p><code>client_max_body_size</code> 可以设置在 http、server、location 块中，所以我们可以对域名甚至一个请求地址来提高上传包的大小值。</p>
+<h3 id="php">php错误：</h3>
+<pre><code>Warning: POST Content-Length of 9663102 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
+</code></pre><p>此时为上传文件大小大于 <code>post_max_size</code>。</p>
+<h3 id="php-">php 无警告但是获取不到上传的文件</h3>
+<p>此时 <code>$_FILES['file']['error']==1</code>，错误原因是上传文件的大小小于 <code>post_max_size</code> 但是大于 <code>upload_max_filesize</code>。</p>
+
     </div>
-</article>
-            </div>
+    <div class="article-footer">
+<blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    <li class="post-copyright-link hidden-xs">
+      <strong>Permalink: </strong>
+      <a href="https://donng.github.io/2019/09/php%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%99%90%E5%88%B6/" title="PHP 文件上传限制" target="_blank" rel="external">https://donng.github.io/2019/09/php%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%99%90%E5%88%B6/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>License：</strong><a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
+    </li>
+  </ul>
+</blockquote>
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/donng" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="https://donng.github.io/avatar.png" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/donng" target="_blank"><span class="text-dark">Donne</span><small class="ml-1x">Web Developer</small></a></h3>
+        <div>Good Good Study, Day Day Up~</div>
+      </div>
+    </figure>
+  </div>
+</div>
+    </div>
+  </article>
+<section id="comments">
+</section>
+
+</div><nav class="bar bar-footer clearfix" data-stick-bottom>
+    <div class="bar-inner">
+        <ul class="pager pull-left">
+            <li class="prev">
+                <a href="https://donng.github.io/2019/05/%E6%A8%A1%E6%8B%9F-nginx-%E7%83%AD%E9%83%A8%E7%BD%B2/" title="模拟 Nginx 热部署"><i
+                        class="icon icon-angle-left"
+                        aria-hidden="true"></i><span>&nbsp;&nbsp;Older</span></a>
+            </li>
+            <li class="next">
+                <a href="https://donng.github.io/2019/10/go%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84/"
+                    title="Go语言实现动态数组"><span>Newer&nbsp;&nbsp;</span><i
+                        class="icon icon-angle-right" aria-hidden="true"></i></a>
+            </li>
+            
+            <li class="toggle-toc">
+                <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false"
+                    title="Catalogue" role="button">
+                    <span>[&nbsp;</span><span>Catalogue</span>
+                    <i class="text-collapsed icon icon-anchor"></i>
+                    <i class="text-in icon icon-close"></i>
+                    <span>]</span>
+                </a>
+            </li>
+        </ul>
+        <div class="bar-right">
+            <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter"
+                data-mobile-sites="weibo,qq,qzone"></div>
         </div>
-    </article>
+    </div>
+</nav>
+
 </main><footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
 <ul class="social-links">
     <li><a href="https://github.com/donng" target="_blank" title="github" data-toggle=tooltip data-placement=top >
