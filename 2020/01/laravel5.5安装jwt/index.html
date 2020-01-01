@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        Faker虚拟数据填充和源码解 - Donne blog
+        Laravel5.5 安装 JWT - Donne blog
       </title>
     <head>
   <meta charset="utf-8">
@@ -23,31 +23,31 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <meta name="description" content="Faker 是一个虚拟数据的生成器，可以用它填充数据库进行压力测试或者创建优雅的 XML 文档。 安装 如果项目支持 composer ,使用以下命令安装。不支持请到 Faker 的 Github 仓库下载" />
+  <meta name="description" content="查看 jwt 官方文档 安装 // 安装jwt最新版本 composer require tymon/jwt-auth 1.0.0-rc.2 // 发布配置文件 php artisan vendor:publish --provider=&amp;quot;Tymon\JWTAuth\Providers\LaravelServiceProvider&amp;quot; // 生成密钥 php artisan jwt:secret 配置Model和Controller 设置模型文件 User.php 的内容" />
   <meta name="generator" content="Hugo 0.61.0 with theme pure" />
-  <title>Faker虚拟数据填充和源码解 - Donne blog</title>
+  <title>Laravel5.5 安装 JWT - Donne blog</title>
   
 
   <link rel="stylesheet" href="https://donng.github.io/css/style.css">
   <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
-  <meta property="og:title" content="Faker虚拟数据填充和源码解" />
-<meta property="og:description" content="Faker 是一个虚拟数据的生成器，可以用它填充数据库进行压力测试或者创建优雅的 XML 文档。 安装 如果项目支持 composer ,使用以下命令安装。不支持请到 Faker 的 Github 仓库下载" />
+  <meta property="og:title" content="Laravel5.5 安装 JWT" />
+<meta property="og:description" content="查看 jwt 官方文档 安装 // 安装jwt最新版本 composer require tymon/jwt-auth 1.0.0-rc.2 // 发布配置文件 php artisan vendor:publish --provider=&quot;Tymon\JWTAuth\Providers\LaravelServiceProvider&quot; // 生成密钥 php artisan jwt:secret 配置Model和Controller 设置模型文件 User.php 的内容" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://donng.github.io/2019/12/faker%E8%99%9A%E6%8B%9F%E6%95%B0%E6%8D%AE%E5%A1%AB%E5%85%85%E5%92%8C%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" />
-<meta property="article:published_time" content="2019-12-30T10:40:41+08:00" />
-<meta property="article:modified_time" content="2019-12-30T10:40:41+08:00" />
-<meta itemprop="name" content="Faker虚拟数据填充和源码解">
-<meta itemprop="description" content="Faker 是一个虚拟数据的生成器，可以用它填充数据库进行压力测试或者创建优雅的 XML 文档。 安装 如果项目支持 composer ,使用以下命令安装。不支持请到 Faker 的 Github 仓库下载">
-<meta itemprop="datePublished" content="2019-12-30T10:40:41&#43;08:00" />
-<meta itemprop="dateModified" content="2019-12-30T10:40:41&#43;08:00" />
-<meta itemprop="wordCount" content="1314">
+<meta property="og:url" content="https://donng.github.io/2020/01/laravel5.5%E5%AE%89%E8%A3%85jwt/" />
+<meta property="article:published_time" content="2020-01-01T19:52:08+08:00" />
+<meta property="article:modified_time" content="2020-01-01T19:52:08+08:00" />
+<meta itemprop="name" content="Laravel5.5 安装 JWT">
+<meta itemprop="description" content="查看 jwt 官方文档 安装 // 安装jwt最新版本 composer require tymon/jwt-auth 1.0.0-rc.2 // 发布配置文件 php artisan vendor:publish --provider=&quot;Tymon\JWTAuth\Providers\LaravelServiceProvider&quot; // 生成密钥 php artisan jwt:secret 配置Model和Controller 设置模型文件 User.php 的内容">
+<meta itemprop="datePublished" content="2020-01-01T19:52:08&#43;08:00" />
+<meta itemprop="dateModified" content="2020-01-01T19:52:08&#43;08:00" />
+<meta itemprop="wordCount" content="578">
 
 
 
-<meta itemprop="keywords" content="PHP," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Faker虚拟数据填充和源码解"/>
-<meta name="twitter:description" content="Faker 是一个虚拟数据的生成器，可以用它填充数据库进行压力测试或者创建优雅的 XML 文档。 安装 如果项目支持 composer ,使用以下命令安装。不支持请到 Faker 的 Github 仓库下载"/>
+<meta itemprop="keywords" content="Laravel,JWT,PHP," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Laravel5.5 安装 JWT"/>
+<meta name="twitter:description" content="查看 jwt 官方文档 安装 // 安装jwt最新版本 composer require tymon/jwt-auth 1.0.0-rc.2 // 发布配置文件 php artisan vendor:publish --provider=&quot;Tymon\JWTAuth\Providers\LaravelServiceProvider&quot; // 生成密钥 php artisan jwt:secret 配置Model和Controller 设置模型文件 User.php 的内容"/>
 
   <!--[if lte IE 9]>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -272,159 +272,215 @@
       <h1 itemprop="name">
   <a
     class="article-title"
-    href="/2019/12/faker%E8%99%9A%E6%8B%9F%E6%95%B0%E6%8D%AE%E5%A1%AB%E5%85%85%E5%92%8C%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/"
-    >Faker虚拟数据填充和源码解</a
+    href="/2020/01/laravel5.5%E5%AE%89%E8%A3%85jwt/"
+    >Laravel5.5 安装 JWT</a
   >
 </h1>
 
       <div class="article-meta">
         <span class="article-date">
   <i class="icon icon-calendar-check"></i>
-<a href="https://donng.github.io/2019/12/faker%E8%99%9A%E6%8B%9F%E6%95%B0%E6%8D%AE%E5%A1%AB%E5%85%85%E5%92%8C%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" class="article-date">
-  <time datetime="2019-12-30 10:40:41 &#43;0800 CST" itemprop="datePublished">2019-12-30</time>
+<a href="https://donng.github.io/2020/01/laravel5.5%E5%AE%89%E8%A3%85jwt/" class="article-date">
+  <time datetime="2020-01-01 19:52:08 &#43;0800 CST" itemprop="datePublished">2020-01-01</time>
 </a>
 </span>  
   <span class="article-tag">
     <i class="icon icon-tags"></i>
+    <a class="article-tag-link" href="/tags/laravel/"> Laravel </a>
+    <a class="article-tag-link" href="/tags/jwt/"> JWT </a>
     <a class="article-tag-link" href="/tags/php/"> PHP </a>
   </span>
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/12/faker%E8%99%9A%E6%8B%9F%E6%95%B0%E6%8D%AE%E5%A1%AB%E5%85%85%E5%92%8C%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/#comments"
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/01/laravel5.5%E5%AE%89%E8%A3%85jwt/#comments"
             class="article-comment-link">Comments</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count:1314words</span>
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count:3minutes </span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count:578words</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count:2minutes </span>
       </div>
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
-      <p><a href="https://github.com/fzaninotto/Faker">Faker</a> 是一个虚拟数据的生成器，可以用它填充数据库进行压力测试或者创建优雅的 XML 文档。</p>
-<h2 id="heading">安装</h2>
-<p>如果项目支持 <a href="https://docs.phpcomposer.com/">composer</a> ,使用以下命令安装。不支持请到 <a href="https://github.com/fzaninotto/Faker">Faker</a> 的 Github 仓库下载源码，放入项目的扩展包文件夹中。</p>
-<pre><code>composer require fzaninotto/faker
-</code></pre><p>为了演示功能，我使用以下命令创建了一个新项目：</p>
-<pre><code>// 创建新项目文件夹
-mkdir data-seeder
-
-cd data-seeder
-// 安装 faker 扩展
-composer require fzaninotto/faker
-</code></pre><h2 id="heading-1">基本使用方法</h2>
-<p>在根目录下创建测试文件 <code>test.php</code>，输入以下代码:</p>
+      <p>查看 <a href="http://jwt-auth.readthedocs.io/en/develop/">jwt 官方文档</a></p>
+<h3 id="heading">安装</h3>
+<pre><code>// 安装jwt最新版本
+composer require  tymon/jwt-auth 1.0.0-rc.2
+// 发布配置文件
+php artisan vendor:publish --provider=&quot;Tymon\JWTAuth\Providers\LaravelServiceProvider&quot;
+// 生成密钥
+php artisan jwt:secret
+</code></pre><h3 id="modelcontroller">配置Model和Controller</h3>
+<p>设置模型文件 User.php 的内容如下：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
 
-<span style="color:#66d9ef">require_once</span> <span style="color:#66d9ef">__DIR__</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/vendor/fzaninotto/faker/src/autoload.php&#39;</span>;
+<span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">App</span>;
 
-$faker <span style="color:#f92672">=</span> <span style="color:#a6e22e">Faker\Factory</span><span style="color:#f92672">::</span><span style="color:#a6e22e">create</span>();
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Tymon\JWTAuth\Contracts\JWTSubject</span>;
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Notifications\Notifiable</span>;
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Foundation\Auth\User</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">Authenticatable</span>;
 
-<span style="color:#66d9ef">echo</span> $faker<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">name</span>, <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;
-<span style="color:#66d9ef">echo</span> $faker<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">address</span>, <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;
-<span style="color:#66d9ef">echo</span> $faker<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">text</span>;
-</code></pre></div><p>在 CLI 模式下运行脚本， <code>php test.php</code> 查看输出结果。faker 的结果是随机生成的：</p>
-<pre><code>Prof. Kailyn Barton
-9230 Herzog Groves Suite 005
-Gusikowskihaven, CO 60533-4716
-Nesciunt voluptas debitis iusto consectetur possimus mollitia in quam. Vel non rem temporibus illo numquam est. Sit fugit sed fugit id eligendi eaque sunt possimus.
-</code></pre><h2 id="faker-">faker 的专有名词</h2>
-<p>faker 中定义了一些专有名词帮助我们理解它的设计思路，明白这些概念对理解他的源码非常有帮助。</p>
-<h3 id="formatters">格式器（formatters）</h3>
-<p>除了以上三个属性，faker 还提供了大量可供选择的模拟数据。每个生成器属性（例如上面使用的 <code>name</code>，<code>address</code> 和 <code>lorem</code>）都被叫做 <strong>格式器</strong>（formatters）。</p>
-<h3 id="providers">提供器（providers）</h3>
-<p>我们需要填充的数据有很多种类，例如</p>
-<ul>
-<li>基本的随机数据：整数、浮点数、字母</li>
-<li>随机的人物信息：姓名、姓、名 等</li>
-<li>随机的号码：手机号、电话号</li>
-</ul>
-<p>Faker 将每种分类定义为 provider，查看 <code>data-seeder/vendor/fzaninotto/faker/src/Faker/Provider</code> 可以看到各种 provider 的类文件，以及分语言包的文件。</p>
-<h2 id="heading-2">源码解析</h2>
-<p>faker 扩展包体积虽小，五脏俱全，非常有学习价值。</p>
-<h3 id="faker--1">faker 对象生成</h3>
-<p>查看 faker 生成器的工厂方法：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">const DEFAULT_LOCALE = &#39;en_US&#39;;
-
-protected static $defaultProviders = array(&#39;Address&#39;, &#39;Barcode&#39;, &#39;Biased&#39;, &#39;Color&#39;, &#39;Company&#39;, &#39;DateTime&#39;, &#39;File&#39;, &#39;HtmlLorem&#39;, &#39;Image&#39;, &#39;Internet&#39;, &#39;Lorem&#39;, &#39;Miscellaneous&#39;, &#39;Payment&#39;, &#39;Person&#39;, &#39;PhoneNumber&#39;, &#39;Text&#39;, &#39;UserAgent&#39;, &#39;Uuid&#39;);
-
-public static function create($locale = self::DEFAULT_LOCALE)
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">User</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Authenticatable</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">JWTSubject</span>
 {
-    $generator = new Generator();
-    foreach (static::$defaultProviders as $provider) {
-        $providerClassName = self::getProviderClassname($provider, $locale);
-        $generator-&gt;addProvider(new $providerClassName($generator));
+    <span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Notifiable</span>;
+
+    <span style="color:#75715e">// Rest omitted for brevity
+</span><span style="color:#75715e"></span>
+    <span style="color:#e6db74">/**
+</span><span style="color:#e6db74">     * Get the identifier that will be stored in the subject claim of the JWT.
+</span><span style="color:#e6db74">     *
+</span><span style="color:#e6db74">     * @return mixed
+</span><span style="color:#e6db74">     */</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getJWTIdentifier</span>()
+    {
+        <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getKey</span>();
     }
 
-    return $generator;
-}
-</code></pre></div><p>参数 <code>locale</code> 是语言包，默认为 <code>en_US</code> 美国英语。在 <code>data-seeder/vendor/fzaninotto/faker/src/Faker/Provider</code> 目录中可以查看所有支持的语言包。</p>
-<p>默认的 providers（provider 已经在上面提到过），在以上 Provider 目录中可以一一对应的找到。循环数组，将对应的 provider 添加到生成器 <code>$generator</code>。</p>
-<h4 id="getproviderclassname">getProviderClassname</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">protected static function getProviderClassname($provider, $locale = &#39;&#39;)
-{
-    if ($providerClass = self::findProviderClassname($provider, $locale)) {
-        return $providerClass;
+    <span style="color:#e6db74">/**
+</span><span style="color:#e6db74">     * Return a key value array, containing any custom claims to be added to the JWT.
+</span><span style="color:#e6db74">     *
+</span><span style="color:#e6db74">     * @return array
+</span><span style="color:#e6db74">     */</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getJWTCustomClaims</span>()
+    {
+        <span style="color:#66d9ef">return</span> [];
     }
-    // fallback to default locale
-    if ($providerClass = self::findProviderClassname($provider, static::DEFAULT_LOCALE)) {
-        return $providerClass;
-    }
-    // fallback to no locale
-    if ($providerClass = self::findProviderClassname($provider)) {
-        return $providerClass;
-    }
-    throw new \InvalidArgumentException(sprintf(&#39;Unable to find provider &#34;%s&#34; with locale &#34;%s&#34;&#39;, $provider, $locale));
 }
-</code></pre></div><p>getProviderClassname 将按照以下逻辑寻找 provider 类，如果不存在于当前文件就到下一级文件查找，找不到就会跑出异常：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">用户传入的语言包文件夹 -&gt; 默认的en_US语言包文件夹 -&gt; Provider根目录
-</code></pre></div><h4 id="addprovider">addProvider</h4>
-<pre><code>public function addProvider($provider)
-{
-    array_unshift($this-&gt;providers, $provider);
-}
-</code></pre><p>addProvider 就非常简单了，只是把找到的 provider 加入数组头部，数组存储在将要返回的 <code>$generator</code> 对象的属性中。</p>
-<h3 id="faker--2">faker 对象调用</h3>
-<p>在使用 faker 返回的对象时，有两种方式：调用属性和调用方法。这些调用都会触发魔术方法：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">public function format($formatter, $arguments = array())
-{
-    return call_user_func_array($this-&gt;getFormatter($formatter), $arguments);
-}
+</code></pre></div><p>创建权限控制器</p>
+<pre><code>php artisan make:controller AuthController
+</code></pre><p>更新控制器内容：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
 
-public function __get($attribute)
-{
-    return $this-&gt;format($attribute);
-}
+<span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">App\Http\Controllers</span>;
 
-public function __call($method, $attributes)
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Support\Facades\Auth</span>;
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">App\Http\Controllers\Controller</span>;
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AuthController</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Controller</span>
 {
-    return $this-&gt;format($method, $attributes);
-}
-</code></pre></div><p>两者逻辑类似，这里说明相对麻烦一点的 <code>__call</code> 魔术方法，魔术方法会将调用的方法名和参数传入 <code>farmat</code> 方法。</p>
-<h4 id="getformatter">getFormatter</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">public function getFormatter($formatter)
-{
-    if (isset($this-&gt;formatters[$formatter])) {
-        return $this-&gt;formatters[$formatter];
+    <span style="color:#e6db74">/**
+</span><span style="color:#e6db74">     * Create a new AuthController instance.
+</span><span style="color:#e6db74">     *
+</span><span style="color:#e6db74">     * @return void
+</span><span style="color:#e6db74">     */</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> __construct()
+    {
+        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">middleware</span>(<span style="color:#e6db74">&#39;auth:api&#39;</span>, [<span style="color:#e6db74">&#39;except&#39;</span> <span style="color:#f92672">=&gt;</span> [<span style="color:#e6db74">&#39;login&#39;</span>]]);
     }
-    foreach ($this-&gt;providers as $provider) {
-        if (method_exists($provider, $formatter)) {
-            $this-&gt;formatters[$formatter] = array($provider, $formatter);
 
-            return $this-&gt;formatters[$formatter];
+    <span style="color:#e6db74">/**
+</span><span style="color:#e6db74">     * Get a JWT via given credentials.
+</span><span style="color:#e6db74">     *
+</span><span style="color:#e6db74">     * @return \Illuminate\Http\JsonResponse
+</span><span style="color:#e6db74">     */</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">login</span>()
+    {
+        $credentials <span style="color:#f92672">=</span> <span style="color:#a6e22e">request</span>([<span style="color:#e6db74">&#39;email&#39;</span>, <span style="color:#e6db74">&#39;password&#39;</span>]);
+
+        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span> $token <span style="color:#f92672">=</span> <span style="color:#a6e22e">auth</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">attempt</span>($credentials)) {
+            <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">response</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">json</span>([<span style="color:#e6db74">&#39;error&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Unauthorized&#39;</span>], <span style="color:#ae81ff">401</span>);
         }
-    }
-    throw new \InvalidArgumentException(sprintf(&#39;Unknown formatter &#34;%s&#34;&#39;, $formatter));
-}
-</code></pre></div><p><code>$this-&gt;formatters</code> 中存储的就是 faker 专有名词那里提到的 formatter（格式器）相关的信息。为了方便理解，这里以获得数组中一个随机元素为例，说明这些抽象的概念。</p>
-<pre><code>$faker-&gt;randomElement(['a', 'b', 'c']);
-</code></pre><p>当调用此方法时，触发魔术方法，然后遍历每一个 provider 类，查找是否存在此方法。直到在 <code>Base.php</code> 中发现存在此方法，此时要使用的提供器 provider 为 <code>Base.php</code>，格式器 formatter 就是 <code>randomElement()</code> 方法。</p>
-<p>然后就需要将 Base 中存在 randomeElement() 的对应关系存储起来，避免下次重新遍历所有 provider，这就是 <code>$this-&gt;formatters</code> 实现的原因。</p>
-<p>此方法返回对应的 provider 和 formatters 后，通过 <code>call_user_func_array</code> 调用并返回结果。</p>
-<p>至此，一个完整的 <code>faker</code> 对象生成和调用的过程就结束了。</p>
 
+        <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">respondWithToken</span>($token);
+    }
+
+    <span style="color:#e6db74">/**
+</span><span style="color:#e6db74">     * Get the authenticated User.
+</span><span style="color:#e6db74">     *
+</span><span style="color:#e6db74">     * @return \Illuminate\Http\JsonResponse
+</span><span style="color:#e6db74">     */</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">me</span>()
+    {
+        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">response</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">json</span>(<span style="color:#a6e22e">auth</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">user</span>());
+    }
+
+    <span style="color:#e6db74">/**
+</span><span style="color:#e6db74">     * Log the user out (Invalidate the token).
+</span><span style="color:#e6db74">     *
+</span><span style="color:#e6db74">     * @return \Illuminate\Http\JsonResponse
+</span><span style="color:#e6db74">     */</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">logout</span>()
+    {
+        <span style="color:#a6e22e">auth</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">logout</span>();
+
+        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">response</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">json</span>([<span style="color:#e6db74">&#39;message&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Successfully logged out&#39;</span>]);
+    }
+
+    <span style="color:#e6db74">/**
+</span><span style="color:#e6db74">     * Refresh a token.
+</span><span style="color:#e6db74">     *
+</span><span style="color:#e6db74">     * @return \Illuminate\Http\JsonResponse
+</span><span style="color:#e6db74">     */</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">refresh</span>()
+    {
+        <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">respondWithToken</span>(<span style="color:#a6e22e">auth</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">refresh</span>());
+    }
+
+    <span style="color:#e6db74">/**
+</span><span style="color:#e6db74">     * Get the token array structure.
+</span><span style="color:#e6db74">     *
+</span><span style="color:#e6db74">     * @param  string $token
+</span><span style="color:#e6db74">     *
+</span><span style="color:#e6db74">     * @return \Illuminate\Http\JsonResponse
+</span><span style="color:#e6db74">     */</span>
+    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">respondWithToken</span>($token)
+    {
+        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">response</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">json</span>([
+            <span style="color:#e6db74">&#39;access_token&#39;</span> <span style="color:#f92672">=&gt;</span> $token,
+            <span style="color:#e6db74">&#39;token_type&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;bearer&#39;</span>,
+            <span style="color:#e6db74">&#39;expires_in&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">auth</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">factory</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getTTL</span>() <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span>
+        ]);
+    }
+}
+</code></pre></div><h3 id="heading-1">配置守卫和路由</h3>
+<p>配置<code>config/auth.php</code>,将默认的 guard 修改为 api,并将 guards 的 driver 修改为 jwt,配置之后就可以将 Laravel 提供的 auth（用户认证） 和 jwt 结合起来。</p>
+<pre><code>'defaults' =&gt; [
+    'guard' =&gt; 'api',
+    'passwords' =&gt; 'users',
+],
+
+...
+
+'guards' =&gt; [
+    'api' =&gt; [
+        'driver' =&gt; 'jwt',
+        'provider' =&gt; 'users',
+    ],
+],
+</code></pre><p>配置<code>routes/api.php</code></p>
+<pre><code>Route::group([
+
+    'middleware' =&gt; 'api',
+    'prefix' =&gt; 'auth'
+
+], function ($router) {
+
+    Route::post('login', 'AuthController@login');
+    Route::post('logout', 'AuthController@logout');
+    Route::post('refresh', 'AuthController@refresh');
+    Route::post('me', 'AuthController@me');
+
+});
+</code></pre><p>你现在应该可以通过post登录（例如：<code>http://example.dev/auth/login</code>）得到如下响应:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#f92672">&#34;access_token&#34;</span>: <span style="color:#e6db74">&#34;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ&#34;</span>,
+    <span style="color:#f92672">&#34;token_type&#34;</span>: <span style="color:#e6db74">&#34;bearer&#34;</span>,
+    <span style="color:#f92672">&#34;expires_in&#34;</span>: <span style="color:#ae81ff">3600</span>
+}
+</code></pre></div><h3 id="heading-2">验证请求</h3>
+<p>一下有几种途径发送<code>token</code></p>
+<ul>
+<li>Authorization 头信息</li>
+</ul>
+<pre><code>Authorization: Bearer eyJhbGciOiJIUzI1NiI...
+</code></pre><ul>
+<li>url查询参数</li>
+</ul>
+<pre><code>http://example.dev/me?token=eyJhbGciOiJIUzI1NiI...
+</code></pre>
     </div>
     <div class="article-footer">
 <blockquote class="mt-2x">
   <ul class="post-copyright list-unstyled">
     <li class="post-copyright-link hidden-xs">
       <strong>Permalink: </strong>
-      <a href="https://donng.github.io/2019/12/faker%E8%99%9A%E6%8B%9F%E6%95%B0%E6%8D%AE%E5%A1%AB%E5%85%85%E5%92%8C%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" title="Faker虚拟数据填充和源码解" target="_blank" rel="external">https://donng.github.io/2019/12/faker%E8%99%9A%E6%8B%9F%E6%95%B0%E6%8D%AE%E5%A1%AB%E5%85%85%E5%92%8C%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/</a>
+      <a href="https://donng.github.io/2020/01/laravel5.5%E5%AE%89%E8%A3%85jwt/" title="Laravel5.5 安装 JWT" target="_blank" rel="external">https://donng.github.io/2020/01/laravel5.5%E5%AE%89%E8%A3%85jwt/</a>
     </li>
     <li class="post-copyright-license">
       <strong>License：</strong><a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
@@ -456,14 +512,9 @@ public function __call($method, $attributes)
     <div class="bar-inner">
         <ul class="pager pull-left">
             <li class="prev">
-                <a href="https://donng.github.io/2019/12/github-actions-%E5%92%8C-badge-%E8%AE%BE%E7%BD%AE%E7%9A%84%E8%B5%84%E6%BA%90/" title="Github Actions 和 Badge 设置的资源"><i
+                <a href="https://donng.github.io/2019/12/faker%E8%99%9A%E6%8B%9F%E6%95%B0%E6%8D%AE%E5%A1%AB%E5%85%85%E5%92%8C%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" title="Faker虚拟数据填充和源码解"><i
                         class="icon icon-angle-left"
                         aria-hidden="true"></i><span>&nbsp;&nbsp;Older</span></a>
-            </li>
-            <li class="next">
-                <a href="https://donng.github.io/2020/01/laravel5.5%E5%AE%89%E8%A3%85jwt/"
-                    title="Laravel5.5 安装 JWT"><span>Newer&nbsp;&nbsp;</span><i
-                        class="icon icon-angle-right" aria-hidden="true"></i></a>
             </li>
             
             <li class="toggle-toc">

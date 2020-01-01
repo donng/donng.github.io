@@ -5,10 +5,19 @@
     <link>https://donng.github.io/tags/</link>
     <description>Recent content in Tags on Donne blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 30 Dec 2019 10:40:41 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 01 Jan 2020 19:52:08 +0800</lastBuildDate>
     
         <atom:link href="https://donng.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Laravel5.5 安装 JWT</title>
+      <link>https://donng.github.io/2020/01/laravel5.5%E5%AE%89%E8%A3%85jwt/</link>
+      <pubDate>Wed, 01 Jan 2020 19:52:08 +0800</pubDate>
+      
+      <guid>https://donng.github.io/2020/01/laravel5.5%E5%AE%89%E8%A3%85jwt/</guid>
+      <description>查看 jwt 官方文档 安装 // 安装jwt最新版本 composer require tymon/jwt-auth 1.0.0-rc.2 // 发布配置文件 php artisan vendor:publish --provider=&amp;quot;Tymon\JWTAuth\Providers\LaravelServiceProvider&amp;quot; // 生成密钥 php artisan jwt:secret 配置Model和Controller 设置模型文件 User.php 的内容</description>
+    </item>
     
     <item>
       <title>Faker虚拟数据填充和源码解</title>

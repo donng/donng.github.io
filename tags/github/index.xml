@@ -11,6 +11,15 @@
     
     
     <item>
+      <title>Laravel5.5 安装 JWT</title>
+      <link>https://donng.github.io/2020/01/laravel5.5%E5%AE%89%E8%A3%85jwt/</link>
+      <pubDate>Wed, 01 Jan 2020 19:52:08 +0800</pubDate>
+      
+      <guid>https://donng.github.io/2020/01/laravel5.5%E5%AE%89%E8%A3%85jwt/</guid>
+      <description>查看 jwt 官方文档 安装 // 安装jwt最新版本 composer require tymon/jwt-auth 1.0.0-rc.2 // 发布配置文件 php artisan vendor:publish --provider=&amp;quot;Tymon\JWTAuth\Providers\LaravelServiceProvider&amp;quot; // 生成密钥 php artisan jwt:secret 配置Model和Controller 设置模型文件 User.php 的内容</description>
+    </item>
+    
+    <item>
       <title>Faker虚拟数据填充和源码解</title>
       <link>https://donng.github.io/2019/12/faker%E8%99%9A%E6%8B%9F%E6%95%B0%E6%8D%AE%E5%A1%AB%E5%85%85%E5%92%8C%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/</link>
       <pubDate>Mon, 30 Dec 2019 10:40:41 +0800</pubDate>
