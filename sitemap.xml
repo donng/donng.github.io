@@ -108,6 +108,13 @@
   </url>
   
   <url>
+    <loc>https://donng.github.io/2019/08/go-micro%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99/</loc>
+    <lastmod>2019-08-20T10:28:16+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://donng.github.io/tags/nginx/</loc>
     <lastmod>2019-05-30T17:25:20+08:00</lastmod>
     <changefreq>monthly</changefreq>

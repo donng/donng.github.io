@@ -73,6 +73,15 @@
     </item>
     
     <item>
+      <title>go-micro 启动报错</title>
+      <link>https://donng.github.io/2019/08/go-micro%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99/</link>
+      <pubDate>Tue, 20 Aug 2019 10:28:16 +0800</pubDate>
+      
+      <guid>https://donng.github.io/2019/08/go-micro%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99/</guid>
+      <description>micro new myservice panic: qtls.ClientSessionState not compatible with tls.ClientSessionState goroutine 1 [running]: github.com/lucas-clemente/quic-go/internal/handshake.init.0() /go/src/github.com/lucas-clemente/quic-go/internal/handshake/unsafe.go:20 +0x113 解决方法： 安装 go1.12 版本。</description>
+    </item>
+    
+    <item>
       <title>模拟 Nginx 热部署</title>
       <link>https://donng.github.io/2019/05/%E6%A8%A1%E6%8B%9F-nginx-%E7%83%AD%E9%83%A8%E7%BD%B2/</link>
       <pubDate>Thu, 30 May 2019 17:25:20 +0800</pubDate>
