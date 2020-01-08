@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        PHP 文件上传限制 - Donne blog
+        PHP和Go实现多态的对比 - Donne blog
       </title>
     <head>
   <meta charset="utf-8">
@@ -23,31 +23,31 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <meta name="description" content="PHP 大文件上传占用大量资源，因此需要对上传的大小进行限制，以下为相关的三个参数： nginx 的 client_max_body_size php.ini 的 upload_max_filesize php.ini 的 post_max_size 与以上相对应的三个报错信息： 状态码 413 Request Entiry Too Large." />
+  <meta name="description" content="多态的定义：对于接口的多种不同实现方式。 例如，程序中定义一个数据存储的 set() 接口，我们分别用 MySQL 和 Redis 实现了 set() 的不同内部逻辑，这两种实现方式就实现了" />
   <meta name="generator" content="Hugo 0.61.0 with theme pure" />
-  <title>PHP 文件上传限制 - Donne blog</title>
+  <title>PHP和Go实现多态的对比 - Donne blog</title>
   
 
   <link rel="stylesheet" href="https://donng.github.io/css/style.css">
   <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
-  <meta property="og:title" content="PHP 文件上传限制" />
-<meta property="og:description" content="PHP 大文件上传占用大量资源，因此需要对上传的大小进行限制，以下为相关的三个参数： nginx 的 client_max_body_size php.ini 的 upload_max_filesize php.ini 的 post_max_size 与以上相对应的三个报错信息： 状态码 413 Request Entiry Too Large." />
+  <meta property="og:title" content="PHP和Go实现多态的对比" />
+<meta property="og:description" content="多态的定义：对于接口的多种不同实现方式。 例如，程序中定义一个数据存储的 set() 接口，我们分别用 MySQL 和 Redis 实现了 set() 的不同内部逻辑，这两种实现方式就实现了" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://donng.github.io/2019/09/php%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%99%90%E5%88%B6/" />
-<meta property="article:published_time" content="2019-09-01T11:17:50+08:00" />
-<meta property="article:modified_time" content="2019-09-01T11:17:50+08:00" />
-<meta itemprop="name" content="PHP 文件上传限制">
-<meta itemprop="description" content="PHP 大文件上传占用大量资源，因此需要对上传的大小进行限制，以下为相关的三个参数： nginx 的 client_max_body_size php.ini 的 upload_max_filesize php.ini 的 post_max_size 与以上相对应的三个报错信息： 状态码 413 Request Entiry Too Large.">
-<meta itemprop="datePublished" content="2019-09-01T11:17:50&#43;08:00" />
-<meta itemprop="dateModified" content="2019-09-01T11:17:50&#43;08:00" />
-<meta itemprop="wordCount" content="423">
+<meta property="og:url" content="https://donng.github.io/2020/01/php%E5%92%8Cgo%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%80%81%E7%9A%84%E5%AF%B9%E6%AF%94/" />
+<meta property="article:published_time" content="2020-01-08T18:38:49+08:00" />
+<meta property="article:modified_time" content="2020-01-08T18:38:49+08:00" />
+<meta itemprop="name" content="PHP和Go实现多态的对比">
+<meta itemprop="description" content="多态的定义：对于接口的多种不同实现方式。 例如，程序中定义一个数据存储的 set() 接口，我们分别用 MySQL 和 Redis 实现了 set() 的不同内部逻辑，这两种实现方式就实现了">
+<meta itemprop="datePublished" content="2020-01-08T18:38:49&#43;08:00" />
+<meta itemprop="dateModified" content="2020-01-08T18:38:49&#43;08:00" />
+<meta itemprop="wordCount" content="752">
 
 
 
-<meta itemprop="keywords" content="PHP," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="PHP 文件上传限制"/>
-<meta name="twitter:description" content="PHP 大文件上传占用大量资源，因此需要对上传的大小进行限制，以下为相关的三个参数： nginx 的 client_max_body_size php.ini 的 upload_max_filesize php.ini 的 post_max_size 与以上相对应的三个报错信息： 状态码 413 Request Entiry Too Large."/>
+<meta itemprop="keywords" content="PHP,Go," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PHP和Go实现多态的对比"/>
+<meta name="twitter:description" content="多态的定义：对于接口的多种不同实现方式。 例如，程序中定义一个数据存储的 set() 接口，我们分别用 MySQL 和 Redis 实现了 set() 的不同内部逻辑，这两种实现方式就实现了"/>
 
   <!--[if lte IE 9]>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -272,55 +272,96 @@
       <h1 itemprop="name">
   <a
     class="article-title"
-    href="/2019/09/php%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%99%90%E5%88%B6/"
-    >PHP 文件上传限制</a
+    href="/2020/01/php%E5%92%8Cgo%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%80%81%E7%9A%84%E5%AF%B9%E6%AF%94/"
+    >PHP和Go实现多态的对比</a
   >
 </h1>
 
       <div class="article-meta">
         <span class="article-date">
   <i class="icon icon-calendar-check"></i>
-<a href="https://donng.github.io/2019/09/php%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%99%90%E5%88%B6/" class="article-date">
-  <time datetime="2019-09-01 11:17:50 &#43;0800 CST" itemprop="datePublished">2019-09-01</time>
+<a href="https://donng.github.io/2020/01/php%E5%92%8Cgo%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%80%81%E7%9A%84%E5%AF%B9%E6%AF%94/" class="article-date">
+  <time datetime="2020-01-08 18:38:49 &#43;0800 CST" itemprop="datePublished">2020-01-08</time>
 </a>
 </span>  
   <span class="article-tag">
     <i class="icon icon-tags"></i>
     <a class="article-tag-link" href="/tags/php/"> PHP </a>
+    <a class="article-tag-link" href="/tags/go/"> Go </a>
   </span>
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/09/php%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%99%90%E5%88%B6/#comments"
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/01/php%E5%92%8Cgo%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%80%81%E7%9A%84%E5%AF%B9%E6%AF%94/#comments"
             class="article-comment-link">Comments</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count:423words</span>
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count:1minutes </span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count:752words</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count:2minutes </span>
       </div>
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
-      <p>PHP 大文件上传占用大量资源，因此需要对上传的大小进行限制，以下为相关的三个参数：</p>
-<ol>
-<li>nginx 的 <code>client_max_body_size</code></li>
-<li>php.ini 的 <code>upload_max_filesize</code></li>
-<li>php.ini 的 <code>post_max_size</code></li>
-</ol>
-<p>与以上相对应的三个报错信息：</p>
-<ol>
-<li>状态码 413 Request Entiry Too Large.</li>
-<li><code>Warning: POST Content-Length of 9663102 bytes exceeds the limit of 8388608 bytes in Unknown on line 0</code></li>
-<li><code>$_FILES['file']['error']==1</code></li>
-</ol>
-<h3 id="nginx413-request-entiry-too-large">nginx错误：413 Request Entiry Too Large</h3>
-<p><code>client_max_body_size</code> 用于设置客户端 Request body（请求体）的大小上限，要上传的文件就在 body 体 中，所以此参数可以间接的看做是对文件上传大小的限制。</p>
-<p>nginx 服务器通过请求头的 <code>Content-Length</code> 确定 body 体的大小。超过设置的上限会返回错误码 413 Request Entity Too Large，将此参数设置为 0 可以取消对长度的限制。</p>
-<pre><code>Syntax:	client_max_body_size size;
-Default:	
-client_max_body_size 1m;
-Context:	http, server, location
-</code></pre><p><code>client_max_body_size</code> 可以设置在 http、server、location 块中，所以我们可以对域名甚至一个请求地址来提高上传包的大小值。</p>
-<h3 id="php">php错误：</h3>
-<pre><code>Warning: POST Content-Length of 9663102 bytes exceeds the limit of 8388608 bytes in Unknown on line 0
-</code></pre><p>此时为上传文件大小大于 <code>post_max_size</code>。</p>
-<h3 id="php-">php 无警告但是获取不到上传的文件</h3>
-<p>此时 <code>$_FILES['file']['error']==1</code>，错误原因是上传文件的大小小于 <code>post_max_size</code> 但是大于 <code>upload_max_filesize</code>。</p>
+      <p>多态的定义：对于接口的多种不同实现方式。</p>
+<p>例如，程序中定义一个数据存储的 <code>set()</code> 接口，我们分别用 MySQL 和 Redis 实现了 <code>set()</code> 的不同内部逻辑，这两种实现方式就实现了 <strong>多态</strong> 的概念。</p>
+<p>PHP 和 Go 实现多态的方式不同，PHP 作为动态类型的语言实现起来更加“松散”，Go 作为静态类型的语言则更加严格，当然其中还有语言本身的特性。</p>
+<h3 id="php-">PHP 的实现</h3>
+<p>在我使用 PHP 的编程中，接口 interface 的使用频率屈指可数。原因是 PHP 作为动态类型的语言，本身就不需要声明变量类型，而这也是 PHP 能够快速开发 web 应用的核心之一。</p>
+<p>接下来我们用程序设计多态的实现，假定一个实现面积计算的接口</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">interface Area
+{
+    public function get();
+}
+</code></pre></div><p>然后是两个实现：矩形和三角形</p>
+<pre><code>// 矩形
+class Rectangle implements Area {
+
+    public function getArea($a, $b)
+    {
+        return $a * $b;
+    }
+}
+
+// 三角形
+class Triangle implements Area {
+
+    public function getArea($a, $b)
+    {
+        return $a * $b / 2;
+    }
+}
+</code></pre><p>然后在使用时，就可以使用 interface 作为参数约束了</p>
+<pre><code>function myArea(Area $area, $a, $b) 
+{
+    return $area-&gt;getArea($a, $b);
+}
+</code></pre><p>但是因为 PHP 是动态类型的语言，不需要对参数的类型约束，完全可以用以上方式写代码，然后 interface 的定义就略显累赘，当然在框架设计中还是可以看到 interface 的使用场景，interface 确实明确的定义了实现的行为。但是开发中我不太会用 interface， 就算需要时也是用继承来实现，在 PHP 中继承完美覆盖了 interface 的作用，既可以约束子类实现的相同行为，还可以定义默认行为和扩展。</p>
+<pre><code>function myArea($area, $a, $b) 
+{
+    return $area-&gt;getArea($a, $b);
+}
+</code></pre><h3 id="go-">Go 的实现</h3>
+<p>Go 作为静态类型的语言，需要强制对变量的类型声明，这里再用 Go 实现一次上述简单的功能，首先定义接口：</p>
+<pre><code>type area interface {
+	Get(int, int) int
+}
+</code></pre><p>然后定义矩形和三角形的实现：</p>
+<pre><code>// 矩形
+type Rectangle struct {}
+
+func (Rectangle) Get(a int, b int) int {
+	return a * b
+}
+
+
+// 三角形
+type Triangle struct {}
+
+func (Triangle) Get(a int, b int) int {
+	return a * b / 2
+}
+
+// 多态的调用
+func myArea(ar area, a int, b int) int {
+	return ar.Get(a, b)
+}
+</code></pre><h3 id="heading">总结</h3>
+<p>Go 的 interface 在项目中随处可见，而 PHP 开发中很少见。以上程序还存在一个问题，变量 <code>a，b</code> 义在两个实现中含义是不同的，这时扩展<strong>梯形</strong>时两个变量就会出现问题，需要将 <code>a, b</code> 放到 struct 结构体中，而 PHP 则是放在构造函数中。</p>
 
     </div>
     <div class="article-footer">
@@ -328,7 +369,7 @@ Context:	http, server, location
   <ul class="post-copyright list-unstyled">
     <li class="post-copyright-link hidden-xs">
       <strong>Permalink: </strong>
-      <a href="https://donng.github.io/2019/09/php%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%99%90%E5%88%B6/" title="PHP 文件上传限制" target="_blank" rel="external">https://donng.github.io/2019/09/php%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%99%90%E5%88%B6/</a>
+      <a href="https://donng.github.io/2020/01/php%E5%92%8Cgo%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%80%81%E7%9A%84%E5%AF%B9%E6%AF%94/" title="PHP和Go实现多态的对比" target="_blank" rel="external">https://donng.github.io/2020/01/php%E5%92%8Cgo%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%80%81%E7%9A%84%E5%AF%B9%E6%AF%94/</a>
     </li>
     <li class="post-copyright-license">
       <strong>License：</strong><a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
@@ -360,14 +401,9 @@ Context:	http, server, location
     <div class="bar-inner">
         <ul class="pager pull-left">
             <li class="prev">
-                <a href="https://donng.github.io/2019/08/go-micro%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99/" title="go-micro 启动报错"><i
+                <a href="https://donng.github.io/2020/01/laravel5.5%E5%AE%89%E8%A3%85jwt/" title="Laravel5.5 安装 JWT"><i
                         class="icon icon-angle-left"
                         aria-hidden="true"></i><span>&nbsp;&nbsp;Older</span></a>
-            </li>
-            <li class="next">
-                <a href="https://donng.github.io/2019/10/go%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84/"
-                    title="Go语言实现动态数组"><span>Newer&nbsp;&nbsp;</span><i
-                        class="icon icon-angle-right" aria-hidden="true"></i></a>
             </li>
             
             <li class="toggle-toc">
