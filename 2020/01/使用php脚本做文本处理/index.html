@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        go-micro 启动报错 - Donne blog
+        使用PHP脚本做文本处理 - Donne blog
       </title>
     <head>
   <meta charset="utf-8">
@@ -23,31 +23,31 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <meta name="description" content="micro new myservice panic: qtls.ClientSessionState not compatible with tls.ClientSessionState goroutine 1 [running]: github.com/lucas-clemente/quic-go/internal/handshake.init.0() /go/src/github.com/lucas-clemente/quic-go/internal/handshake/unsafe.go:20 &#43;0x113 解决方法： 安装 go1.12 版本。" />
+  <meta name="description" content="年底处理数据的时候，需要将其他部门 Excel 的数据转换为指定格式的文本格式。 其中学到的两个操作，在这里记录一下： Excel 转换为文本文件 使用 PHP 脚本处理文本格" />
   <meta name="generator" content="Hugo 0.61.0 with theme pure" />
-  <title>go-micro 启动报错 - Donne blog</title>
+  <title>使用PHP脚本做文本处理 - Donne blog</title>
   
 
   <link rel="stylesheet" href="https://donng.github.io/css/style.css">
   <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
-  <meta property="og:title" content="go-micro 启动报错" />
-<meta property="og:description" content="micro new myservice panic: qtls.ClientSessionState not compatible with tls.ClientSessionState goroutine 1 [running]: github.com/lucas-clemente/quic-go/internal/handshake.init.0() /go/src/github.com/lucas-clemente/quic-go/internal/handshake/unsafe.go:20 &#43;0x113 解决方法： 安装 go1.12 版本。" />
+  <meta property="og:title" content="使用PHP脚本做文本处理" />
+<meta property="og:description" content="年底处理数据的时候，需要将其他部门 Excel 的数据转换为指定格式的文本格式。 其中学到的两个操作，在这里记录一下： Excel 转换为文本文件 使用 PHP 脚本处理文本格" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://donng.github.io/2019/08/go-micro%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99/" />
-<meta property="article:published_time" content="2019-08-20T10:28:16+08:00" />
-<meta property="article:modified_time" content="2019-08-20T10:28:16+08:00" />
-<meta itemprop="name" content="go-micro 启动报错">
-<meta itemprop="description" content="micro new myservice panic: qtls.ClientSessionState not compatible with tls.ClientSessionState goroutine 1 [running]: github.com/lucas-clemente/quic-go/internal/handshake.init.0() /go/src/github.com/lucas-clemente/quic-go/internal/handshake/unsafe.go:20 &#43;0x113 解决方法： 安装 go1.12 版本。">
-<meta itemprop="datePublished" content="2019-08-20T10:28:16&#43;08:00" />
-<meta itemprop="dateModified" content="2019-08-20T10:28:16&#43;08:00" />
-<meta itemprop="wordCount" content="26">
+<meta property="og:url" content="https://donng.github.io/2020/01/%E4%BD%BF%E7%94%A8php%E8%84%9A%E6%9C%AC%E5%81%9A%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86/" />
+<meta property="article:published_time" content="2020-01-13T16:43:40+08:00" />
+<meta property="article:modified_time" content="2020-01-13T16:43:40+08:00" />
+<meta itemprop="name" content="使用PHP脚本做文本处理">
+<meta itemprop="description" content="年底处理数据的时候，需要将其他部门 Excel 的数据转换为指定格式的文本格式。 其中学到的两个操作，在这里记录一下： Excel 转换为文本文件 使用 PHP 脚本处理文本格">
+<meta itemprop="datePublished" content="2020-01-13T16:43:40&#43;08:00" />
+<meta itemprop="dateModified" content="2020-01-13T16:43:40&#43;08:00" />
+<meta itemprop="wordCount" content="289">
 
 
 
-<meta itemprop="keywords" content="go," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="go-micro 启动报错"/>
-<meta name="twitter:description" content="micro new myservice panic: qtls.ClientSessionState not compatible with tls.ClientSessionState goroutine 1 [running]: github.com/lucas-clemente/quic-go/internal/handshake.init.0() /go/src/github.com/lucas-clemente/quic-go/internal/handshake/unsafe.go:20 &#43;0x113 解决方法： 安装 go1.12 版本。"/>
+<meta itemprop="keywords" content="PHP," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用PHP脚本做文本处理"/>
+<meta name="twitter:description" content="年底处理数据的时候，需要将其他部门 Excel 的数据转换为指定格式的文本格式。 其中学到的两个操作，在这里记录一下： Excel 转换为文本文件 使用 PHP 脚本处理文本格"/>
 
   <!--[if lte IE 9]>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -272,37 +272,60 @@
       <h1 itemprop="name">
   <a
     class="article-title"
-    href="/2019/08/go-micro%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99/"
-    >go-micro 启动报错</a
+    href="/2020/01/%E4%BD%BF%E7%94%A8php%E8%84%9A%E6%9C%AC%E5%81%9A%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86/"
+    >使用PHP脚本做文本处理</a
   >
 </h1>
 
       <div class="article-meta">
         <span class="article-date">
   <i class="icon icon-calendar-check"></i>
-<a href="https://donng.github.io/2019/08/go-micro%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99/" class="article-date">
-  <time datetime="2019-08-20 10:28:16 &#43;0800 CST" itemprop="datePublished">2019-08-20</time>
+<a href="https://donng.github.io/2020/01/%E4%BD%BF%E7%94%A8php%E8%84%9A%E6%9C%AC%E5%81%9A%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86/" class="article-date">
+  <time datetime="2020-01-13 16:43:40 &#43;0800 CST" itemprop="datePublished">2020-01-13</time>
 </a>
 </span>  
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-    <a class="article-tag-link" href="/tags/go/"> go </a>
+    <a class="article-tag-link" href="/tags/php/"> PHP </a>
   </span>
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/08/go-micro%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99/#comments"
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/01/%E4%BD%BF%E7%94%A8php%E8%84%9A%E6%9C%AC%E5%81%9A%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86/#comments"
             class="article-comment-link">Comments</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count:26words</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count:289words</span>
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count:1minutes </span>
       </div>
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
-      <pre><code>micro new myservice
-panic: qtls.ClientSessionState not compatible with tls.ClientSessionState
+      <p>年底处理数据的时候，需要将其他部门 Excel 的数据转换为指定格式的文本格式。</p>
+<p>其中学到的两个操作，在这里记录一下：</p>
+<ol>
+<li>Excel 转换为文本文件</li>
+<li>使用 PHP 脚本处理文本格式并输出</li>
+</ol>
+<h3 id="1-excel-">1. Excel 转换为文本文件</h3>
+<p>开发 Excel 另存为 txt 文本格式。</p>
+<h3 id="2--php-">2. 使用 PHP 脚本处理文本格式并输出</h3>
+<p>txt 的文本格式示例：</p>
+<pre><code>1   3 2 4
+1   3 2 4
+</code></pre><p>期望得到的 txt 格式：</p>
+<pre><code>1 2 3 4 5
+1 2 3 4 5
+</code></pre><p>需要处理每一行的数据，每一行数据用 <code>PHP_EOL</code> 分割，然后用空格（可能多个）分割每一行数据，再去处理和写入。</p>
+<pre><code>$content = file_get_contents($filename);
 
-goroutine 1 [running]:
-github.com/lucas-clemente/quic-go/internal/handshake.init.0()
-	/go/src/github.com/lucas-clemente/quic-go/internal/handshake/unsafe.go:20 +0x113
-</code></pre><p>解决方法： 安装 go1.12 版本。</p>
+$rowArr = explode(PHP_EOL, $content);
+
+foreach ($rowArr as $row) {
+    $arr = preg_split(&quot;/\s+/&quot;, trim($row);
+    
+    // 处理对应格式，生成临时的数组
+    $tempArr = ....
+    
+    echo implode(' ', $tempArr) . &quot;\n&quot;;
+}
+</code></pre><p>通过 <code>preg_split</code> 使用正则匹配多个空格的情况，如果是固定的一个空格，<code>explode</code> 函数速度更快。</p>
+<p>最后执行脚本命令 <code>php filename.php &gt; des.txt</code></p>
 
     </div>
     <div class="article-footer">
@@ -310,7 +333,7 @@ github.com/lucas-clemente/quic-go/internal/handshake.init.0()
   <ul class="post-copyright list-unstyled">
     <li class="post-copyright-link hidden-xs">
       <strong>Permalink: </strong>
-      <a href="https://donng.github.io/2019/08/go-micro%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99/" title="go-micro 启动报错" target="_blank" rel="external">https://donng.github.io/2019/08/go-micro%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99/</a>
+      <a href="https://donng.github.io/2020/01/%E4%BD%BF%E7%94%A8php%E8%84%9A%E6%9C%AC%E5%81%9A%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86/" title="使用PHP脚本做文本处理" target="_blank" rel="external">https://donng.github.io/2020/01/%E4%BD%BF%E7%94%A8php%E8%84%9A%E6%9C%AC%E5%81%9A%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86/</a>
     </li>
     <li class="post-copyright-license">
       <strong>License：</strong><a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
@@ -342,14 +365,9 @@ github.com/lucas-clemente/quic-go/internal/handshake.init.0()
     <div class="bar-inner">
         <ul class="pager pull-left">
             <li class="prev">
-                <a href="https://donng.github.io/2019/05/%E6%A8%A1%E6%8B%9F-nginx-%E7%83%AD%E9%83%A8%E7%BD%B2/" title="模拟 Nginx 热部署"><i
+                <a href="https://donng.github.io/2020/01/php%E5%92%8Cgo%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%80%81%E7%9A%84%E5%AF%B9%E6%AF%94/" title="PHP和Go实现多态的对比"><i
                         class="icon icon-angle-left"
                         aria-hidden="true"></i><span>&nbsp;&nbsp;Older</span></a>
-            </li>
-            <li class="next">
-                <a href="https://donng.github.io/2019/09/php%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%99%90%E5%88%B6/"
-                    title="PHP 文件上传限制"><span>Newer&nbsp;&nbsp;</span><i
-                        class="icon icon-angle-right" aria-hidden="true"></i></a>
             </li>
             
             <li class="toggle-toc">

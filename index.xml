@@ -5,10 +5,19 @@
     <link>https://donng.github.io/</link>
     <description>Recent content on Donne blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 08 Jan 2020 18:38:49 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 13 Jan 2020 16:43:40 +0800</lastBuildDate>
     
         <atom:link href="https://donng.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>使用PHP脚本做文本处理</title>
+      <link>https://donng.github.io/2020/01/%E4%BD%BF%E7%94%A8php%E8%84%9A%E6%9C%AC%E5%81%9A%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86/</link>
+      <pubDate>Mon, 13 Jan 2020 16:43:40 +0800</pubDate>
+      
+      <guid>https://donng.github.io/2020/01/%E4%BD%BF%E7%94%A8php%E8%84%9A%E6%9C%AC%E5%81%9A%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86/</guid>
+      <description>年底处理数据的时候，需要将其他部门 Excel 的数据转换为指定格式的文本格式。 其中学到的两个操作，在这里记录一下： Excel 转换为文本文件 使用 PHP 脚本处理文本格</description>
+    </item>
     
     <item>
       <title>PHP和Go实现多态的对比</title>
