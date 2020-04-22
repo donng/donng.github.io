@@ -2,119 +2,119 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Laravel on Donne blog</title>
-    <link>https://donng.github.io/tags/laravel/</link>
+    <link>https://127.0.0.1/tags/laravel/</link>
     <description>Recent content in Laravel on Donne blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Wed, 01 Jan 2020 19:52:08 +0800</lastBuildDate>
     
-        <atom:link href="https://donng.github.io/tags/laravel/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://127.0.0.1/tags/laravel/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>使用PHP脚本做文本处理</title>
-      <link>https://donng.github.io/2020/01/%E4%BD%BF%E7%94%A8php%E8%84%9A%E6%9C%AC%E5%81%9A%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86/</link>
+      <link>https://127.0.0.1/2020/01/%E4%BD%BF%E7%94%A8php%E8%84%9A%E6%9C%AC%E5%81%9A%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86/</link>
       <pubDate>Mon, 13 Jan 2020 16:43:40 +0800</pubDate>
       
-      <guid>https://donng.github.io/2020/01/%E4%BD%BF%E7%94%A8php%E8%84%9A%E6%9C%AC%E5%81%9A%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86/</guid>
+      <guid>https://127.0.0.1/2020/01/%E4%BD%BF%E7%94%A8php%E8%84%9A%E6%9C%AC%E5%81%9A%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86/</guid>
       <description>年底处理数据的时候，需要将其他部门 Excel 的数据转换为指定格式的文本格式。 其中学到的两个操作，在这里记录一下： Excel 转换为文本文件 使用 PHP 脚本处理文本格</description>
     </item>
     
     <item>
       <title>PHP和Go实现多态的对比</title>
-      <link>https://donng.github.io/2020/01/php%E5%92%8Cgo%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%80%81%E7%9A%84%E5%AF%B9%E6%AF%94/</link>
+      <link>https://127.0.0.1/2020/01/php%E5%92%8Cgo%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%80%81%E7%9A%84%E5%AF%B9%E6%AF%94/</link>
       <pubDate>Wed, 08 Jan 2020 18:38:49 +0800</pubDate>
       
-      <guid>https://donng.github.io/2020/01/php%E5%92%8Cgo%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%80%81%E7%9A%84%E5%AF%B9%E6%AF%94/</guid>
+      <guid>https://127.0.0.1/2020/01/php%E5%92%8Cgo%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%80%81%E7%9A%84%E5%AF%B9%E6%AF%94/</guid>
       <description>多态的定义：对于接口的多种不同实现方式。 例如，程序中定义一个数据存储的 set() 接口，我们分别用 MySQL 和 Redis 实现了 set() 的不同内部逻辑，这两种实现方式就实现了</description>
     </item>
     
     <item>
       <title>Laravel5.5 安装 JWT</title>
-      <link>https://donng.github.io/2020/01/laravel5.5%E5%AE%89%E8%A3%85jwt/</link>
+      <link>https://127.0.0.1/2020/01/laravel5.5%E5%AE%89%E8%A3%85jwt/</link>
       <pubDate>Wed, 01 Jan 2020 19:52:08 +0800</pubDate>
       
-      <guid>https://donng.github.io/2020/01/laravel5.5%E5%AE%89%E8%A3%85jwt/</guid>
+      <guid>https://127.0.0.1/2020/01/laravel5.5%E5%AE%89%E8%A3%85jwt/</guid>
       <description>查看 jwt 官方文档 安装 // 安装jwt最新版本 composer require tymon/jwt-auth 1.0.0-rc.2 // 发布配置文件 php artisan vendor:publish --provider=&amp;quot;Tymon\JWTAuth\Providers\LaravelServiceProvider&amp;quot; // 生成密钥 php artisan jwt:secret 配置Model和Controller 设置模型文件 User.php 的内容</description>
     </item>
     
     <item>
       <title>Faker虚拟数据填充和源码解</title>
-      <link>https://donng.github.io/2019/12/faker%E8%99%9A%E6%8B%9F%E6%95%B0%E6%8D%AE%E5%A1%AB%E5%85%85%E5%92%8C%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/</link>
+      <link>https://127.0.0.1/2019/12/faker%E8%99%9A%E6%8B%9F%E6%95%B0%E6%8D%AE%E5%A1%AB%E5%85%85%E5%92%8C%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/</link>
       <pubDate>Mon, 30 Dec 2019 10:40:41 +0800</pubDate>
       
-      <guid>https://donng.github.io/2019/12/faker%E8%99%9A%E6%8B%9F%E6%95%B0%E6%8D%AE%E5%A1%AB%E5%85%85%E5%92%8C%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/</guid>
+      <guid>https://127.0.0.1/2019/12/faker%E8%99%9A%E6%8B%9F%E6%95%B0%E6%8D%AE%E5%A1%AB%E5%85%85%E5%92%8C%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/</guid>
       <description>Faker 是一个虚拟数据的生成器，可以用它填充数据库进行压力测试或者创建优雅的 XML 文档。 安装 如果项目支持 composer ,使用以下命令安装。不支持请到 Faker 的 Github 仓库下载</description>
     </item>
     
     <item>
       <title>Github Actions 和 Badge 设置的资源</title>
-      <link>https://donng.github.io/2019/12/github-actions-%E5%92%8C-badge-%E8%AE%BE%E7%BD%AE%E7%9A%84%E8%B5%84%E6%BA%90/</link>
+      <link>https://127.0.0.1/2019/12/github-actions-%E5%92%8C-badge-%E8%AE%BE%E7%BD%AE%E7%9A%84%E8%B5%84%E6%BA%90/</link>
       <pubDate>Sun, 29 Dec 2019 23:35:44 +0800</pubDate>
       
-      <guid>https://donng.github.io/2019/12/github-actions-%E5%92%8C-badge-%E8%AE%BE%E7%BD%AE%E7%9A%84%E8%B5%84%E6%BA%90/</guid>
+      <guid>https://127.0.0.1/2019/12/github-actions-%E5%92%8C-badge-%E8%AE%BE%E7%BD%AE%E7%9A%84%E8%B5%84%E6%BA%90/</guid>
       <description>Github Actions 阅读阮一峰的入门教程： http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html actions 英文介绍：https://help.github.com/en/actions/automating-your</description>
     </item>
     
     <item>
       <title>源码安装 PHP 7.3</title>
-      <link>https://donng.github.io/2019/12/%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85-php-7.3/</link>
+      <link>https://127.0.0.1/2019/12/%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85-php-7.3/</link>
       <pubDate>Sat, 28 Dec 2019 16:41:21 +0800</pubDate>
       
-      <guid>https://donng.github.io/2019/12/%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85-php-7.3/</guid>
+      <guid>https://127.0.0.1/2019/12/%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85-php-7.3/</guid>
       <description>本文以当前最新版本 PHP 7.3.1 演示整个源码安装的流程。 下载 PHP 源码包 访问 PHP 官网的源码包下载地址 http://php.net/downloads.php</description>
     </item>
     
     <item>
       <title>Go语言笔记：变量</title>
-      <link>https://donng.github.io/2019/12/go%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0%E5%8F%98%E9%87%8F/</link>
+      <link>https://127.0.0.1/2019/12/go%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0%E5%8F%98%E9%87%8F/</link>
       <pubDate>Thu, 26 Dec 2019 18:51:46 +0800</pubDate>
       
-      <guid>https://donng.github.io/2019/12/go%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0%E5%8F%98%E9%87%8F/</guid>
+      <guid>https://127.0.0.1/2019/12/go%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0%E5%8F%98%E9%87%8F/</guid>
       <description>变量指向一个内存地址，其中存储了某种类型的值。在静态语言中，此内存存储的变量类型不可变。 Go 中的变量如何声明？ Go 变量声明可以指定哪些类型？ Go 中</description>
     </item>
     
     <item>
       <title>Go语言实现动态数组</title>
-      <link>https://donng.github.io/2019/10/go%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84/</link>
+      <link>https://127.0.0.1/2019/10/go%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84/</link>
       <pubDate>Thu, 03 Oct 2019 17:10:27 +0800</pubDate>
       
-      <guid>https://donng.github.io/2019/10/go%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84/</guid>
+      <guid>https://127.0.0.1/2019/10/go%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84/</guid>
       <description>数组设计之初是在形式上依赖内存分配而成的，所以必须在使用前预先请求空间。这使得数组有以下特性： 请求空间以后大小固定，不能再改变（数据溢出问题</description>
     </item>
     
     <item>
       <title>PHP 文件上传限制</title>
-      <link>https://donng.github.io/2019/09/php%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%99%90%E5%88%B6/</link>
+      <link>https://127.0.0.1/2019/09/php%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%99%90%E5%88%B6/</link>
       <pubDate>Sun, 01 Sep 2019 11:17:50 +0800</pubDate>
       
-      <guid>https://donng.github.io/2019/09/php%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%99%90%E5%88%B6/</guid>
+      <guid>https://127.0.0.1/2019/09/php%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%99%90%E5%88%B6/</guid>
       <description>PHP 大文件上传占用大量资源，因此需要对上传的大小进行限制，以下为相关的三个参数： nginx 的 client_max_body_size php.ini 的 upload_max_filesize php.ini 的 post_max_size 与以上相对应的三个报错信息： 状态码 413 Request Entiry Too Large.</description>
     </item>
     
     <item>
       <title>go-micro 启动报错</title>
-      <link>https://donng.github.io/2019/08/go-micro%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99/</link>
+      <link>https://127.0.0.1/2019/08/go-micro%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99/</link>
       <pubDate>Tue, 20 Aug 2019 10:28:16 +0800</pubDate>
       
-      <guid>https://donng.github.io/2019/08/go-micro%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99/</guid>
+      <guid>https://127.0.0.1/2019/08/go-micro%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99/</guid>
       <description>micro new myservice panic: qtls.ClientSessionState not compatible with tls.ClientSessionState goroutine 1 [running]: github.com/lucas-clemente/quic-go/internal/handshake.init.0() /go/src/github.com/lucas-clemente/quic-go/internal/handshake/unsafe.go:20 +0x113 解决方法： 安装 go1.12 版本。</description>
     </item>
     
     <item>
       <title>模拟 Nginx 热部署</title>
-      <link>https://donng.github.io/2019/05/%E6%A8%A1%E6%8B%9F-nginx-%E7%83%AD%E9%83%A8%E7%BD%B2/</link>
+      <link>https://127.0.0.1/2019/05/%E6%A8%A1%E6%8B%9F-nginx-%E7%83%AD%E9%83%A8%E7%BD%B2/</link>
       <pubDate>Thu, 30 May 2019 17:25:20 +0800</pubDate>
       
-      <guid>https://donng.github.io/2019/05/%E6%A8%A1%E6%8B%9F-nginx-%E7%83%AD%E9%83%A8%E7%BD%B2/</guid>
+      <guid>https://127.0.0.1/2019/05/%E6%A8%A1%E6%8B%9F-nginx-%E7%83%AD%E9%83%A8%E7%BD%B2/</guid>
       <description>热部署，就是在应用正在运行的时候升级软件，却不需要重新启动应用。 首先在本地模拟一个线上需要升级 Nginx 的环境，假设旧版本为 nginx-1.0.15</description>
     </item>
     
     <item>
       <title>Go 语言的优劣</title>
-      <link>https://donng.github.io/2018/05/go-%E8%AF%AD%E8%A8%80%E7%9A%84%E4%BC%98%E5%8A%A3/</link>
+      <link>https://127.0.0.1/2018/05/go-%E8%AF%AD%E8%A8%80%E7%9A%84%E4%BC%98%E5%8A%A3/</link>
       <pubDate>Sun, 06 May 2018 11:25:19 +0800</pubDate>
       
-      <guid>https://donng.github.io/2018/05/go-%E8%AF%AD%E8%A8%80%E7%9A%84%E4%BC%98%E5%8A%A3/</guid>
+      <guid>https://127.0.0.1/2018/05/go-%E8%AF%AD%E8%A8%80%E7%9A%84%E4%BC%98%E5%8A%A3/</guid>
       <description>文章在 Golang 中文网的地址 点击这里，英语原文地址 点击这里。 这是「Go 是一门设计糟糕的编程语言」系列追加的一篇文章。Go 确实有一些不错的特性，因此这</description>
     </item>
     
