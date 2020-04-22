@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        Laravel5.5 安装 JWT - Donne blog
+        Laravel和Vue的项目搭建:基础篇 - Donne blog
       </title>
     <head>
   <meta charset="utf-8">
@@ -23,31 +23,31 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <meta name="description" content="查看 jwt 官方文档 安装 // 安装jwt最新版本 composer require tymon/jwt-auth 1.0.0-rc.2 // 发布配置文件 php artisan vendor:publish --provider=&amp;quot;Tymon\JWTAuth\Providers\LaravelServiceProvider&amp;quot; // 生成密钥 php artisan jwt:secret 配置Model和Controller 设置模型文件 User.php 的内容" />
+  <meta name="description" content="本篇只是实现了 基础 的功能，对于实际的项目中的权限等还未涉及，这些会在后期逐步完善。 相关项目 laravel-vue-iview 的 GitHub 地址 戳这里，此项目基本可用于实际开发工作。 Laravel" />
   <meta name="generator" content="Hugo 0.61.0 with theme pure" />
-  <title>Laravel5.5 安装 JWT - Donne blog</title>
+  <title>Laravel和Vue的项目搭建:基础篇 - Donne blog</title>
   
 
   <link rel="stylesheet" href="https://127.0.0.1/css/style.css">
   <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
-  <meta property="og:title" content="Laravel5.5 安装 JWT" />
-<meta property="og:description" content="查看 jwt 官方文档 安装 // 安装jwt最新版本 composer require tymon/jwt-auth 1.0.0-rc.2 // 发布配置文件 php artisan vendor:publish --provider=&quot;Tymon\JWTAuth\Providers\LaravelServiceProvider&quot; // 生成密钥 php artisan jwt:secret 配置Model和Controller 设置模型文件 User.php 的内容" />
+  <meta property="og:title" content="Laravel和Vue的项目搭建:基础篇" />
+<meta property="og:description" content="本篇只是实现了 基础 的功能，对于实际的项目中的权限等还未涉及，这些会在后期逐步完善。 相关项目 laravel-vue-iview 的 GitHub 地址 戳这里，此项目基本可用于实际开发工作。 Laravel" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://127.0.0.1/2020/01/laravel5.5%E5%AE%89%E8%A3%85jwt/" />
-<meta property="article:published_time" content="2020-01-01T19:52:08+08:00" />
-<meta property="article:modified_time" content="2020-01-01T19:52:08+08:00" />
-<meta itemprop="name" content="Laravel5.5 安装 JWT">
-<meta itemprop="description" content="查看 jwt 官方文档 安装 // 安装jwt最新版本 composer require tymon/jwt-auth 1.0.0-rc.2 // 发布配置文件 php artisan vendor:publish --provider=&quot;Tymon\JWTAuth\Providers\LaravelServiceProvider&quot; // 生成密钥 php artisan jwt:secret 配置Model和Controller 设置模型文件 User.php 的内容">
-<meta itemprop="datePublished" content="2020-01-01T19:52:08&#43;08:00" />
-<meta itemprop="dateModified" content="2020-01-01T19:52:08&#43;08:00" />
-<meta itemprop="wordCount" content="578">
+<meta property="og:url" content="https://127.0.0.1/2020/04/laravel%E5%92%8Cvue%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA%E5%9F%BA%E7%A1%80%E7%AF%87/" />
+<meta property="article:published_time" content="2020-04-22T09:56:29+08:00" />
+<meta property="article:modified_time" content="2020-04-22T09:56:29+08:00" />
+<meta itemprop="name" content="Laravel和Vue的项目搭建:基础篇">
+<meta itemprop="description" content="本篇只是实现了 基础 的功能，对于实际的项目中的权限等还未涉及，这些会在后期逐步完善。 相关项目 laravel-vue-iview 的 GitHub 地址 戳这里，此项目基本可用于实际开发工作。 Laravel">
+<meta itemprop="datePublished" content="2020-04-22T09:56:29&#43;08:00" />
+<meta itemprop="dateModified" content="2020-04-22T09:56:29&#43;08:00" />
+<meta itemprop="wordCount" content="1477">
 
 
 
-<meta itemprop="keywords" content="Laravel,JWT,PHP," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Laravel5.5 安装 JWT"/>
-<meta name="twitter:description" content="查看 jwt 官方文档 安装 // 安装jwt最新版本 composer require tymon/jwt-auth 1.0.0-rc.2 // 发布配置文件 php artisan vendor:publish --provider=&quot;Tymon\JWTAuth\Providers\LaravelServiceProvider&quot; // 生成密钥 php artisan jwt:secret 配置Model和Controller 设置模型文件 User.php 的内容"/>
+<meta itemprop="keywords" content="Laravel,Vue," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Laravel和Vue的项目搭建:基础篇"/>
+<meta name="twitter:description" content="本篇只是实现了 基础 的功能，对于实际的项目中的权限等还未涉及，这些会在后期逐步完善。 相关项目 laravel-vue-iview 的 GitHub 地址 戳这里，此项目基本可用于实际开发工作。 Laravel"/>
 
   <!--[if lte IE 9]>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -276,215 +276,264 @@
       <h1 itemprop="name">
   <a
     class="article-title"
-    href="/2020/01/laravel5.5%E5%AE%89%E8%A3%85jwt/"
-    >Laravel5.5 安装 JWT</a
+    href="/2020/04/laravel%E5%92%8Cvue%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA%E5%9F%BA%E7%A1%80%E7%AF%87/"
+    >Laravel和Vue的项目搭建:基础篇</a
   >
 </h1>
 
       <div class="article-meta">
         <span class="article-date">
   <i class="icon icon-calendar-check"></i>
-<a href="https://127.0.0.1/2020/01/laravel5.5%E5%AE%89%E8%A3%85jwt/" class="article-date">
-  <time datetime="2020-01-01 19:52:08 &#43;0800 CST" itemprop="datePublished">2020-01-01</time>
+<a href="https://127.0.0.1/2020/04/laravel%E5%92%8Cvue%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA%E5%9F%BA%E7%A1%80%E7%AF%87/" class="article-date">
+  <time datetime="2020-04-22 09:56:29 &#43;0800 CST" itemprop="datePublished">2020-04-22</time>
 </a>
 </span>  
   <span class="article-tag">
     <i class="icon icon-tags"></i>
     <a class="article-tag-link" href="/tags/laravel/"> Laravel </a>
-    <a class="article-tag-link" href="/tags/jwt/"> JWT </a>
-    <a class="article-tag-link" href="/tags/php/"> PHP </a>
+    <a class="article-tag-link" href="/tags/vue/"> Vue </a>
   </span>
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/01/laravel5.5%E5%AE%89%E8%A3%85jwt/#comments"
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/04/laravel%E5%92%8Cvue%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA%E5%9F%BA%E7%A1%80%E7%AF%87/#comments"
             class="article-comment-link">Comments</a></span>
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count:578words</span>
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count:2minutes </span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count:1477words</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count:3minutes </span>
       </div>
     </div>
     <div class="article-entry marked-body js-toc-content" itemprop="articleBody">
-      <p>查看 <a href="http://jwt-auth.readthedocs.io/en/develop/">jwt 官方文档</a></p>
-<h3 id="heading">安装</h3>
-<pre><code>// 安装jwt最新版本
-composer require  tymon/jwt-auth 1.0.0-rc.2
-// 发布配置文件
-php artisan vendor:publish --provider=&quot;Tymon\JWTAuth\Providers\LaravelServiceProvider&quot;
-// 生成密钥
-php artisan jwt:secret
-</code></pre><h3 id="modelcontroller">配置Model和Controller</h3>
-<p>设置模型文件 User.php 的内容如下：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
-
-<span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">App</span>;
-
-<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Tymon\JWTAuth\Contracts\JWTSubject</span>;
-<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Notifications\Notifiable</span>;
-<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Foundation\Auth\User</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">Authenticatable</span>;
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">User</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Authenticatable</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">JWTSubject</span>
-{
-    <span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Notifiable</span>;
-
-    <span style="color:#75715e">// Rest omitted for brevity
-</span><span style="color:#75715e"></span>
-    <span style="color:#e6db74">/**
-</span><span style="color:#e6db74">     * Get the identifier that will be stored in the subject claim of the JWT.
-</span><span style="color:#e6db74">     *
-</span><span style="color:#e6db74">     * @return mixed
-</span><span style="color:#e6db74">     */</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getJWTIdentifier</span>()
-    {
-        <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getKey</span>();
-    }
-
-    <span style="color:#e6db74">/**
-</span><span style="color:#e6db74">     * Return a key value array, containing any custom claims to be added to the JWT.
-</span><span style="color:#e6db74">     *
-</span><span style="color:#e6db74">     * @return array
-</span><span style="color:#e6db74">     */</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getJWTCustomClaims</span>()
-    {
-        <span style="color:#66d9ef">return</span> [];
-    }
+      <blockquote>
+<p>本篇只是实现了 <strong>基础</strong> 的功能，对于实际的项目中的权限等还未涉及，这些会在后期逐步完善。</p>
+</blockquote>
+<blockquote>
+<p>相关项目 <code>laravel-vue-iview</code> 的 GitHub 地址 <a href="https://github.com/Donng/laravel-vue-iview">戳这里</a>，此项目基本可用于实际开发工作。</p>
+</blockquote>
+<h1 id="laravel">Laravel</h1>
+<h3 id="heading">创建项目</h3>
+<pre><code># 使用 composer 命令创建 Laravel 项目
+composer create-project --prefer-dist laravel/laravel blog
+</code></pre><h3 id="heading-1">运行项目</h3>
+<p>执行 <code>php artisan serve</code> ,访问 <a href="http://127.0.0.1:8000/">127.0.0.1:8000 </a></p>
+<h1 id="vue">Vue</h1>
+<h2 id="heading-2">扩展包</h2>
+<h3 id="packagejson-">package.json 配置</h3>
+<p>初次接触 Vue 的同学，通常对于要安装什么扩展包感到迷茫。以下是 Laravel <code>package.json</code> 中默认的扩展包：</p>
+<pre><code>&quot;devDependencies&quot;: {
+    &quot;axios&quot;: &quot;^0.18&quot;,
+    &quot;bootstrap&quot;: &quot;^4.0.0&quot;,
+    &quot;popper.js&quot;: &quot;^1.12&quot;,
+    &quot;cross-env&quot;: &quot;^5.1&quot;,
+    &quot;jquery&quot;: &quot;^3.2&quot;,
+    &quot;laravel-mix&quot;: &quot;^2.0&quot;,
+    &quot;lodash&quot;: &quot;^4.17.4&quot;,
+    &quot;vue&quot;: &quot;^2.5.7&quot;
 }
-</code></pre></div><p>创建权限控制器</p>
-<pre><code>php artisan make:controller AuthController
-</code></pre><p>更新控制器内容：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
-
-<span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">App\Http\Controllers</span>;
-
-<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Support\Facades\Auth</span>;
-<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">App\Http\Controllers\Controller</span>;
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AuthController</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Controller</span>
-{
-    <span style="color:#e6db74">/**
-</span><span style="color:#e6db74">     * Create a new AuthController instance.
-</span><span style="color:#e6db74">     *
-</span><span style="color:#e6db74">     * @return void
-</span><span style="color:#e6db74">     */</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> __construct()
-    {
-        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">middleware</span>(<span style="color:#e6db74">&#39;auth:api&#39;</span>, [<span style="color:#e6db74">&#39;except&#39;</span> <span style="color:#f92672">=&gt;</span> [<span style="color:#e6db74">&#39;login&#39;</span>]]);
-    }
-
-    <span style="color:#e6db74">/**
-</span><span style="color:#e6db74">     * Get a JWT via given credentials.
-</span><span style="color:#e6db74">     *
-</span><span style="color:#e6db74">     * @return \Illuminate\Http\JsonResponse
-</span><span style="color:#e6db74">     */</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">login</span>()
-    {
-        $credentials <span style="color:#f92672">=</span> <span style="color:#a6e22e">request</span>([<span style="color:#e6db74">&#39;email&#39;</span>, <span style="color:#e6db74">&#39;password&#39;</span>]);
-
-        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span> $token <span style="color:#f92672">=</span> <span style="color:#a6e22e">auth</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">attempt</span>($credentials)) {
-            <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">response</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">json</span>([<span style="color:#e6db74">&#39;error&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Unauthorized&#39;</span>], <span style="color:#ae81ff">401</span>);
-        }
-
-        <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">respondWithToken</span>($token);
-    }
-
-    <span style="color:#e6db74">/**
-</span><span style="color:#e6db74">     * Get the authenticated User.
-</span><span style="color:#e6db74">     *
-</span><span style="color:#e6db74">     * @return \Illuminate\Http\JsonResponse
-</span><span style="color:#e6db74">     */</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">me</span>()
-    {
-        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">response</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">json</span>(<span style="color:#a6e22e">auth</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">user</span>());
-    }
-
-    <span style="color:#e6db74">/**
-</span><span style="color:#e6db74">     * Log the user out (Invalidate the token).
-</span><span style="color:#e6db74">     *
-</span><span style="color:#e6db74">     * @return \Illuminate\Http\JsonResponse
-</span><span style="color:#e6db74">     */</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">logout</span>()
-    {
-        <span style="color:#a6e22e">auth</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">logout</span>();
-
-        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">response</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">json</span>([<span style="color:#e6db74">&#39;message&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Successfully logged out&#39;</span>]);
-    }
-
-    <span style="color:#e6db74">/**
-</span><span style="color:#e6db74">     * Refresh a token.
-</span><span style="color:#e6db74">     *
-</span><span style="color:#e6db74">     * @return \Illuminate\Http\JsonResponse
-</span><span style="color:#e6db74">     */</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">refresh</span>()
-    {
-        <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">respondWithToken</span>(<span style="color:#a6e22e">auth</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">refresh</span>());
-    }
-
-    <span style="color:#e6db74">/**
-</span><span style="color:#e6db74">     * Get the token array structure.
-</span><span style="color:#e6db74">     *
-</span><span style="color:#e6db74">     * @param  string $token
-</span><span style="color:#e6db74">     *
-</span><span style="color:#e6db74">     * @return \Illuminate\Http\JsonResponse
-</span><span style="color:#e6db74">     */</span>
-    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">respondWithToken</span>($token)
-    {
-        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">response</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">json</span>([
-            <span style="color:#e6db74">&#39;access_token&#39;</span> <span style="color:#f92672">=&gt;</span> $token,
-            <span style="color:#e6db74">&#39;token_type&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;bearer&#39;</span>,
-            <span style="color:#e6db74">&#39;expires_in&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">auth</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">factory</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getTTL</span>() <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span>
-        ]);
-    }
-}
-</code></pre></div><h3 id="heading-1">配置守卫和路由</h3>
-<p>配置<code>config/auth.php</code>,将默认的 guard 修改为 api,并将 guards 的 driver 修改为 jwt,配置之后就可以将 Laravel 提供的 auth（用户认证） 和 jwt 结合起来。</p>
-<pre><code>'defaults' =&gt; [
-    'guard' =&gt; 'api',
-    'passwords' =&gt; 'users',
-],
-
-...
-
-'guards' =&gt; [
-    'api' =&gt; [
-        'driver' =&gt; 'jwt',
-        'provider' =&gt; 'users',
-    ],
-],
-</code></pre><p>配置<code>routes/api.php</code></p>
-<pre><code>Route::group([
-
-    'middleware' =&gt; 'api',
-    'prefix' =&gt; 'auth'
-
-], function ($router) {
-
-    Route::post('login', 'AuthController@login');
-    Route::post('logout', 'AuthController@logout');
-    Route::post('refresh', 'AuthController@refresh');
-    Route::post('me', 'AuthController@me');
-
-});
-</code></pre><p>你现在应该可以通过post登录（例如：<code>http://example.dev/auth/login</code>）得到如下响应:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-    <span style="color:#f92672">&#34;access_token&#34;</span>: <span style="color:#e6db74">&#34;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ&#34;</span>,
-    <span style="color:#f92672">&#34;token_type&#34;</span>: <span style="color:#e6db74">&#34;bearer&#34;</span>,
-    <span style="color:#f92672">&#34;expires_in&#34;</span>: <span style="color:#ae81ff">3600</span>
-}
-</code></pre></div><h3 id="heading-2">验证请求</h3>
-<p>一下有几种途径发送<code>token</code></p>
+</code></pre><p>直接与 Vue 相关的有 <code>vue</code> 和 <code>axios</code>（网络请求工具，与 Ajax 功能类似），如果开发中、大型项目，<code>vue-router</code>（路由管理工具） 和 <code>vuex</code>（状态管理工具） 也必不可少。</p>
+<p>还有其他常用的扩展，例如支持 cookie 操作的 <code>js-cookie</code>，支持多国语言开发的 <code>vue-i18n</code>,支持 Sass 语法的 <code>node-sass</code> 等。</p>
+<p>此项目前端使用 <a href="https://www.iviewui.com/">iview</a> 框架，加上这些常用扩展后的 <code>package.json</code> ：</p>
+<pre><code>  &quot;devDependencies&quot;: {
+    &quot;axios&quot;: &quot;^0.17&quot;,
+    &quot;bootstrap&quot;: &quot;^4.0.0&quot;,
+    &quot;bootstrap-sass&quot;: &quot;^3.3.7&quot;,
+    &quot;cross-env&quot;: &quot;^5.1&quot;,
+    &quot;jquery&quot;: &quot;^3.2&quot;,
+    &quot;laravel-mix&quot;: &quot;^2.0&quot;,
+    &quot;lodash&quot;: &quot;^4.17.4&quot;,
+    &quot;node-sass&quot;: &quot;^4.7.2&quot;,
+    &quot;vue&quot;: &quot;^2.5.7&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;css-loader&quot;: &quot;^0.28.9&quot;,
+    &quot;iview&quot;: &quot;^2.9.2&quot;,
+    &quot;js-cookie&quot;: &quot;^2.2.0&quot;,
+    &quot;less&quot;: &quot;^3.0.0&quot;,
+    &quot;less-loader&quot;: &quot;^4.0.5&quot;,
+    &quot;particles.js&quot;: &quot;^2.0.0&quot;,
+    &quot;vue-i18n&quot;: &quot;^7.4.2&quot;,
+    &quot;vue-router&quot;: &quot;^3.0.1&quot;,
+    &quot;vuex&quot;: &quot;^3.0.1&quot;
+  }
+</code></pre><p>其中还加入了 <code>css</code>加载器、<code>less</code>解析工具、<a href="https://github.com/VincentGarreau/particles.js">particles</a> 前端动画等，不需要的可以自行删除。</p>
+<h3 id="heading-3">安装扩展包</h3>
+<p>将以上配置直接粘贴到你的 <code>package.json</code> 文件中，执行 <code>cnpm install</code> 或者 <code>yarn install</code>。</p>
+<p>没有 <code>cnpm</code> 的，需要设置淘宝镜像，<code>npm</code> 下载的是国外的镜像，速度慢而且可能出现下载失败的问题。</p>
+<pre><code># 设置淘宝镜像命令
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+</code></pre><p>如果想单个安装扩展，可以执行命令如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cnpm install vue-router --save
+</code></pre></div><h2 id="heading-4">前端结构搭建</h2>
+<p>vue前端的文件结构在 <code>/recources/assets/js</code> 目录，vue能够渲染主要是两个操作</p>
 <ul>
-<li>Authorization 头信息</li>
+<li>vue 挂载到页面的节点中</li>
+<li>vue-router 处理路由，渲染对应的组件</li>
 </ul>
-<pre><code>Authorization: Bearer eyJhbGciOiJIUzI1NiI...
-</code></pre><ul>
-<li>url查询参数</li>
-</ul>
-<pre><code>http://example.dev/me?token=eyJhbGciOiJIUzI1NiI...
-</code></pre>
+<h3 id="1--html-">1. 建立 html 文件</h3>
+<p>在 <code>resource/views</code> 新建 <code>index.blade.php</code>,代码如下</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+&lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;height: 100%&#34;</span>&gt;
+&lt;<span style="color:#f92672">head</span>&gt;
+    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span>&gt;
+    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;viewport&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width=device-width,initial-scale=1,user-scalable=0&#34;</span>&gt;
+    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;csrf-token&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ csrf_token() }}&#34;</span>&gt;
+    &lt;<span style="color:#f92672">title</span>&gt;laravel-vue-iview项目&lt;/<span style="color:#f92672">title</span>&gt;
+&lt;/<span style="color:#f92672">head</span>&gt;
+&lt;<span style="color:#f92672">body</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;height: 100%&#34;</span>&gt;
+&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span>&gt;
+
+&lt;/<span style="color:#f92672">div</span>&gt;
+&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ mix(&#39;js/app.js&#39;) }}&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+
+&lt;/<span style="color:#f92672">body</span>&gt;
+&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div><h4 id="2--recourcesassetsjsappjs">2. 修改 <code>/recources/assets/js.app.js</code></h4>
+<pre><code>require('./bootstrap');
+
+// 导入扩展包
+window.Vue = require('vue');
+
+import App from './app.vue'
+import VueRouter from 'vue-router';
+import iView from 'iview';
+import 'iview/dist/styles/iview.css';
+
+// 导入vue
+Vue.use(iView);
+Vue.use(VueRouter);
+
+// 路由配置
+const RouterConfig = {
+    routes: [
+        // ExampleComponent laravel默认的示例组件
+        { path: '/', component: require('./components/ExampleComponent.vue') },
+    ]
+};
+const router = new VueRouter(RouterConfig);
+
+const app = new Vue({
+    el: '#app',
+    router: router,
+    render: h =&gt; h(App)
+});
+</code></pre><h3 id="3--layout">3. 建立 Layout</h3>
+<p>在 <code>/recources/assets/js</code> 新建 <code>app.vue</code>, 将 iview 的 <a href="https://www.iviewui.com/components/layout">layout</a> 代码搬过来：</p>
+<pre><code>&lt;style scoped&gt;
+  .layout-con{
+    height: 100%;
+    width: 100%;
+  }
+  .menu-item span{
+    display: inline-block;
+    overflow: hidden;
+    width: 69px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: bottom;
+    transition: width .2s ease .2s;
+  }
+  .menu-item i{
+    transform: translateX(0px);
+    transition: font-size .2s ease, transform .2s ease;
+    vertical-align: middle;
+    font-size: 16px;
+  }
+  .collapsed-menu span{
+    width: 0px;
+    transition: width .2s ease;
+  }
+  .collapsed-menu i{
+    transform: translateX(5px);
+    transition: font-size .2s ease .2s, transform .2s ease .2s;
+    vertical-align: middle;
+    font-size: 22px;
+  }
+&lt;/style&gt;
+&lt;template&gt;
+  &lt;div class=&quot;layout&quot;&gt;
+    &lt;Layout :style=&quot;{minHeight: '100vh'}&quot;&gt;
+      &lt;Sider collapsible :collapsed-width=&quot;78&quot; v-model=&quot;isCollapsed&quot;&gt;
+        &lt;Menu active-name=&quot;1-2&quot; theme=&quot;dark&quot; width=&quot;auto&quot; :class=&quot;menuitemClasses&quot;&gt;
+          &lt;MenuItem name=&quot;1-1&quot;&gt;
+            &lt;Icon type=&quot;ios-navigate&quot;&gt;&lt;/Icon&gt;
+            &lt;span&gt;Option 1&lt;/span&gt;
+          &lt;/MenuItem&gt;
+          &lt;MenuItem name=&quot;1-2&quot;&gt;
+            &lt;Icon type=&quot;search&quot;&gt;&lt;/Icon&gt;
+            &lt;span&gt;Option 2&lt;/span&gt;
+          &lt;/MenuItem&gt;
+          &lt;MenuItem name=&quot;1-3&quot;&gt;
+            &lt;Icon type=&quot;settings&quot;&gt;&lt;/Icon&gt;
+            &lt;span&gt;Option 3&lt;/span&gt;
+          &lt;/MenuItem&gt;
+        &lt;/Menu&gt;
+      &lt;/Sider&gt;
+      &lt;Layout&gt;
+        &lt;Header :style=&quot;{background: '#fff', boxShadow: '0 2px 3px 2px rgba(0,0,0,.1)'}&quot;&gt;&lt;/Header&gt;
+        &lt;Content :style=&quot;{padding: '0 16px 16px'}&quot;&gt;
+          &lt;Breadcrumb :style=&quot;{margin: '16px 0'}&quot;&gt;
+            &lt;BreadcrumbItem&gt;Home&lt;/BreadcrumbItem&gt;
+            &lt;BreadcrumbItem&gt;Components&lt;/BreadcrumbItem&gt;
+            &lt;BreadcrumbItem&gt;Layout&lt;/BreadcrumbItem&gt;
+          &lt;/Breadcrumb&gt;
+          &lt;Card&gt;
+            &lt;div style=&quot;height: 600px&quot;&gt;Content&lt;/div&gt;
+          &lt;/Card&gt;
+        &lt;/Content&gt;
+      &lt;/Layout&gt;
+    &lt;/Layout&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+  export default {
+    data () {
+      return {
+        isCollapsed: false
+      };
+    },
+    computed: {
+      menuitemClasses: function () {
+        return [
+          'menu-item',
+          this.isCollapsed ? 'collapsed-menu' : ''
+        ]
+      }
+    }
+  }
+&lt;/script&gt;
+</code></pre><h3 id="4-">4. 添加组件</h3>
+<p>路由访问的组件会渲染到 <code>&lt;router-view&gt;&lt;/router-view&gt;</code>, 所以我们修改上面的 <code>app.vue</code>，将 content 文字修改为 <code>&lt;router-view&gt;&lt;/router-view&gt;</code>，上面的代码是已经修改过得。</p>
+<p>然后修改组件 <code>/recources/assets/js/components/ExampleComponent.vue</code> 的内容：</p>
+<pre><code>&lt;template&gt;
+    &lt;Tabs&gt;
+        &lt;TabPane label=&quot;macOS&quot; icon=&quot;social-apple&quot;&gt;标签一的内容&lt;/TabPane&gt;
+        &lt;TabPane label=&quot;Windows&quot; icon=&quot;social-windows&quot;&gt;标签二的内容&lt;/TabPane&gt;
+        &lt;TabPane label=&quot;Linux&quot; icon=&quot;social-tux&quot;&gt;标签三的内容&lt;/TabPane&gt;
+    &lt;/Tabs&gt;
+&lt;/template&gt;
+</code></pre><h3 id="5--web-">5. 创建 web 路由</h3>
+<p>在 <code>/routes/web.php</code> 中新建一个访问我们挂载着vue页面的路由。</p>
+<pre><code>Route::get('/', function () {
+    return view('index');
+});
+</code></pre><h3 id="6-">6. 编译运行</h3>
+<p>常用的编译命令如下：</p>
+<pre><code># 本地环境编译
+npm run dev
+
+# 本地环境编译 + 监控文件修改
+npm run watch
+
+# 生产环境编译
+npm run prod
+</code></pre><p>这里我使用 <code>npm run dev</code>，编译成功后访问项目就可以看到我们创建的 vue 页面了。</p>
+<p><img src="/img/bVbaDgd" alt="搭建完成的效果"></p>
+<p>至此，只是完成了基础的搭建过程，一个完整的项目还需要合理的 <code>项目结构</code> 和 基础的<code>权限管理</code> 等，这些内容也会逐步在此项目中完善。最终的目的是为了开发新项目时，可以 <code>拿来就用</code>,而不是每次重新再配置一遍。</p>
+
     </div>
     <div class="article-footer">
 <blockquote class="mt-2x">
   <ul class="post-copyright list-unstyled">
     <li class="post-copyright-link hidden-xs">
       <strong>Permalink: </strong>
-      <a href="https://127.0.0.1/2020/01/laravel5.5%E5%AE%89%E8%A3%85jwt/" title="Laravel5.5 安装 JWT" target="_blank" rel="external">https://127.0.0.1/2020/01/laravel5.5%E5%AE%89%E8%A3%85jwt/</a>
+      <a href="https://127.0.0.1/2020/04/laravel%E5%92%8Cvue%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA%E5%9F%BA%E7%A1%80%E7%AF%87/" title="Laravel和Vue的项目搭建:基础篇" target="_blank" rel="external">https://127.0.0.1/2020/04/laravel%E5%92%8Cvue%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA%E5%9F%BA%E7%A1%80%E7%AF%87/</a>
     </li>
     <li class="post-copyright-license">
       <strong>License：</strong><a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN</a>
@@ -516,13 +565,13 @@ php artisan jwt:secret
     <div class="bar-inner">
         <ul class="pager pull-left">
             <li class="prev">
-                <a href="https://127.0.0.1/2019/12/faker%E8%99%9A%E6%8B%9F%E6%95%B0%E6%8D%AE%E5%A1%AB%E5%85%85%E5%92%8C%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" title="Faker虚拟数据填充和源码解"><i
+                <a href="https://127.0.0.1/2020/01/%E4%BD%BF%E7%94%A8php%E8%84%9A%E6%9C%AC%E5%81%9A%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86/" title="使用PHP脚本做文本处理"><i
                         class="icon icon-angle-left"
                         aria-hidden="true"></i><span>&nbsp;&nbsp;Older</span></a>
             </li>
             <li class="next">
-                <a href="https://127.0.0.1/2020/01/php%E5%92%8Cgo%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%80%81%E7%9A%84%E5%AF%B9%E6%AF%94/"
-                    title="PHP和Go实现多态的对比"><span>Newer&nbsp;&nbsp;</span><i
+                <a href="https://127.0.0.1/2020/04/laravel%E5%92%8Cvue%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA%E8%BF%9B%E9%98%B6%E7%AF%87/"
+                    title="Laravel和Vue的项目搭建:进阶篇"><span>Newer&nbsp;&nbsp;</span><i
                         class="icon icon-angle-right" aria-hidden="true"></i></a>
             </li>
             

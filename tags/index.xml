@@ -5,10 +5,28 @@
     <link>https://127.0.0.1/tags/</link>
     <description>Recent content in Tags on Donne blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 13 Jan 2020 16:43:40 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 22 Apr 2020 09:57:00 +0800</lastBuildDate>
     
         <atom:link href="https://127.0.0.1/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Laravel和Vue的项目搭建:进阶篇</title>
+      <link>https://127.0.0.1/2020/04/laravel%E5%92%8Cvue%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA%E8%BF%9B%E9%98%B6%E7%AF%87/</link>
+      <pubDate>Wed, 22 Apr 2020 09:57:00 +0800</pubDate>
+      
+      <guid>https://127.0.0.1/2020/04/laravel%E5%92%8Cvue%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA%E8%BF%9B%E9%98%B6%E7%AF%87/</guid>
+      <description>相关项目 laravel-vue-iview 的 GitHub 地址 戳这里，此项目基本可用于实际开发工作。 Laravel 和 Vue 的项目搭建：基础篇 基础篇主要介绍的是 Vue 前端项目的搭建过程，本篇将会介绍前端的文</description>
+    </item>
+    
+    <item>
+      <title>Laravel和Vue的项目搭建:基础篇</title>
+      <link>https://127.0.0.1/2020/04/laravel%E5%92%8Cvue%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA%E5%9F%BA%E7%A1%80%E7%AF%87/</link>
+      <pubDate>Wed, 22 Apr 2020 09:56:29 +0800</pubDate>
+      
+      <guid>https://127.0.0.1/2020/04/laravel%E5%92%8Cvue%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA%E5%9F%BA%E7%A1%80%E7%AF%87/</guid>
+      <description>本篇只是实现了 基础 的功能，对于实际的项目中的权限等还未涉及，这些会在后期逐步完善。 相关项目 laravel-vue-iview 的 GitHub 地址 戳这里，此项目基本可用于实际开发工作。 Laravel</description>
+    </item>
     
     <item>
       <title>使用PHP脚本做文本处理</title>
