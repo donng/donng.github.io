@@ -297,6 +297,11 @@ img {
   vertical-align: middle;
 }
 
+.post-copyright {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 .img-responsive {
   display: block;
   max-width: 100%;
